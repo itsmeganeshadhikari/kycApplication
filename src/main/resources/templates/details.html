@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TabKYC FORM</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Bootstrap core CSS -->
+
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style1.css}">
+    <script src="js/myscripts.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link href="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v3.min.css" rel="stylesheet" type="text/css"/>
+    <script src="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v3.min.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+<br/>
+<div class="container box">
+    <br/>
+    <!--    <div>-->
+    <!--        <a th:href="@{ClientDetails/export }">Export to pdf</a>-->
+    <!--    </div>-->
+
+    <!--code for making tabs-->
+    <form id="register_form" method="POST" th:action="@{/saveDetail}" th:autocomplete="off"
+          th:object="${clientDetails}" data-toggle="validator" role="form" name="myform">
+
+        <!--        <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>-->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active_tab1" id="list_Client_details" style="border:1px solid #ccc">Client<br>
+                    Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link inactive_tab1" id="list_Client_Address" style="border:1px solid #ccc">Client<br>
+                    Address</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link inactive_tab1" id="list_Bank_details" style="border:1px solid #ccc">Family & Bank
+                    <br>Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link inactive_tab1" id="list_Occupation_details"
+                   style="border:1px solid #ccc">Occupation<br>
+                    Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link inactive_tab1" id="list_transaction_details" style="border:1px solid #ccc">Transaction<br>
+                    Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link inactive_tab1" id="list_Rehabilitated_details" style="border:1px solid #ccc">Rehabilitated<br>
+                    Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link inactive_tab1" id="list_Guardian_details" style="border:1px solid #ccc">Guardian<br>
+                    Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link inactive_tab1" id="list_Addtional_details"
+                   style="border:1px solid #ccc">Addtional<br>
+                    Details</a>
+            </li>
+        </ul><!--end of tab-->
+
+        <div class="tab-content" style="margin-top:16px;">
+
+            <div class="tab-pane active frm" id="Client_details">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Details</strong>
+                    </h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <!--Cliennt Deatils-->
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <p><b>Please complete all details and strike out the non-applicable
+                                        fields/boxes.</b></p>
+                                    <p><b>Siprabi Securities(P.)Ltd.</b></p>
+                                    <input class="form-control" placeholder="Please Specify the branch"
+                                           th:field="*{branch}" id="branchname"
+                                           name="branchname"
+                                           type="text"/>
+                                    <span id="branchnameerror" class="text-danger font-weight-bold"></span>
+
+                                </div>
+
+                                <div class="col-md-4" style="height:20px;margin-top:3px;">
+                                    <div style="height:20px;">
+                                        <input hidden="hidden" id="real-file" type="file" th:field="*{pic}" required/>
+                                        <button id="custom-buttom" type="button">CHOOSE A FILE</button>
+                                        <span id="custom-text">No file chosen,yet.</span>
+                                        <!--<span id="imageerror" class="text-danger font-weight-bold"></span>-->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <div class="form-group">
+                                        <label><b>First Name(In Block Letter):</b></label>
+                                        <input class="form-control" id="firstname"
+                                               name="firstname"
+                                               placeholder="Enter the  first name in Block letter"
+                                               th:field="*{first_name}" type="text"/>
+
+                                        <span id="firstnameerror" class="text-danger font-weight-bold"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <label><b>Middle Name(In Block Letter):</b></label>
+                                    <input class="form-control" id="middlename"
+                                           name="middlename"
+                                           placeholder="Enter the  Middle name in Block letter"
+                                           th:field="*{middle_name}" type="text"/>
+                                    <span id="middlenameerror" class="text-danger font-weight-bold"></span>
+                                </div>
+
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <label><b>SurName(In Block Letter):</b></label>
+                                    <input class="form-control" id="lastname"
+                                           name="lastname"
+                                           placeholder="Enter the  SurName in Block letter" th:field="*{sur_name}"
+                                           type="text" required="required"/>
+                                    <span id="lastnameerror" class="text-danger font-weight-bold"></span>
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Date of Birth in (B.S):</b></p>
+                                    <input class="form-control" placeholder="Enter date of Birth in B.S" id="dob"
+                                           th:field="*{birth_date0}" type="dob" required>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Date of Birth in (A.D):</b></p>
+                                    <input class="form-control " placeholder="Enter date of Birth in A.D"
+                                           th:field="*{birth_date1}" type="date" required>
+                                </div>
+
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1"><b>Select Martial Status</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                                th:field="*{martialStatus}">
+                                            <option th:each="marital:${maritalStatusList}"
+                                                    th:text="${marital.getDisplay()}"
+                                                    th:value="${marital.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect22"><b>Select Gender</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect22"
+                                                th:field="*{gender}">
+                                            <option th:each="gender:${genderList}" th:text="${gender.getDisplay()}"
+                                                    th:value="${gender.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+
+                                        <label for="seeAnotherField65"><b>Select Nationality</b></label>
+                                        <select class="form-control" id="seeAnotherField65"
+                                                th:field="*{nationality}">
+                                            <option th:each="nationality:${nationalityList}" th:text="${nationality.getDisplay()}"
+                                                    th:value="${nationality.getType()}"></option>
+                                        </select>
+                                </div>
+                                    <div class="form-group" id="otherFieldDiv65">
+                                                <strong>If Others,then Mention the Nationality:</strong>
+                                                <input class="form-control" placeholder="Mention the Nationality"
+                                                       th:field="*{nationality_name}"
+                                                       id="nationalityname" type="text">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label><b>CitizenShip No</b></label>
+                                    <input class="form-control" placeholder="Enter Citizenship No" id="citizenship"
+                                           name="citizenship"
+                                           th:field="*{citizenship_no}" type="text"/>
+                                    <span id="citizenshiperror" class="text-danger font-weight-bold"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect55"><b>Issue District of Citizenship</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect55"
+                                                th:field="${clientDetails.issue_district}">
+                                            <option th:each="district1:${districties}"
+                                                    th:text="${district1.district_name}"
+                                                    th:value="${district1.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <lable><b>Issue Date of CitizenShip</b></lable>
+                                    <input class="form-control" placeholder="Enter Issue Date" required
+                                           th:field="*{issue_date}" type="date">
+                                </div>
+
+
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Beneficary ID No:</b></p>
+                                    <input class="form-control" placeholder="Enter Beneficary Id No" required
+                                           id="beneficary" name="beneficary"
+                                           th:field="*{beneficary_no}" type="text"/>
+                                    <span id="beneficaryerror" class="text-danger font-weight-bold"></span>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p><b>Permanent Account No.(PAN):</b></p>
+                                    <input class="form-control" placeholder="Enter Permanent Account No.(PAN)" id="pan"
+                                           name="pan"
+                                           required
+                                           th:field="*{permanent_account_no}" type="text"/>
+                                    <span id="panerror" class="text-danger font-weight-bold"></span>
+
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>Identification No. and address:(In case of NRN)</b></p>
+
+                                    <textarea class="form-control" style="resize:none" name="name" cols="50" rows="4"
+                                              th:field="*{identification_no}"
+                                              placeholder="Mention Identification No and Address" required></textarea>
+                                </div>
+                                <br>
+
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-md-12">
+                                <button class="btn btn-info btn-lg" id="btn_Client_details" name="btn_Client_details"
+                                        type="button">
+                                    Next
+                                </button>
+
+                            </div>
+                            <br/>
+                        </div>
+
+                    </div><!--End of ClientDetails-->
+                </div>
+            </div>
+
+            <!--Client Address-->
+            <div class="tab-pane frm" id="Client_Address">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Address</strong>
+                    </h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row" style="margin-top:3px;">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="country"><b>Select Country</b></label>
+                                        <select class="form-control" id="country" name="country"
+                                                th:field="${clientDetails.clientAddress.temp_country}">
+                                            <option th:each="country:${countries}"
+                                                    th:text="${country.country_en_name}"
+                                                    th:value="${country.country_en_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="province"><b>Select Province</b></label>
+                                        <select class="form-control" id="province" name="province"
+                                                th:field="${clientDetails.clientAddress.temp_province}">
+                                            <option th:each="province:${provinces}"
+                                                    th:text="${province.province_name}"
+                                                    th:value="${province.province_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="district_p"><b>Select District</b></label>
+                                        <select class="form-control" id="district_p" name="district"
+                                                th:field="${clientDetails.clientAddress.temp_district}">
+                                            <option th:each="district:${districties}"
+                                                    th:text="${district.district_name}"
+                                                    th:value="${district.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+<!--                                    <p><b>Rural Municipality/Sub Metropolitan city/Metropolitan city:</b></p>-->
+                                        <div class="form-group">
+<!--                                            <label for="municipality10"><b>Select Municiplaity</b></label>-->
+                                            <select class="form-control" id="municipality10"
+                                                    th:field="${clientDetails.clientAddress.temp_municipality}">
+                                                <option th:each="municipality:${municipalityList}" th:text="${municipality.getDisplay()}"
+                                                        th:value="${municipality.getType()}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <input class="form-control" id="municipality" name="municipality"
+                                           placeholder="Enter Name of Rural/Municipality/Sub Meteropolitian City/MetropolitianCity"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_mun}" type="text">
+                                    <span id="municipalityerror" class="text-danger font-weight-bold"></span>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>Ward No:</b></p>
+                                    <input class="form-control" id="ward" name="ward" placeholder="Enter Ward No"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_ward}" type="text">
+                                    <span id="warderror" class="text-danger font-weight-bold"></span>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Tole:</b></p>
+                                    <input class="form-control" id="tole" name="tole" placeholder="Enter Tole Name"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_tole}" type="text">
+                                    <span id="toleerror" class="text-danger font-weight-bold"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Telephone No:</b></p>
+                                    <input class="form-control" placeholder="Enter Telephone No"
+                                           th:field="${clientDetails.clientAddress.telephone_no}" type="text">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>E-mail ID:</b></p>
+                                    <input class="form-control" placeholder="Enter E-mail Id" type="email"
+                                           th:field="${clientDetails.clientAddress.email}">
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Mobile No:</b></p>
+                                    <input class="form-control" placeholder="Enter Mobile No" required id="mobile"
+                                           th:field="${clientDetails.clientAddress.mobile_no}" type="text">
+                                    <span id="mobileerror" class="text-danger font-weight-bold"></span>
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong>Permanent Adreess</strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>
+                                        <input id="present" name="present" onclick="permanent()" type="checkbox"
+                                               value=""/>Same as Present address:
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="country1"><b>Select Country</b></label>
+                                        <select class="form-control" id="country1" name="country1"
+                                                th:field="${clientDetails.clientAddress.per_country}">
+                                            <option th:each="country:${countries}"
+                                                    th:text="${country.country_en_name}"
+                                                    th:value="${country.country_en_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="province1"><b>Select Province</b></label>
+                                        <select class="form-control" id="province1" name="province1"
+                                                th:field="${clientDetails.clientAddress.per_province}">
+                                            <option th:each="province:${provinces}"
+                                                    th:text="${province.province_name}"
+                                                    th:value="${province.province_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="district_m"><b>Select District</b></label>
+                                        <select class="form-control" id="district_m" name="district1"
+                                                th:field="${clientDetails.clientAddress.per_district}">
+                                            <option th:each="district:${districties}"
+                                                    th:text="${district.district_name}"
+                                                    th:value="${district.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+<!--                                        <label for="municipality20"><b>Select Municiplaity</b></label>-->
+                                        <select class="form-control" id="municipality20"
+                                                th:field="${clientDetails.clientAddress.per_municipality}">
+                                            <option th:each="municipality:${municipalityList}" th:text="${municipality.getDisplay()}"
+                                                    th:value="${municipality.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                    <input class="form-control" id="municipality1" name="municipality1"
+                                           placeholder="Enter Name Rural/Sub Meteropolitian City/Metropolitian City/Municipality"
+                                           th:field="${clientDetails.clientAddress.per_mun}" type="text">
+                                    <span id="municipalityerror1" class="text-danger font-weight-bold"></span>
+                                </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Ward No:</b></p>
+                                    <input class="form-control" id="ward1" name="ward1" placeholder="Enter Ward No"
+                                           th:field="${clientDetails.clientAddress.per_ward}" type="text">
+                                    <span id="warderror1" class="text-danger font-weight-bold"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Tole:</b></p>
+                                    <input class="form-control" id="tole1" name="tole1" placeholder="Enter Tole name"
+                                           th:field="${clientDetails.clientAddress.per_tole}" type="text">
+                                    <span id="toleerror1" class="text-danger font-weight-bold"></span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_Client_Address"
+                                        name="previous_btn_Client_Address"
+                                        type="button">Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_Client_Address" name="btn_Client_Address"
+                                        type="button">Next
+                                </button>
+                            </div>
+
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div><!--End of client Addess-->
+
+            <!--Family and Bank Details-->
+            <div class="tab-pane frm" id="Bank_details">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Family and Bank
+                        Details</strong></h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <INPUT type="button" value="Add More Family details" onclick="addRow('dataTable')"/>
+
+                                    <INPUT type="button" value="Delete Family details"
+                                           onclick="deleteRow('dataTable')"/>
+                                    <br>
+
+                                    <TABLE id="dataTable" width="350px" class="col-md-12">
+
+
+                                        <TR>
+
+                                            <TD><INPUT type="checkbox" name="chk"/></TD>
+                                            <TD><INPUT class="form-control" id="familyname" type="text" name="txt"
+                                                       th:field="${clientDetails.bankDetails.family_name}"
+                                                       placeholder="Mention the Family name"/></TD>
+                                            <span id="familynameerror" class="text-danger font-weight-bold"></span>
+
+                                            <TD>
+
+                                                <!--                                                    <label for="exampleFormControlSelect30"></label>-->
+                                                <select class="form-control" style="margin-top:0px;"
+                                                        th:field="${clientDetails.bankDetails.relation}">
+                                                    <!--                                                        <option th:each="relation:${relationList}" th:text="${relation.getDisplay()}"-->
+                                                    <!--                                                                th:value="${relation.getType()}"></option>-->
+                                                    <OPTION value="FATHER">FATHER</OPTION>
+                                                    <OPTION value="MOTHER">MOTHER</OPTION>
+                                                    <OPTION value="HUSBAND">HUSBAND</OPTION>
+                                                    <OPTION value="WIFE">WIFE</OPTION>
+                                                    <OPTION value="BROTHER">BROTHER</OPTION>
+                                                    <OPTION value="SISTER">SISTER</OPTION>
+                                                    <OPTION value="SISTERINLAW">SISTER-IN-LAW</OPTION>
+                                                    <OPTION value="BROTHERINLAW">BROTHER-IN-LAW</OPTION>
+                                                    <OPTION value="SON">SON</OPTION>
+                                                    <OPTION value="DAUGHTER">DAUGHTER</OPTION>
+                                                    <OPTION value="UNCLE">UNCLE</OPTION>
+                                                    <OPTION value="AUNT">AUNT</OPTION>
+                                                    <OPTION value="OTHER">OTHER</OPTION>
+
+                                                </select>
+
+
+                                            </TD>
+                                        </TR>
+                                    </TABLE>
+                                </div>
+
+                                <div class="col-md-6">
+
+
+                                    <INPUT type="button" value="Add More bank details" onclick="addRow1('dataTable1')"/>
+
+                                    <INPUT type="button" value="Delete bank details"
+                                           onclick="deleteRow1('dataTable1')"/>
+
+                                    <br>
+
+
+                                    <TABLE id="dataTable1" width="350px" class="col-md-12">
+
+                                        <TR>
+
+                                            <TD><INPUT type="checkbox" name="chk"/></TD>
+                                            <TD><INPUT class="form-control" type="text"
+                                                       th:field="${clientDetails.bankDetails.account_no}" id="accountno"
+                                                       placeholder="Mention the account no"/>
+                                                <span id="accountnoerror" class="text-danger font-weight-bold"></span>
+                                            </TD>
+
+
+                                            <TD><textarea class="form-control" style="resize:none" id="bankname"
+                                                          name="name" cols="30" rows="3"
+                                                          th:field="${clientDetails.bankDetails.name_and_address_bank}"
+                                                          placeholder="Mention the name and address of the bank"></textarea>
+                                            </TD>
+                                            <!--                                            <span id="banknameerror" class="text-danger font-weight-bold"></span>-->
+
+                                        </TR>
+
+
+                                    </TABLE>
+
+                                </div>
+                            </div>
+
+
+                            <br>
+
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_Bank_details"
+                                        name="previous_btn_Bank_details"
+                                        type="button">Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_Bank_details" name="btn_Bank_details"
+                                        type="button">Next
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div><!--End  of Family and Bank Details-->
+
+
+            <!--Occupation Details-->
+            <div class="tab-pane frm" id="Occupation_details">
+                <div class="panel ">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Occupation
+                        Details</strong></h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;"><p><b>Details of Occupation</b></p></h3>
+                                </div>
+                            </div>
+                            <br>
+                            <p><b>Occupation:</b></p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="seeAnotherField62">Select Occupation</label>
+                                        <select class="form-control" id="seeAnotherField62"
+                                                th:field="${clientDetails.occcupationDetail.occupation_type}">
+                                            <option th:each="occupation:${occupationList}"
+                                                    th:text="${occupation.getDisplay()}"
+                                                    th:value="${occupation.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div><!---->
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="seeAnotherField63">Select BusinessType</label>
+                                        <select class="form-control" id="seeAnotherField63"
+                                                th:field="${clientDetails.occcupationDetail.business_type}">
+                                            <option th:each="business:${businessList}"
+                                                    th:text="${business.getDisplay()}"
+                                                    th:value="${business.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect3">Select BusinessType</label>
+                                        <select class="form-control" id="exampleFormControlSelect3"
+                                                th:field="${clientDetails.occcupationDetail.financial_details}">
+                                            <option th:each="finance:${financialList}" th:text="${finance.getDisplay()}"
+                                                    th:value="${finance.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group" id="otherFieldDiv62">
+                                        <strong>If Others,then Mention Name of Occupation:</strong>
+                                        <input class="form-control" placeholder="Mention the Occupation name"
+                                               th:field="${clientDetails.occcupationDetail.occupation_name}"
+                                               id="occupationname" type="text">
+                                        <span id="occupationnameerror" class="text-danger font-weight-bold"></span>
+
+                                    </div>
+                                </div>
+                                <!--                            </div>-->
+                                <!--                            <div class="row">-->
+                                <div class="col-md-4">
+                                    <div class="form-group" id="otherFieldDiv63">
+                                        <strong>If Others,then Mention Name of BussinessType:</strong>
+                                        <input class="form-control" placeholder="Mention the Bussiness Type name"
+                                               th:field="${clientDetails.occcupationDetail.business_name}"
+                                               id="businessname" type="text">
+                                        <span id="businessnameerror" class="text-danger font-weight-bold"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Organization's Name:</b></p>
+                                    <input class="form-control" placeholder="Enter Organization's Name:"
+                                           th:field="${clientDetails.occcupationDetail.organization_name}"
+                                           id="organizationname" type="text">
+                                    <span id="organizationnameerror" class="text-danger font-weight-bold"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Address:</b></p>
+                                    <textarea class="form-control" placeholder="Enter Address Name:" id="addressname"
+                                              cols="50" rows="4"
+                                              th:field="${clientDetails.occcupationDetail.address}"
+                                              type="text"></textarea>
+                                    <span id="addressnameerror" class="text-danger font-weight-bold"></span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Designation:</b></p>
+                                    <input class="form-control" placeholder="Enter Designation Name:"
+                                           id="designationname"
+                                           th:field="${clientDetails.occcupationDetail.designation}" type="text">
+                                    <span id="designationnameerror" class="text-danger font-weight-bold"></span>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>(ID No of Employee):</b></p>
+                                    <input class="form-control" placeholder="Enter ID No of Employee:" id="employeeid"
+                                           th:field="${clientDetails.occcupationDetail.employee_id}" type="text">
+                                    <span id="employeeiderror" class="text-danger font-weight-bold"></span>
+
+
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_Occupation_details"
+                                        name="previous_btn_Occupation_details" type="button">
+                                    Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_Occupation_details"
+                                        name="btn_Occupation_details"
+                                        type="button">Next
+                                </button>
+                            </div>
+
+                            <br/>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div><!--end of occupation Details-->
+
+            <!--Transaction Details-->
+
+            <div class="tab-pane frm" id="transaction_details">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Transaction
+                        Details</strong></h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;"><b>Transaction related additional information</b>
+                                    </h3>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="checkbox-inline"><b>1.Select Income Source</b></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect13"><b>Select IncomeType</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect13"
+                                                th:field="${clientDetails.transactionDetails.income_type}">
+                                            <option th:each="income:${incomeList}" th:text="${income.getDisplay()}"
+                                                    th:value="${income.getType()}"></option>
+                                            <!--                                        <input type="checkboxes" th:each="income:${incomeList}" th:value="${income.getIncomeList()}">-->
+                                        </select>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <!--    <label for="exampleFormControlSelect1"><b>Select IncomeType</b></label>-->
+                                        <label for="seeAnotherField"><b>2.Other transaction are done in brokerage
+                                            company</b></label>
+                                        <select class="form-control" id="seeAnotherField"
+                                                th:field="${clientDetails.transactionDetails.boolean_type}">
+                                            <option th:each="boolean1:${booleanList}" th:text="${boolean1.getDisplay()}"
+                                                    th:value="${boolean1.getType()}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="otherFieldDiv">
+                                        <strong>If yes,then Mention Company Name:</strong>
+                                        <input class="form-control" placeholder="Mention the company name"
+                                               th:field="${clientDetails.transactionDetails.company}"
+                                               type="text">
+                                        <strong>If yes,then Mention Customer Code:</strong>
+                                        <input class="form-control" placeholder="Mention the Customer Code"
+                                               th:field="${clientDetails.transactionDetails.customer_code}"
+                                               type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2"><b>3.Your debt Information Center
+                                            (Security Corporation)Lt. Is on the blacklist</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect2"
+                                                th:field="${clientDetails.transactionDetails.debt_information}">
+                                            <option th:each="boolean:${debtInformationList}"
+                                                    th:text="${boolean.getDisplay()}"
+                                                    th:value="${boolean.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="seeAnotherField1"><b>4.Involvement in Investment companies which
+                                            were established for securities trading.</b></label>
+                                        <select class="form-control" id="seeAnotherField1"
+                                                th:field="${clientDetails.transactionDetails.investment_companies}">
+                                            <option th:each="boolean2:${investmentCompaniesList}"
+                                                    th:text="${boolean2.getDisplay()}"
+                                                    th:value="${boolean2.getType()}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" id="otherFieldDiv1">
+                                        <strong>If yes,then Mention Company Name:</strong>
+                                        <input class="form-control" placeholder="Mention the company name"
+                                               th:field="${clientDetails.transactionDetails.investment_company_name}"
+                                               type="text">
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="seeAnotherField64"><b>5.Designation</b></label>
+                                        <select class="form-control" id="seeAnotherField64"
+                                                th:field="${clientDetails.transactionDetails.designation}">
+                                            <option th:each="designation:${designationList}"
+                                                    th:text="${designation.getDisplay()}"
+                                                    th:value="${designation.getType()}"></option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group" id="otherFieldDiv64">
+                                        <strong>If Others,then Mention Name of Designation:</strong>
+                                        <input class="form-control" placeholder="Mention the Designation name"
+                                               th:field="${clientDetails.transactionDetails.designation_name}"
+                                               id="designationname" type="text">
+<!--                                        <span id="businessnameerror" class="text-danger font-weight-bold"></span>-->
+                                </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_transaction_details"
+                                        name="previous_btn_transaction_details" type="button">
+                                    Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_transaction_details"
+                                        name="btn_transaction_details"
+                                        type="button">Next
+                                </button>
+                            </div>
+                            <br/>
+
+                        </div>
+                    </div>
+                </div>
+            </div><!--End of Transaction details-->
+
+            <!--In case of Rehabilated-->
+            <div class="tab-pane frm" id="Rehabilitated_details">
+                <div class="panel ">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Rehabilitated
+                        Details</strong></h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;"><b>In the case of rehabilitated</b></h3>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>Household Name:</b></p>
+                                    <input class="form-control"
+                                           th:field="${clientDetails.rehabilitatedDetails.house_hold_name}"
+                                           type="text">
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <p><b>Telephone number:</b></p>
+
+                                    <input class="form-control"
+                                           th:field="${clientDetails.rehabilitatedDetails.telephone_no}"
+                                           type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>Mobile number:</b></p>
+
+                                    <input class="form-control"
+                                           th:field="${clientDetails.rehabilitatedDetails.mobile_no}"
+                                           type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="district121"><b>Select District</b></label>
+                                        <select class="form-control" id="district121" name="district121"
+                                                th:field="${clientDetails.rehabilitatedDetails.district_name}">
+                                            <option th:each="district21:${districties}"
+                                                    th:text="${district21.district_name}"
+                                                    th:value="${district21.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+<!--                                <div class="col-md-4">-->
+<!--                                    <p><b>District:</b></p>-->
+
+<!--                                    <input class="form-control"-->
+<!--                                           th:field="${clientDetails.rehabilitatedDetails.district_name}"-->
+<!--                                           type="text">-->
+<!--                                </div>-->
+
+
+                                <div class="col-md-4">
+                                    <p><b>VDC:</b></p>
+
+                                    <input class="form-control"
+                                           th:field="${clientDetails.rehabilitatedDetails.vdc_name}"
+                                           type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>Ward number:</b></p>
+                                    <input class="form-control" th:field="${clientDetails.rehabilitatedDetails.ward_no}"
+                                           type="text">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>Tole:</b></p>
+                                    <input class="form-control"
+                                           th:field="${clientDetails.rehabilitatedDetails.tole_name}"
+                                           type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>House number:</b></p>
+                                    <input class="form-control"
+                                           th:field="${clientDetails.rehabilitatedDetails.house_no}"
+                                           type="text">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_Rehabilitated_details"
+                                        name="previous_btn_Rehabilitated_details"
+                                        type="button">Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_Rehabilitated_details"
+                                        name="btn_Rehabilitated_details"
+                                        type="button">Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--End of In case of Rehabilated-->
+
+            <!--Guardian's Details-->
+            <div class="tab-pane frm" id="Guardian_details">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Guardian
+                        Details</strong></h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;"><b>Guardian's Details(in case of Minor/intellectually
+                                        Disabled only)</b></h3>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>FULL NAME:</b></p>
+                                    <input class="form-control" placeholder="Mention in Block letter"
+                                           th:field="${clientDetails.guardianDetails.name}"
+                                           type="text">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p><b>Relationship with applicant:</b></p>
+                                    <div class="form-group">
+                                        <select class="form-control" id="seeAnotherField61"
+                                                th:field="${clientDetails.guardianDetails.relation}">
+                                            <option th:each="relation:${relationList}"
+                                                    th:text="${relation.getDisplay()}"
+                                                    th:value="${relation.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group" id="otherFieldDiv61">
+                                        <strong>If Other, Mention the RelationShip:</strong>
+                                        <input class="form-control" placeholder="Mention the RelationShip"
+                                               th:field="${clientDetails.guardianDetails.other_relation_name}"
+                                               type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>Correspondance Address:</b></p>
+                                    <textarea class="form-control" style="resize:none" name="name" cols="50" rows="4"
+                                              th:field="${clientDetails.guardianDetails.correspondance_address}"
+                                              type="text" placeholder="Mention the Correspondance Address"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="country1"><b>Select Country</b></label>
+                                        <select class="form-control" id="district" name="country1"
+                                                th:field="${clientDetails.guardianDetails.country}">
+                                            <option th:each="country1:${countries}"
+                                                    th:text="${country1.country_en_name}"
+                                                    th:value="${country1.country_en_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="province1"><b>Select Province</b></label>
+                                        <select class="form-control" id="province1" name="province1"
+                                                th:field="${clientDetails.guardianDetails.province}">
+                                            <option th:each="province1:${provinces}"
+                                                    th:text="${province1.province_name}"
+                                                    th:value="${province1.province_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="district1"><b>Select District</b></label>
+                                        <select class="form-control" id="district1" name="district1"
+                                                th:field="${clientDetails.guardianDetails.district}">
+                                            <option th:each="district21:${districties}"
+                                                    th:text="${district21.district_name}"
+                                                    th:value="${district21.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <p><b>Rural Municipality/Municipality/Sub Metropolitan city/Metropolitan city:</b>
+                                    </p>
+                                    <input class="form-control" placeholder="Mention here"
+                                           th:field="${clientDetails.guardianDetails.municipality}"
+                                           type="text">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <p><b>Ward No:</b></p>
+                                    <input class="form-control" placeholder="Mention Ward"
+                                           th:field="${clientDetails.guardianDetails.ward_no}"
+                                           type="text">
+                                </div>
+                                <div class="col-md-3">
+                                    <p><b>Telephone No:</b></p>
+                                    <input class="form-control" placeholder="Mention Telephone"
+                                           th:field="${clientDetails.guardianDetails.telephone_no}"
+                                           type="text">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>Fax No:</b></p>
+                                    <input class="form-control" placeholder="Mention Fax No"
+                                           th:field="${clientDetails.guardianDetails.fax_no}"
+                                           type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>Mobile No:</b></p>
+                                    <input class="form-control" placeholder="Mention Mobile No"
+                                           th:field="${clientDetails.guardianDetails.mobile_no}"
+                                           type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>PAN NO:</b></p>
+                                    <input class="form-control" placeholder="Mention PAN NO"
+                                           th:field="${clientDetails.guardianDetails.pan_no}"
+                                           type="text">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>E-mail ID:</b></p>
+                                    <input class="form-control" placeholder="Mention E-mail id"
+                                           th:field="${clientDetails.guardianDetails.email}"
+                                           type="email">
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="height:20px;">
+                                        <input hidden="hidden" id="real-file1" type="file"
+                                               th:field="${clientDetails.guardianDetails.images}"/>
+                                        <button id="custom-buttom1" type="button">CHOOSE A FILE</button>
+                                        <span id="custom-text1">No file chosen,yet.</span>
+                                    </div>
+                                    <br>
+                                    <p><b>Guardian's Signature</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_Guardian_details"
+                                        name="previous_btn_Guardian_details" type="button">
+                                    Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_Guardian_details"
+                                        name="btn_Guardian_details"
+                                        type="button">Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div><!-- End of Guardian's Details-->
+
+            <!--End of Additional details related to money laundering-->
+            <div class="tab-pane frm" id="Addtional_details">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Additional
+                        Details</strong></h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;"><b>Additional details related to money laundering and
+                                        financial prevention in terrorist activities</b></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="seeAnotherField20">1. Are you a political or high-ranking
+                                            person?</label>
+                                        <select class="form-control" id="seeAnotherField20"
+                                                th:field="${clientDetails.additionalDetails.political}">
+                                            <option th:each="political:${politicalList}"
+                                                    th:text="${political.getDisplay()}"
+                                                    th:value="${political.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="form-group" id="otherFieldDiv20">
+                                        <strong>If yes,then Mention concerned political/high ranking person:</strong>
+                                        <input class="form-control" placeholder="Mention the company name"
+                                               th:field="${clientDetails.additionalDetails.political_name}"
+                                               type="text">
+                                        <strong>Relationship with you</strong>
+                                        <input class="form-control" placeholder="Mention the company name"
+                                               th:field="${clientDetails.additionalDetails.political_relation}"
+                                               type="text">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="seeAnotherField21">2.Do you have a beneficiary?</label>
+                                        <select class="form-control" id="seeAnotherField21"
+                                                th:field="${clientDetails.additionalDetails.beneficary}">
+                                            <option th:each="beneficary:${beneficaryList}"
+                                                    th:text="${beneficary.getDisplay()}"
+                                                    th:value="${beneficary.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" id="otherFieldDiv21">
+                                        <strong>If yes,then Mention Name of beneficary:</strong>
+                                        <input class="form-control" placeholder="Mention the company name"
+                                               th:field="${clientDetails.additionalDetails.beneficary_name}"
+                                               type="text">
+                                        <strong>Relationship with you</strong>
+                                        <input class="form-control" placeholder="Mention the company name"
+                                               th:field="${clientDetails.additionalDetails.beneficary_relation}"
+                                               type="text">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="seeAnotherField22"><b>3. Have you been convicted of a felony in the
+                                            past?</b></label>
+                                        <select class="form-control" id="seeAnotherField22"
+                                                th:field="${clientDetails.additionalDetails.felony}">
+                                            <option th:each="felony:${felonyList}"
+                                                    th:text="${felony.getDisplay()}"
+                                                    th:value="${felony.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p><b>Please note if there are offenses as per clause 2 of section 2 of the Asset
+                                        Forfeiture Details Act 2064</b></p>
+                                    <input class="form-control" placeholder="Please Mention If any"
+                                           th:field="${clientDetails.additionalDetails.offenses}">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;"><b>धितोपत्र कारोबारको सम्बन्धमा तपसिल बमोजिमको सो
+                                        घोषणा गर्दछु|</b></h3>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>१.म/हामी धितोपत्र खरिदका लागि पर्योग गर्ने रकम सम्पत्ति शुद्धीकरणसम्बन्धी
+                                        प्रचालित कानुन विपरीत आर्जन गरेको हुने छैन</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>5.म/हामी कर्जा सूचना केन्द्रको कालोसूचीमा रहेको छु</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>२.धितोपत्रमा गरिएको लगानीमा निहित जोखिमको सम्बन्ध जानकार छु</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>6.सम्पत्ति शुद्धीकरण निवारण ऐन 2064 र यस अन्तर्गत जारी भएका नियमवाली तथा
+                                        निर्देशन आदिबाट माग भए अनुसार, सूचना विवरण तथा कागजातहरू कम्पनीले उपलब्ध गराउने
+                                        छु/र्छौं |</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>3.म/हामी खरिद गरेको धितोपत्रहरु बापत् को भुक्तानी लिने दिने कार्य तोकिएको
+                                        समयभित्र गर्नेछु</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>7.कम्पनीलाई गर्नुपर्ने भुक्तानी नगरी बाँकी राखेको कारणबाट मेरो/हाम्रो को
+                                        कारोबार अन्य धितोपत्र दलाल कम्पनीहरुमा समेत निलम्बन गर्ने पत्राचार वा परिपत्र
+                                        गर्ने मेरो हाम्रो मन्जुरी छ |</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>4.म/हामीले धितोपत्र सम्बन्धी तथा अन्य प्रचलित नियम कानुनको पालना गर्नेछु</b>
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3 style="text-align:center;"><b>संलग्न गर्नुपर्ने कागजात</b></h3>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>1.नेपाली नागरिकहरूको हकमा नागरिकताका प्रमाणपत्रको प्रतिलिपि</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>5.आमा वा बाबुको संरक्षक भएमा छोरा वा छोरीको जन्मदर्ता प्रमाणपत्रको
+                                        प्रतिलिपि</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>2.अन्य देशको नागरिकको हकमा पासपोर्टको प्रतिलिपी</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>6.निवेदकको हस्ताक्षर तथा औंठा छापमा संरक्षकको हस्ताक्षर तथा औंठा छाप</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>3.नाबालकको हकमा सरक्षक तथा नाबालक दुवैको photo</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>4.कानूनी सरक्षक भए सो सम्बन्धित कागजात</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><b>I/We hereby acknowledge that the above disclosed details are true.I further
+                                        hereby consent to bear any legal actions in case any false disclosure of
+                                        information related to me/us.</b></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="height:20px;">
+                                        <input hidden="hidden" id="real-file2" type="file"
+                                               th:field="${clientDetails.additionalDetails.images}"/>
+                                        <button id="custom-buttom2" type="button">CHOOSE A FILE</button>
+                                        <span id="custom-text2">No file chosen,yet.</span>
+                                    </div>
+                                    <br>
+                                    <p><b>Client's Signature</b></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_Addtional_details"
+                                        name="previous_btn_Addtional_details" type="button">
+                                    Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_Addtional_details"
+                                        name="btn_Addtional_details"
+                                        type="button">Submit
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div><!--End of Additional details related to money laundering-->
+        </div>
+
+    </form>
+
+</div>
+<!--<script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>-->
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var v = $("#register_form").validate({});
+
+        $(".frm").hide("fast");
+        $("#Client_details").show("slow");
+
+        //Client  details next Button
+        $("#btn_Client_details").click(function () {
+            // if(v.form()) {
+            //     $(".frm").hide("fast");
+            //     $("#Client_Address").show("slow");
+            // }
+            // });
+
+            var branchname = document.getElementById('branchname').value;
+            var firstname = document.getElementById('firstname').value;
+            var lastname = document.getElementById('lastname').value;
+            var citizenship = document.getElementById('citizenship').value;
+            // var district = document.getElementById('district').value;
+            var beneficary = document.getElementById('beneficary').value;
+            var pan = document.getElementById('pan').value;
+
+
+            var firstcheck = /^[A-Z]{3,20}$/;
+            var lastcheck = /^[A-Z]{3,20}$/;
+            var branchcheck = /[A-Za-z]/;
+            var citizenshipcheck = /^[0-9]{7,}$/;
+            // var districtcheck = /[A-Za-z]/;
+            var beneficarycheck = /^[0-9]{7,}$/;
+            var pancheck = /^[0-9]{7,}$/;
+
+            if (branchcheck.test(branchname)) {
+                document.getElementById('branchnameerror').innerHTML = "";
+            } else {
+                document.getElementById('branchnameerror').innerHTML = "**Please Mention the Branch name";
+                return false;
+            }
+
+            if (firstcheck.test(firstname)) {
+                document.getElementById('firstnameerror').innerHTML = "";
+            } else {
+                document.getElementById('firstnameerror').innerHTML = "**Please Write minimum 3 character and in UpperCase";
+                return false;
+            }
+
+
+            if (lastcheck.test(lastname)) {
+                document.getElementById('lastnameerror').innerHTML = "";
+            } else {
+                document.getElementById('lastnameerror').innerHTML = "**Please Write  minimum 3 character and in UpperCase";
+                return false;
+            }
+
+            if (citizenshipcheck.test(citizenship)) {
+                document.getElementById('citizenshiperror').innerHTML = "";
+            } else {
+                document.getElementById('citizenshiperror').innerHTML = "**Please Write  minimum 7 digit";
+                return false;
+            }
+
+            // if (districtcheck.test(district)) {
+            //     document.getElementById('districterror').innerHTML = "";
+            // } else {
+            //     document.getElementById('districterror').innerHTML = "**Please Mention the district";
+            //     return false;
+            // }
+            if (beneficarycheck.test(beneficary)) {
+                document.getElementById('beneficaryerror').innerHTML = "";
+            } else {
+                document.getElementById('beneficaryerror').innerHTML = "**Please Write  minimum 7 digit";
+                return false;
+            }
+            if (pancheck.test(pan)) {
+                document.getElementById('panerror').innerHTML = "";
+            } else {
+                document.getElementById('panerror').innerHTML = "**Please Write  minimum 7 digit";
+                return false;
+            }
+            if (v.form()) {
+
+                $('#list_Client_details').removeClass('active active_tab1');
+                $('#list_Client_details').removeAttr('href data-toggle');
+                $('#Client_details').removeClass('active ');
+                $('#list_Client_details').addClass('inactive_tab1');
+                $('#list_Client_Address').removeClass('inactive_tab1');
+                $('#list_Client_Address').addClass('active_tab1 active');
+                $('#list_Client_Address').attr('href', '#Client_Address');
+                $('#list_Client_Address').attr('data-toggle', 'tab');
+                $('#Client_Address').addClass('active in');
+                $(".frm").hide("fast");
+                $("#Client_Address").show("slow");
+
+            }
+
+
+        });
+
+
+        // ClientAddress Previous Button
+        $('#previous_btn_Client_Address').click(function () {
+
+            $('#list_Client_Address').removeClass(' active active_tab1');
+            $('#list_Client_Address').removeAttr(' href data-toggle');
+            $('#Client_Address').removeClass('active in');
+            $('#list_Client_Address').addClass('inactive_tab1');
+            $('#list_Client_details').removeClass('inactive_tab1');
+            $('#list_Client_details').addClass('active_tab1 active');
+            $('#list_Client_details').attr('href', '#Client_details');
+            $('#list_Client_details').attr('data-toggle', 'tab');
+            $('#Client_details').addClass('active in');
+            $(".frm").hide("fast");
+            $("#Client_details").show("slow");
+        });
+        // ClientAddress Next Button
+        $('#btn_Client_Address').click(function () {
+
+
+            var municipality = document.getElementById('municipality').value;
+            var ward = document.getElementById('ward').value;
+            var tole = document.getElementById('tole').value;
+            var mobile = document.getElementById('mobile').value;
+
+            var municipality1 = document.getElementById('municipality1').value;
+            var ward1 = document.getElementById('ward1').value;
+            var tole1 = document.getElementById('tole1').value;
+
+            var municipalitycheck = /[A-Za-z]/;
+            var wardcheck = /[A-Za-z0-9]/;
+            var tolecheck = /[A-Za-z]/;
+            var mobilecheck = /9[0-9]{1,9}/;
+
+            var municipalitycheck1 = /[A-Za-z]/;
+            var wardcheck1 = /[A-Za-z0-9]/;
+            var tolecheck1 = /[A-Za-z]/;
+
+            if (municipalitycheck.test(municipality)) {
+                document.getElementById('municipalityerror').innerHTML = "";
+            } else {
+                document.getElementById('municipalityerror').innerHTML = "**Please Mention the Municiplaity name With No digit";
+                return false;
+            }
+
+            if (wardcheck.test(ward)) {
+                document.getElementById('warderror').innerHTML = "";
+            } else {
+                document.getElementById('warderror').innerHTML = "**Please Mention the Ward Number";
+                return false;
+            }
+
+            if (tolecheck.test(tole)) {
+                document.getElementById('toleerror').innerHTML = "";
+            } else {
+                document.getElementById('toleerror').innerHTML = "**Please Mention the Tole name";
+                return false;
+            }
+
+            if (mobilecheck.test(mobile)) {
+                document.getElementById('mobileerror').innerHTML = "";
+            } else {
+                document.getElementById('mobileerror').innerHTML = "**Please Mention the mobile number starting with 9 and maximum 10 digit";
+                return false;
+            }
+
+            if (municipalitycheck1.test(municipality1)) {
+                document.getElementById('municipalityerror1').innerHTML = "";
+            } else {
+                document.getElementById('municipalityerror1').innerHTML = "**Please Mention the Municiplaity name With No digit";
+                return false;
+            }
+            if (wardcheck1.test(ward1)) {
+                document.getElementById('warderror1').innerHTML = "";
+            } else {
+                document.getElementById('warderror1').innerHTML = "**Please Mention the Ward Number";
+                return false;
+            }
+            if (tolecheck1.test(tole1)) {
+                document.getElementById('toleerror1').innerHTML = "";
+            } else {
+                document.getElementById('toleerror1').innerHTML = "**Please Mention the Tole name";
+                return false;
+            }
+
+            if (v.form()) {
+                $('#list_Client_Address').removeClass('active active_tab1');
+                $('#list_Client_Address').removeAttr('href data-toggle');
+                $('#Client_Address').removeClass('active in');
+                $('#list_Client_Address').addClass('inactive_tab1');
+                $('#list_Bank_details').removeClass('inactive_tab1');
+                $('#list_Bank_details').addClass('active_tab1 active');
+                $('#list_Bank_details').attr('href', '#Bank_details');
+                $('#list_Bank_details').attr('data-toggle', 'tab');
+                $('#Bank_details').addClass('active in ');
+
+                $(".frm").hide("fast");
+                $("#Bank_details").show("slow");
+            }
+
+
+        });
+        // Bank Previous Button
+        $('#previous_btn_Bank_details').click(function () {
+            $('#list_Bank_details').removeClass(' active active_tab1');
+            $('#list_Bank_details').removeAttr(' href data-toggle');
+            $('#Bank_details').removeClass('active in');
+            $('#list_Banj_details').addClass('inactive_tab1');
+            $('#list_Client_Address').removeClass('inactive_tab1');
+            $('#list_Client_Address').addClass('active_tab1 active');
+            $('#list_Client_Address').attr('href', '#Client_Address');
+            $('#list_Client_Address').attr('data-toggle', 'tab');
+            $('#Client_Address').addClass('active in');
+
+            $(".frm").hide("fast");
+            $("#Client_Address").show("slow");
+        });
+        //     // Bank next Button
+        $('#btn_Bank_details').click(function () {
+            var familyname = document.getElementById('familyname').value;
+            var accountno = document.getElementById('accountno').value;
+            // var bankname= document.getElementById('bankname').value;
+
+
+            var familycheck = /[A-Z a-z]/;
+            var accountnocheck = /[0-9]{7,}/;
+            // var bankcheck=//
+
+            if (familycheck.test(familyname)) {
+                document.getElementById('familynameerror').innerHTML = "";
+
+            } else {
+                document.getElementById('familynameerror').innerHTML = "**Use alphabetic character";
+                return false;
+            }
+
+            if (accountnocheck.test(accountno)) {
+                document.getElementById('accountnoerror').innerHTML = "";
+
+            } else {
+                document.getElementById('accountnoerror').innerHTML = "**Mention minimum 7 digit";
+                return false;
+            }
+
+
+            if (v.form()) {
+
+
+                $('#list_Bank_details').removeClass('active active_tab1');
+                $('#list_Bank_details').removeAttr('href data-toggle');
+                $('#Bank_details').removeClass('active in');
+                $('#list_Bank_details').addClass('inactive_tab1');
+                $('#list_Occupation_details').removeClass('inactive_tab1');
+                $('#list_Occupation_details').addClass('active_tab1 active');
+                $('#list_Occupation_details').attr('href', '#Occupation_details');
+                $('#list_Occupation_details').attr('data-toggle', 'tab');
+                $('#Occupation_details').addClass('active  in');
+
+                $(".frm").hide("fast");
+                $("#Occupation_details").show("slow");
+            }
+        });
+        //Occupation Previous Button
+        $('#previous_btn_Occupation_details').click(function () {
+            $('#list_Occupation_details').removeClass(' active active_tab1');
+            $('#list_Occupation_details').removeAttr(' href data-toggle');
+            $('#Occupation_details').removeClass('active in');
+            $('#list_Occupation_details').addClass('inactive_tab1');
+            $('#list_Bank_details').removeClass('inactive_tab1');
+            $('#list_Bank_details').addClass('active_tab1 active');
+            $('#list_Bank_details').attr('href', '#Bank_details');
+            $('#list_Bank_details').attr('data-toggle', 'tab');
+            $('#Bank_details').addClass('active in');
+            $(".frm").hide("fast");
+            $("#Bank_details").show("slow");
+        });
+        //     // Occupation next Button
+        $('#btn_Occupation_details').click(function () {
+            var businessname = document.getElementById('businessname').value;
+            var occupationname = document.getElementById('occupationname').value;
+
+            // var organizationname = document.getElementById('organizationname').value;
+            var addressname = document.getElementById('addressname').value;
+            var designationname = document.getElementById('designationname').value;
+            var employeeid = document.getElementById('employeeid').value;
+
+            var businesscheck = /^[A-Za-z \p{L} \.'\-]*$/;
+            var occupationcheck = /^[A-Za-z \p{L} \.'\-]*$/;
+
+            // var organizationcheck=/^[a-zA-Z0-9][a-zA-Z0-9\.\-#&\s]*$/;
+            var addresscheck = /^[a-zA-Z0-9\s,'-]*$/;
+            // var designationcheck = /^[\p{L} \.'\-]*$/;
+            // var employeecheck=/^[\p{L} \.'\-]+$/;
+            var employeecheck = /^[0-9\s,'-]*$/;
+
+
+            if (occupationcheck.test(occupationname)) {
+                document.getElementById('occupationnameerror').innerHTML = "";
+            } else {
+                document.getElementById('occupationnameerror').innerHTML = "**Mention the occupation name in proper format";
+                return false;
+            }
+
+            if (businesscheck.test(businessname)) {
+                document.getElementById('occupationnameerror').innerHTML = "";
+            } else {
+                document.getElementById('businessnameerror').innerHTML = "**Mention the Business name in proper format";
+                return false;
+            }
+            //
+            // $("#organizationname").bind("keypress", function (event) {
+            //     if (event.charCode!=0) {
+            //         var regex = new RegExp("/^[.@&]?[a-zA-Z0-9 ]+[ !.@&()]?[ a-zA-Z0-9!()]+/");
+            //         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            //         if (!regex.test(key)) {
+            //             event.preventDefault();
+            //             return false;
+            //         }
+            //     }
+            // });
+
+
+            // if ( organizationcheck.test(organizationname)) {
+            //     document.getElementById('organizationnameerror').innerHTML = "";
+            // }
+            // else
+            // {
+            //     document.getElementById('organizationnameerror').innerHTML = "**Mention the organization name in proper format";
+            //     return false;
+            // }
+            if (addresscheck.test(addressname)) {
+                document.getElementById('addressnameerror').innerHTML = "";
+
+            } else {
+                document.getElementById('addressnameerror').innerHTML = "**Mention the  Address in proper format";
+                return false;
+            }
+
+            // if (designationcheck.test(designationname)) {
+            //     document.getElementById('designationnameerror').innerHTML = "";
+            //
+            // } else {
+            //     document.getElementById('designationnameerror').innerHTML = "**Mention the designation name in proper format";
+            //     return false;
+            // }
+
+            if (employeecheck.test(employeeid)) {
+                document.getElementById('employeeiderror').innerHTML = "";
+
+            } else {
+                document.getElementById('employeeiderror').innerHTML = "**Mention the employeeid  with at least 7 digit";
+                return false;
+            }
+
+            if (v.form()) {
+
+                $('#list_Occupation_details').removeClass('active active_tab1');
+                $('#list_Occupation_details').removeAttr('href data-toggle');
+                $('#Occupation_details').removeClass('active in');
+                $('#list_Occupation_details').addClass('inactive_tab1');
+                $('#list_transaction_details').removeClass('inactive_tab1');
+                $('#list_transaction_details').addClass('active_tab1 active');
+                $('#list_transaction_details').attr('href', '#transaction_details');
+                $('#list_transaction_details').attr('data-toggle', 'tab');
+                $('#transaction_details').addClass('active in ');
+
+                $(".frm").hide("fast");
+                $("#transaction_details").show("slow");
+            }
+
+        });
+        //
+        //     // transaction Previous Button
+        $('#previous_btn_transaction_details').click(function () {
+            $('#list_transaction_details').removeClass('active active_tab1');
+            $('#list_transaction_details').removeAttr('href data-toggle');
+            $('#transaction_details').removeClass('active in');
+            $('#list_transaction_details').addClass('inactive_tab1');
+            $('#list_Occupation_details').removeClass('inactive_tab1');
+            $('#list_Occupation_details').addClass('active_tab1 active');
+            $('#list_Occupation_details').attr('href', '#Occupation_details');
+            $('#list_Occupation_details').attr('data-toggle', 'tab');
+            $('#Occupation_details').addClass('active in');
+            $(".frm").hide("fast");
+            $("#Occupation_details").show("slow");
+        });
+
+        //     // transaction next Button
+        $('#btn_transaction_details').click(function () {
+
+            if (v.form()) {
+
+                $('#list_transaction_details').removeClass('active active_tab1');
+                $('#list_transaction_details').removeAttr('href data-toggle');
+                $('#transaction_details').removeClass('active in');
+                $('#list_Rehabilitated_details').addClass('inactive_tab1');
+                $('#list_Rehabilitated_details').removeClass('inactive_tab1');
+                $('#list_Rehabilitated_details').addClass('active_tab1 active');
+                $('#list_Rehabilitated_details').attr('href', '#Rehabilitated_details');
+                $('#list_Rehabilitated_details').attr('data-toggle', 'tab');
+                $('#Rehabilitated_details').addClass('active in');
+
+                $(".frm").hide("fast");
+                $("#Rehabilitated_details").show("slow");
+            }
+
+        });
+
+        //     // Rehabilitated Previous Button
+        $('#previous_btn_Rehabilitated_details').click(function () {
+            $('#list_Rehabilitated_details').removeClass('active active_tab1');
+            $('#list_Rehabilitated_details').removeAttr('href data-toggle');
+            $('#Rehabilitated_details').removeClass('active in');
+            $('#list_transaction_details').addClass('inactive_tab1');
+            $('#list__transaction_details').removeClass('inactive_tab1');
+            $('#list__transaction_details').addClass('active_tab1 active');
+            $('#list__transaction_details').attr('href', '#transaction_details');
+            $('#list__transaction_details').attr('data-toggle', 'tab');
+            $('#transaction_details').addClass('active in');
+            $(".frm").hide("fast");
+            $("#transaction_details").show("slow");
+
+        });
+        //     //Rehabilitated next Button
+        $('#btn_Rehabilitated_details').click(function () {
+
+            if (v.form()) {
+
+
+                $('#list_Rehabilitated_details').removeClass('active active_tab1');
+                $('#list_Rehabilitated_details').removeAttr('href data-toggle');
+                $('#Rehabilitated_details').removeClass('active in');
+                $('#list_Rehabilitated_details').addClass('inactive_tab1');
+                $('#list_Guardian_details').removeClass('inactive_tab1');
+                $('#list_Guardian_details').addClass('active_tab1 active');
+                $('#list_Guardian_details').attr('href', '#Guardian_details');
+                $('#list_Guardian_details').attr('data-toggle', 'tab');
+                $('#Guardian_details').addClass('active in');
+
+                $(".frm").hide("fast");
+                $("#Guardian_details").show("slow");
+            }
+
+        });
+        //     // Guardian Previous Button
+        $('#previous_btn_Guardian_details').click(function () {
+            $('#list_Guardian_details').removeClass(' active active_tab1');
+            $('#list_Guardian_details').removeAttr(' href data-toggle');
+            $('#Guardian_details').removeClass('active in');
+            $('#list_Guardian_details').addClass('inactive_tab1');
+            $('#list__Rehabilitated_details').removeClass('inactive_tab1');
+            $('#list__Rehabilitated_details').addClass('active_tab1 active');
+            $('#list__Rehabilitated_details').attr('href', '#Rehabilitated_details');
+            $('#list__Rehabilitated_details').attr('data-toggle', 'tab');
+            $('#Rehabilitated_details').addClass('active in');
+            $(".frm").hide("fast");
+            $("#Rehabilitated_details").show("slow");
+
+        });
+        //     //Guardian next Button
+        $('#btn_Guardian_details').click(function () {
+
+            if (v.form()) {
+                $('#list_Guardian_details').removeClass('active active_tab1');
+                $('#list_Guardian_details').removeAttr('href data-toggle');
+                $('#Guardian_details').removeClass('active in');
+                $('#list_Guardian_details').addClass('inactive_tab1');
+                $('#list_Addtional_details').removeClass('inactive_tab1');
+                $('#list_Addtional_details').addClass('active_tab1 active');
+                $('#list_Addtional_details').attr('href', '#Addtional_details');
+                $('#list_Addtional_details').attr('data-toggle', 'tab');
+                $('#Addtional_details').addClass('active in');
+
+                $(".frm").hide("fast");
+                $("#Addtional_details").show("slow");
+            }
+
+        });
+        //     // Addtional Previous Button
+        $('#previous_btn_Addtional_details').click(function () {
+            $('#list_Addtional_details').removeClass(' active active_tab1');
+            $('#list_Addtional_details').removeAttr(' href data-toggle');
+            $('#Addtional_details').removeClass('active in');
+            $('#list_Addtional_details').addClass('inactive_tab1');
+            $('#list__Guardian_details').removeClass('inactive_tab1');
+            $('#list__Guardian_details').addClass('active_tab1 active');
+            $('#list__Guardian_details').attr('href', '#Guardian_details');
+            $('#list__Guardian_details').attr('data-toggle', 'tab');
+            $('#Guardian_details').addClass('active in');
+
+            $(".frm").hide("fast");
+            $("#Guardian_details").show("slow");
+
+
+        });
+
+
+        $('#btn_Addtional_details').click(function () {
+
+            $('#btn_Guardian_details').attr("disabled", "disabled");
+            $(document).css('cursor', 'progress');
+            $('#register_form').submit();
+
+
+        });
+    });
+</script>
+
+
+<script>
+    $('#seeAnotherField').change(function () {
+        if ($(this).val() == "YES") {
+            $('#otherFieldDiv').show();
+            $('#otherFieldDiv').attr('requires', '');
+            $('#otherFieldDiv').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv').hide();
+            $('#otherFieldDiv').removeAttr('required');
+            $('#otherFieldDiv').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField").trigger("change");
+
+
+    $('#seeAnotherField1').change(function () {
+        // alert($(this).val());
+        if ($(this).val() == "YES") {
+            $('#otherFieldDiv1').show();
+            $('#otherFieldDiv1').attr('requires', '');
+            $('#otherFieldDiv1').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv1').hide();
+            $('#otherFieldDiv1').removeAttr('required');
+            $('#otherFieldDiv1').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField1").trigger("change");
+
+
+    $('#seeAnotherField20').change(function () {
+        if ($(this).val() == "YES") {
+            $('#otherFieldDiv20').show();
+            $('#otherFieldDiv20').attr('requires', '');
+            $('#otherFieldDiv20').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv20').hide();
+            $('#otherFieldDiv20').removeAttr('required');
+            $('#otherFieldDiv20').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField20").trigger("change");
+
+    $('#seeAnotherField21').change(function () {
+        if ($(this).val() == "YES") {
+            $('#otherFieldDiv21').show();
+            $('#otherFieldDiv21').attr('requires', '');
+            $('#otherFieldDiv21').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv21').hide();
+            $('#otherFieldDiv21').removeAttr('required');
+            $('#otherFieldDiv21').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField21").trigger("change");
+
+    $('#seeAnotherField61').change(function () {
+        if ($(this).val() == "OTHER") {
+            $('#otherFieldDiv61').show();
+            $('#otherFieldDiv61').attr('requires', '');
+            $('#otherFieldDiv61').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv61').hide();
+            $('#otherFieldDiv61').removeAttr('required');
+            $('#otherFieldDiv61').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField61").trigger("change");
+
+
+    $('#seeAnotherField62').change(function () {
+        if ($(this).val() == "OTHERS") {
+            $('#otherFieldDiv62').show();
+            $('#otherFieldDiv62').attr('requires', '');
+            $('#otherFieldDiv62').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv62').hide();
+            $('#otherFieldDiv62').removeAttr('required');
+            $('#otherFieldDiv62').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField62").trigger("change");
+
+    $('#seeAnotherField63').change(function () {
+        if ($(this).val() == "OTHERS") {
+            $('#otherFieldDiv63').show();
+            $('#otherFieldDiv63').attr('requires', '');
+            $('#otherFieldDiv63').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv63').hide();
+            $('#otherFieldDiv63').removeAttr('required');
+            $('#otherFieldDiv63').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField63").trigger("change");
+
+    $('#seeAnotherField64').change(function () {
+        if ($(this).val() == "OTHERS") {
+            $('#otherFieldDiv64').show();
+            $('#otherFieldDiv64').attr('requires', '');
+            $('#otherFieldDiv64').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv64').hide();
+            $('#otherFieldDiv64').removeAttr('required');
+            $('#otherFieldDiv64').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField64").trigger("change");
+
+    $('#seeAnotherField65').change(function () {
+        if ($(this).val() == "OTHER") {
+            $('#otherFieldDiv65').show();
+            $('#otherFieldDiv65').attr('requires', '');
+            $('#otherFieldDiv65').attr('data-error', 'This Field is required');
+        } else {
+            $('#otherFieldDiv65').hide();
+            $('#otherFieldDiv65').removeAttr('required');
+            $('#otherFieldDiv65').removeAttr('data-error');
+        }
+    });
+    $("#seeAnotherField65").trigger("change");
+
+</script>
+<SCRIPT language="javascript">
+    function addRow(tableID) {
+
+        var table = document.getElementById(tableID);
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        var colCount = table.rows[0].cells.length;
+
+        for (var i = 0; i < colCount; i++) {
+
+            var newcell = row.insertCell(i);
+
+            newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+            //alert(newcell.childNodes);
+            switch (newcell.childNodes[0].type) {
+                case "text":
+                    newcell.childNodes[0].value = "";
+                    break;
+                case "checkbox":
+                    newcell.childNodes[0].checked = false;
+                    break;
+                case "select-one":
+                    newcell.childNodes[0].selectedIndex = 0;
+                    break;
+            }
+        }
+    }
+
+    function deleteRow(tableID) {
+        try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+
+            for (var i = 0; i < rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if (null != chkbox && true == chkbox.checked) {
+                    if (rowCount <= 1) {
+                        alert("Cannot delete all the rows.");
+                        break;
+                    }
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+
+
+            }
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+</SCRIPT>
+
+<SCRIPT language="javascript">
+    function addRow1(tableID) {
+
+        var table = document.getElementById(tableID);
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        var colCount = table.rows[0].cells.length;
+
+        for (var i = 0; i < colCount; i++) {
+
+            var newcell = row.insertCell(i);
+
+            newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+            //alert(newcell.childNodes);
+            switch (newcell.childNodes[0].type) {
+                case "text":
+                    newcell.childNodes[0].value = "";
+                    break;
+                case "checkbox":
+                    newcell.childNodes[0].checked = false;
+                    break;
+                case "select-one":
+                    newcell.childNodes[0].selectedIndex = 0;
+                    break;
+            }
+        }
+    }
+
+    function deleteRow1(tableID) {
+        try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+
+            for (var i = 0; i < rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if (null != chkbox && true == chkbox.checked) {
+                    if (rowCount <= 1) {
+                        alert("Cannot delete all the rows.");
+                        break;
+                    }
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+
+
+            }
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+</SCRIPT>
+
+<script type="text/javascript">
+    const realFileBtn = document.getElementById("real-file");
+    const customBtn = document.getElementById("custom-buttom");
+    const customTxt = document.getElementById("custom-text");
+
+    customBtn.addEventListener("click", function () {
+        realFileBtn.click();
+    });
+    realFileBtn.addEventListener("change", function () {
+        if (realFileBtn.value) {
+            customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/
+            )[1];
+        } else {
+            customTxt.innerHTML = "No file chosen,yet.";
+
+        }
+    });
+
+</script>
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function() {-->
+<!--        $('#btn_Client_details').bind("click", function () {-->
+
+<!--            var imgVal = $('#real-file').val();-->
+<!--            if (imgVal == '') {-->
+<!--                 alert("**Please input the image");-->
+<!--                document.getElementById('imageerror').innerHTML = "**Please input the image";-->
+<!--                return false;-->
+<!--            }-->
+
+
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<script type="text/javascript">
+    const realFileBtn1 = document.getElementById("real-file1");
+    const customBtn1 = document.getElementById("custom-buttom1");
+    const customTxt1 = document.getElementById("custom-text1");
+    customBtn1.addEventListener("click", function () {
+        realFileBtn1.click();
+    });
+    realFileBtn1.addEventListener("change", function () {
+        if (realFileBtn1.value) {
+            customTxt1.innerHTML = realFileBtn1.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/
+            )[1];
+        } else {
+            customTxt1.innerHTML = "No file chosen,yet.";
+
+        }
+    });
+</script>
+<script type="text/javascript">
+    const realFileBtn2 = document.getElementById("real-file2");
+    const customBtn2 = document.getElementById("custom-buttom2");
+    const customTxt2 = document.getElementById("custom-text2");
+    customBtn2.addEventListener("click", function () {
+        realFileBtn2.click();
+    });
+    realFileBtn2.addEventListener("change", function () {
+        if (realFileBtn2.value) {
+            customTxt2.innerHTML = realFileBtn2.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/
+            )[1];
+        } else {
+            customTxt2.innerHTML = "No file chosen,yet.";
+
+        }
+    });
+</script>
+<script>
+    $(document).ready(function()
+    {
+        $("#dob").nepaliDatePicker({
+            ndpYear:true,
+            ndpMonth:true
+        });
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

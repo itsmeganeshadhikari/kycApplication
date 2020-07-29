@@ -1,0 +1,315 @@
+body
+{
+        background-color:gainsboro;    
+}
+h3{
+        color:rgb(38, 38, 136);
+}
+.a
+{
+   /* margin-top:px; */
+    border:none;
+    border-bottom: 1px solid black;
+    outline:none;
+}
+.b
+{
+   width:900px;
+    border:none;
+    border-bottom: 1px solid rgb(19, 19, 24);
+    outline:none;
+}
+.c
+{
+   width:395px;
+    border:none;
+    border-bottom: 1px solid rgb(11, 11, 15);
+    outline:none;
+}
+.d
+{
+    /* margin-top:42px; */
+    width:480px;
+    border:none;
+    border-bottom: 1px solid rgb(11, 11, 15);
+    outline:none;
+}
+.e
+{
+    
+    width:100%;
+    border:none;
+    border-bottom: 1px solid rgb(12, 12, 15);
+    outline:none;
+}
+#wrapper10
+{
+        border:1px solid black;
+        height:260px;
+        margin-top:1px;
+        background-color:white;
+      
+}
+#wrapper0
+{
+        border:1px solid black;
+        height:100px;
+        margin-top:1px;
+        background-color:white;
+
+}
+#wrapper1{
+    border:1px solid black;
+    height:1550px;
+    margin-top:1px;
+    background-color:white;
+
+}
+#wrapper2
+{
+        border:1px solid black;
+        height:1100px;
+        margin-top:1px;
+        background-color:white;
+    
+}
+#wrapper3
+{
+        border:1px solid black;
+        height:1900px;
+        margin-top:1px;
+        background-color:white;
+    
+}
+#wrapper4
+{
+        border:1px solid black;
+        height:1500px;
+        margin-top:1px;
+        background-color:white;
+    
+}
+#wrapper5
+{
+        border:1px solid black;
+        height:600px;
+        margin-top:1px;
+        background-color:white;
+    
+}
+#custom-buttom
+{
+        padding:10px;
+        color:white;
+        background-color: #009578;
+        border:1px solid  #000;
+        border-radius:5px;
+        cursor:pointer;
+}
+#custom-button:hover {
+        background-color: #00b28f;
+      }
+      
+      #custom-text {
+        margin-left: 10px;
+        font-family: sans-serif;
+        color: #aaa;
+      }
+
+#formButton
+{
+        padding:10px;
+        color:white;
+        background-color: #009578;
+        border:1px solid  #000;
+        border-radius:5px;
+
+}   
+#formButton1
+{
+        padding:10px;
+        color:white;
+        background-color: #009578;
+        border:1px solid  #000;
+        border-radius:5px;
+
+}   
+#submit
+{
+        padding:10px;
+        color:white;
+        background-color: #009578;
+        border:1px solid  #000;
+        border-radius:5px;
+        
+}   
+
+form{
+        display:none;
+}
+@media only screen and (max-width:1196px)
+{
+#wrapper1
+{
+        border:1px solid black;
+        height:1550px;
+        margin-top:1px;
+    
+}
+#wrapper2
+{
+        border:1px solid black;
+        height:1550px;
+        margin-top:1px;
+    
+}
+}
+@media only screen and (max-width:991px)
+{
+#wrapper0
+{
+        border:1px solid black;
+        height:150px;
+        margin-top:1px;
+
+}
+    #wrapper1{
+        border:1px solid black;
+        height:2050px;
+        margin-top:1px;
+    
+    }
+#wrapper2
+{
+        border:1px solid black;
+        height:1800px;
+        margin-top:1px;
+    
+}
+#wrapper3
+{
+        border:1px solid black;
+        height:2150px;
+        margin-top:1px;
+    
+}
+#wrapper4
+{
+        border:1px solid black;
+        height:1800px;
+        margin-top:1px;
+    
+}
+.b
+{
+    width:500px;
+    border:none;
+    border-bottom: 1px solid blue;
+    outline:none;
+}
+.c
+{
+   width:250px;
+}
+.d
+{
+   width:295px;
+}
+
+}
+@media only screen and (max-width:767px)
+{
+        #wrapper10
+        {
+                border:1px solid black;
+                height:400px;
+                margin-top:1px;
+                background-color:white;
+              
+        }
+    #wrapper1{
+        border:1px solid black;
+        height:2550px;
+        margin-top:1px;
+    
+    }
+    #wrapper3
+{
+        border:1px solid black;
+        height:3500px;
+        margin-top:1px;
+    
+}
+#wrapper4
+{
+        border:1px solid black;
+        height:2200px;
+        margin-top:1px;
+    
+}
+#wrapper5
+{
+        border:1px solid black;
+        height:800px;
+        margin-top:1px;
+    
+}
+.b
+{
+   width:100%;
+    
+}
+.c
+{
+   width:100%;
+}
+.d
+{
+   width:100%;
+}
+#wrapper2
+{
+        border:1px solid black;
+        height:2350px;
+        margin-top:1px;
+    
+}
+}
+@media only screen and (max-width:576px)
+{
+        
+    #wrapper1{
+        border:1px solid black;
+        height:2800px;
+        margin-top:1px;
+    
+    }
+    #wrapper2
+{
+        border:1px solid black;
+        height:2300px;
+        margin-top:1px;
+    
+}
+#wrapper3
+{
+        border:1px solid black;
+        height:3950px;
+        margin-top:1px;
+    
+}
+#wrapper4
+{
+        border:1px solid black;
+        height:2900px;
+        margin-top:1px;
+    
+}
+#wrapper5
+{
+        border:1px solid black;
+        height:1200px;
+        margin-top:1px;
+    
+}
+}
