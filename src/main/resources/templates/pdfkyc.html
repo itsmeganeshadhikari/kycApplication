@@ -17,31 +17,29 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#btnPrint').click(function(){
-            $('#btnPrint').hide();
-            var css='@page{size: a4;}';
-            head=document.head||document.getElementsByTagName('head')[0];
-            style=document.createElement('style');
-            style.type='text/css';
-            style.media='print';
-            if(style.styleSheet)
-            {
-                style.styleSheet.cssText=css;
-            }
-            else{
-                style.appendChild(document.createTextNode(css));
-            }
-            head.appendChild(style);
-            window.print();
-        
+        $(document).ready(function () {
+            $('#btnPrint').click(function () {
+                $('#btnPrint').hide();
+                var css = '@page{size: a4;}';
+                head = document.head || document.getElementsByTagName('head')[0];
+                style = document.createElement('style');
+                style.type = 'text/css';
+                style.media = 'print';
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = css;
+                } else {
+                    style.appendChild(document.createTextNode(css));
+                }
+                head.appendChild(style);
+                window.print();
+
+            });
         });
-    });
     </script>
 
 </head>
 <body>
-    <div class="container"style="width:67%;border:1px solid black;">
+<div class="container" style="width:67%;border:1px solid black;">
     <div class="panel">
         <!-- <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Details</strong>
         </h1></div> -->
@@ -51,106 +49,101 @@
                 <!--Cliennt Deatils-->
                 <div class="form-row">
                     <div class="col-xs-8">
-                     <p><b>Please complete all details and strike out the non-applicable
+                        <p><b>Please complete all details and strike out the non-applicable
                             fields/boxes.</b></p>
-                    <p><b>Siprabi Securities(P.)Ltd.</b></p> 
+                        <p><b>Siprabi Securities(P.)Ltd.</b></p>
                         <label><b>Branch:</b></label>
-                        <input type="text" class="e">
-                       
+                        <input type="text" th:value="${clientDetails.get().getBranch()}" class="e">
                     </div>
 
                     <div class="col-xs-4" style="height:20px;margin-top:3px;">
                         <div style="height:20px;">
-                            <input hidden="hidden" id="real-file" type="file" />
-                            <button id="custom-buttom" type="button">CHOOSE A FILE</button>
-                            <span id="custom-text">No file chosen,yet.</span>
-                            <!--<span id="imageerror" class="text-danger font-weight-bold"></span>-->
-
+                            <img alt="Image" width="100" height="100"
+                                 style="alignment: left;margin-left: 100px; margin-top: 10px"
+                                 th:src="*{'data:image/jpg;base64,'+image}"/>
                         </div>
                     </div>
                 </div>
                 <br>
-                <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Details of Client</strong>
+                <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Details
+                    of Client</strong>
                 </h1></div>
                 <div class="form-row">
                     <div class="col-xs-4" style="margin-top:15px;">
-                    <label><b>First Name:</b></label>
-                            <input type="text"class="e">
+                        <label><b>First Name:</b></label>
+                        <input type="text" th:value="${clientDetails.get().getFirst_name()}" class="e">
                     </div>
 
                     <div class="col-xs-4" style="margin-top:15px;">
                         <label><b>Middle Name:</b></label>
                         <input type="text" class="e">
-                        
-                          </div>
+
+                    </div>
 
                     <div class="col-xs-4" style="margin-top:15px">
                         <label><b>SurName:</b></label>
                         <input type="text" class="e">
-                       
+
                     </div>
                 </div>
                 <br>
 
-                 <div class="form-row">
+                <div class="form-row">
                     <div class="col-xs-6">
                         <label><b>Date of Birth in (B.S):</b></label>
 
-                        <input type="text"class="e">
-                        
-                     </div>
+                        <input type="text" class="e">
+
+                    </div>
                     <div class="col-xs-6">
                         <label><b>Date of Birth in (A.D):</b></label>
-                        <input type="text"class="e">
-                        
+                        <input type="text" class="e">
+
                     </div>
 
                 </div>
                 <br>
                 <div class="form-row">
                     <div class="col-xs-6">
-                       <label><b>Martial Status:</b></label>
-                            <input type="text"class="e">
+                        <label><b>Martial Status:</b></label>
+                        <input type="text" class="e">
                     </div>
 
                     <div class="col-xs-6">
-                         <label><b>Gender:</b></label>
-                            <input type="text"class="e">
-                        </div>
+                        <label><b>Gender:</b></label>
+                        <input type="text" class="e">
                     </div>
-                    <br>
+                </div>
+                <br>
 
-                    <div class="form-row">
+                <div class="form-row">
 
                     <div class="col-xs-6">
                         <label><b>Nationality:</b></label>
-                        <input type="text"class="e">
-                           </div>
-                         
-                           <div class="col-sx-6">
-                            <label><b>Other:</b></label>
-                            <input type="text"class="e">
-                               </div>
-                            
+                        <input type="text" class="e">
+                    </div>
+
+                    <div class="col-sx-6">
+                        <label><b>Other:</b></label>
+                        <input type="text" class="e">
+                    </div>
+                </div>
 
 
-                           </div>
-                   
-                
                 <br>
                 <div class="form-row">
                     <div class="col-xs-4">
                         <label><b>CitizenShip No:</b></label>
-                        <input type="text"class="e">
+                        <input type="text" class="e">
                     </div>
                     <div class="col-xs-4">
-                        
-                            <label><b>Issue District:</b></label>
-                            <input type="text" class="f">
-                     </div>
+
+                        <label><b>Issue District:</b></label>
+                        <input type="text" class="f">
+                    </div>
                     <div class="col-xs-4">
                         <lable><b>Issue Date:</b></lable>
-                        <input type="text"class="f">
+                        <input type="text" class="f">
                     </div>
                 </div>
 
@@ -158,12 +151,12 @@
                 <div class="form-row">
                     <div class="col-xs-6">
                         <label><b>Beneficary ID No:</b></label>
-                        <input type="text"class="e">
+                        <input type="text" class="e">
                     </div>
 
                     <div class="col-xs-6">
                         <label><b>Permanent Account No.(PAN):</b></label>
-                        <input type="text"class="e">
+                        <input type="text" class="e">
                     </div>
                 </div>
                 <br>
@@ -171,156 +164,149 @@
                 <div class="form-row">
                     <div class="col-xs-12">
                         <lablel><b>Identification No. and address:(In case of NRN):</b></lablel>
- 
-                        <input type="text"class="g">
+
+                        <input type="text" class="g">
                     </div>
                 </div>
-                </div>
-                </div>
-                </div>
-                
+            </div>
+        </div>
+    </div>
 
-     
-<!--Address-->
-        <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Current Address</strong>
+
+    <!--Address-->
+    <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Current
+        Address</strong>
+    </h1></div>
+
+    <div class="panel-body">
+        <div class="form-row" style="margin-top:3px;">
+
+            <div class="col-xs-sm-4">
+                <label for="country"><b>Country:</b></label>
+                <input type="text" class="e">
+
+            </div>
+
+
+            <div class="col-xs-sm-4">
+                <label for="province"><b>Province:</b></label>
+                <input type="text" class="e">
+
+            </div>
+
+
+            <div class="col-xs-4">
+                <label for="district_p"><b>District:</b></label>
+                <input type="text" class="e">
+            </div>
+        </div>
+
+
+        <br>
+        <div class="form-row">
+            <div class="col-xs-6">
+                <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>
+                <input type="text" class="e">
+            </div>
+            <div class="col-xs-6">
+                <label><b>Ward No:</b></label>
+                <input type="text" class="e">
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-xs-6">
+                <label><b>Tole:</b></label>
+                <input type="text" class="e">
+
+            </div>
+
+
+            <div class="col-xs-6">
+                <label><b>Telephone No:</b></label>
+                <input type="text" class="e">
+            </div>
+        </div>
+        <br>
+
+        <div class="form-row">
+            <div class="col-xs-6">
+                <label><b>E-mail ID:</b></label>
+                <input type="text" class="e">
+            </div>
+            <div class="col-xs-6">
+                <label><b>Mobile No:</b></label>
+                <input type="text" class="e">
+            </div>
+        </div>
+        <br>
+
+        <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Permanent
+            Address</strong>
         </h1></div>
-
-        <div class="panel-body">
-                <div class="form-row" style="margin-top:3px;">
-
-                    <div class="col-xs-sm-4">
-                            <label for="country"><b>Country:</b></label>
-                            <input type="text"class="e">
-                           
-                        </div>
-                    
-
-                    <div class="col-xs-sm-4">
-                        <label for="province"><b>Province:</b></label>
-                        <input type="text"class="e">
-                            
-                        </div>
-               
-                
-
-                    
-                    
-                    <div class="col-xs-4">
-                       <label for="district_p"><b>District:</b></label>
-                       <input type="text"class="e">
-                            </div>
-                    </div>
-        
-                    
-                <br>
-                <div class="form-row">
-                    <div class="col-xs-6">
-                        <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>
-                        <input type="text"class="e">
-                    </div>
-                    <div class="col-xs-6">
-                        <label><b>Ward No:</b></label>
-                            <input type="text"class="e">
-                    </div>
-                </div>
-                <br>
-                <div class="form-row">
-                    <div class="col-xs-6">
-                        <label><b>Tole:</b></label>
-                        <input type="text"class="e">
-                       
-                    </div>
-
-              
-                
-                    <div class="col-xs-6">
-                        <label><b>Telephone No:</b></label>
-                        <input type="text"class="e">
-                    </div>
-                </div>
-                <br>
-
-                <div class="form-row">
-                    <div class="col-xs-6">
-                        <label><b>E-mail ID:</b></label>
-                        <input type="text"class="e">
-                    </div>
-                    <div class="col-xs-6">
-                        <label><b>Mobile No:</b></label>
-                        <input type="text"class="e">
-                    </div>
-                </div>
-                <br>
-                
-                <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Permanent Address</strong>
-                </h1></div>
-                <br>
+        <br>
         <div class="form-row">
             <div class="col-xs-4">
-                      
+
                 <label for="district_m"><b>Country:</b></label>
-                <input type="text"class="e">
-                
-                       </div>
+                <input type="text" class="e">
 
-                    <div class="col-xs-4">
-                    <label for="province1"><b>Province:</b></label>
-                    <input type="text"class="e">
-                            
-                    </div>
+            </div>
 
-                    <div class="col-xs-4">
-                      
-                            <label for="district_m"><b>District:</b></label>
-                            <input type="text"class="e">
-                            
-                    </div>
+            <div class="col-xs-4">
+                <label for="province1"><b>Province:</b></label>
+                <input type="text" class="e">
 
-                </div>
-                <br>
-                <div class="form-row">
-                    <div class="col-xs-6">
-                        <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>
-                        <input type="text"class="e">
-                      
-                    </div>
-                    <div class="col-xs-6">
-                        <label><b>Tole:</b></label>
-                        <input type="text"class="e">
-                       
-                    </div>
-                
-                </div>
+            </div>
 
-                <br>
-                <div class="form-row">
-                    <div class="col-xs-4">
-                        <label><b>Telephone:</b></label>
-                        <input type="text"class="e">
-                    </div>
-                    <div class="col-xs-4">
-                        <label><b>Ward No:</b></label>
-                        <input type="text"class="e">
-                    </div>
-                    <div class="col-xs-4">
-                        <label><b>Block No:</b></label>
-                        <input type="text"class="e">
-                    </div>
+            <div class="col-xs-4">
 
-                </div>
-                </div>
-                <br>
+                <label for="district_m"><b>District:</b></label>
+                <input type="text" class="e">
 
-                <section>
-                    <button type="button" id="btnPrint" class="btn btn-info btn-lg">Print</button>
-<!--                    <a th:href="@{/pdfreport/{id}(id=${clientDetailsId})}" class="btn">Generate PDF<img src="../images/pdf.png" style="width:40px;"></a>-->
-                </section>
-            
-           </div><!--End of ClientDetails-->
-    
+            </div>
 
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-xs-6">
+                <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>
+                <input type="text" class="e">
 
+            </div>
+            <div class="col-xs-6">
+                <label><b>Tole:</b></label>
+                <input type="text" class="e">
 
+            </div>
+
+        </div>
+
+        <br>
+        <div class="form-row">
+            <div class="col-xs-4">
+                <label><b>Telephone:</b></label>
+                <input type="text" class="e">
+            </div>
+            <div class="col-xs-4">
+                <label><b>Ward No:</b></label>
+                <input type="text" class="e">
+            </div>
+            <div class="col-xs-4">
+                <label><b>Block No:</b></label>
+                <input type="text" class="e">
+            </div>
+
+        </div>
+    </div>
+    <br>
+
+    <section>
+        <button type="button" id="btnPrint" class="btn btn-info btn-lg">Print</button>
+        <!--                    <a th:href="@{/pdfreport/{id}(id=${clientDetailsId})}" class="btn">Generate PDF<img src="../images/pdf.png" style="width:40px;"></a>-->
+    </section>
+
+</div><!--End of ClientDetails-->
 
 
 </body>

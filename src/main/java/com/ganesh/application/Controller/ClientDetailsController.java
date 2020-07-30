@@ -2,26 +2,16 @@ package com.ganesh.application.Controller;
 
 import com.ganesh.application.Model.ClientDetails;
 import com.ganesh.application.Model.Countries;
-import com.ganesh.application.Repository.ClientDetailsRepository;
-import com.ganesh.application.Repository.CountriesRepository;
-import com.ganesh.application.Repository.DistrictRepository;
-import com.ganesh.application.Repository.ProvinceRepository;
-import com.ganesh.application.utils.GeneratePdfReport;
-import com.ganesh.application.utils.enums.*;
+import com.ganesh.application.Repository.*;
 import com.ganesh.application.utils.enums.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,9 +23,9 @@ public class ClientDetailsController {
 
     @Autowired
     private ClientDetailsRepository clientDetailsRepository;
-
+//
 //    @Autowired
-//    private ClientDetailsService clientDetailsService;
+//    private ImageRepository imageRepository;
 
 
     @Autowired
@@ -89,11 +79,13 @@ public class ClientDetailsController {
 
     //Process input data to kyc form
     @PostMapping("/saveDetail")
-    public ModelAndView saveClientDetail(@ModelAttribute("clientDetails") ClientDetails clientDetails) {
+    public ModelAndView saveClientDetail(@ModelAttribute("clientDetails") ClientDetails clientDetails ,@RequestParam("pic") Byte[] pic) {
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
 //        mv.setViewName("PdfGenerator");
         mv.setViewName("PdfGenerator");
+//        image1.setImage(pic);
+//        clientDetails.setImage(image1);
         clientDetailsRepository.saveAndFlush(clientDetails);
 //        mv.addObject("message", "Kyc Form has been submitted");
 
@@ -108,36 +100,45 @@ public class ClientDetailsController {
     }
 
 
-
-
-
-    @RequestMapping(value = "/pdfreport/{id}", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> clientReport(@PathVariable("id") Integer id) throws IOException {
-        Optional<ClientDetails> clientDetails = (Optional<ClientDetails>) clientDetailsRepository.findById(id);
-        ByteArrayInputStream bis = GeneratePdfReport.clientReport(clientDetails);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=clientreport.pdf");
-
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(bis));
-    }
-
-//    @RequestMapping(value = "/pdfreport/{id}", method = RequestMethod.GET)
-//    public String clientReport(@PathVariable("id") Integer id,Model model)
-//    {
-//        ClientDetails clientDetails=clientDetailsRepository.findById(id);
-//        model.addAttribute("clientDetails",clientDetails);
-//        return "update-notice";
+//    @RequestMapping(value = "/pdfreport/{id}", method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_PDF_VALUE)
+//    public ResponseEntity<InputStreamResource> clientReport(@PathVariable("id") Integer id) throws IOException {
+//        Optional<ClientDetails> clientDetails = (Optional<ClientDetails>) clientDetailsRepository.findById(id);
+//        ByteArrayInputStream bis = GeneratePdfReport.clientReport(clientDetails);
 //
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Disposition", "inline; filename=clientreport.pdf");
 //
+//        return ResponseEntity
+//                .ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(new InputStreamResource(bis));
 //    }
+//
+////    @RequestMapping(value = "/pdfreport/{id}", method = RequestMethod.GET)
+////    public String clientReport(@PathVariable("id") Integer id,Model model)
+////    {
+////        ClientDetails clientDetails=clientDetailsRepository.findById(id);
+////        model.addAttribute("clientDetails",clientDetails);
+////        return "update-notice";
+////
+////
+////    }
 
 
+    @GetMapping("/pdfreport/{id}")
+    public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
+        Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
+        String image = getImgData(clientDetails.get().getPic());
+        modelAndView.addObject("image",image);
+        modelAndView.addObject("clientDetails", clientDetails);
+        modelAndView.setViewName("pdfkyc");
+        return modelAndView;
+    }
+    public String getImgData(byte[] byteData) {
+        return Base64.getMimeEncoder().encodeToString(byteData);
+    }
 }
 
 

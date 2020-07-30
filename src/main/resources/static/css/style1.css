@@ -23,6 +23,15 @@
     margin-left:450px;
 
 }
+/*Added By Suraj for image*/
+.choose-img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.choose-img input {
+    margin: 0 auto;
+}
 .nav-item
 {
     margin-left:2px;

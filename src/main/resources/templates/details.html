@@ -31,9 +31,9 @@
     <!--    </div>-->
 
     <!--code for making tabs-->
-    <form id="register_form" method="POST" th:action="@{/saveDetail}" th:autocomplete="off"
-          th:object="${clientDetails}" data-toggle="validator" role="form" name="myform">
-
+    <form id="register_form" method="POST" enctype="multipart/form-data" th:action="@{/saveDetail}" th:autocomplete="off"
+          th:object="${clientDetails}"  data-toggle="validator" role="form" name="myform">
+<!--        enctype="multipart/form-data"-->
         <!--        <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>-->
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -97,11 +97,16 @@
 
                                 <div class="col-md-4" style="height:20px;margin-top:3px;">
                                     <div style="height:20px;">
-                                        <input hidden="hidden" id="real-file" type="file" th:field="*{pic}" required/>
-                                        <button id="custom-buttom" type="button">CHOOSE A FILE</button>
-                                        <span id="custom-text">No file chosen,yet.</span>
-                                        <!--<span id="imageerror" class="text-danger font-weight-bold"></span>-->
-
+                                        <label><b>Choose Image</b></label>
+                                        <div class="choose-img">
+                                            <input type="file" name="pic" th:field="*{pic}" id="exampleInputFile">
+                                        </div>
+<!--                                        <script>-->
+<!--                                            $('#exampleInputFile').on('change',function () {-->
+<!--                                                alert("clicked");-->
+<!--                                                // alert("image_alert",this.value());-->
+<!--                                            });-->
+<!--                                        </script>-->
                                     </div>
                                 </div>
                             </div>
