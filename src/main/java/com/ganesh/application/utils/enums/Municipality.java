@@ -2,10 +2,10 @@ package com.ganesh.application.utils.enums;
 
 public enum Municipality
 {
-    RURAL("RURAL", "Rural Municipality"),
-    SUB("SUB", "Sub Meteropolitian City"),
+    RURALMUNICIPALITY("RURALMUNICIPALITY", "Rural Municipality"),
+    SUBMETEROPOLITIANCITY("SUBMETEROPOLITIANCITY", "Sub Meteropolitian City"),
     MUNICIPLAITY("MUNICIPALITY", "Municipality"),
-    METROPOLITIAN("METEROPOLITIAN", "Meteropolitian city");
+    METROPOLITIANCITY("METEROPOLITIANCITY", "Meteropolitian city");
 
     private String type;
     private String display;

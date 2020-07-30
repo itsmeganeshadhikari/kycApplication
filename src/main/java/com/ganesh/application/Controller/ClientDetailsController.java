@@ -79,15 +79,16 @@ public class ClientDetailsController {
 
     //Process input data to kyc form
     @PostMapping("/saveDetail")
-    public ModelAndView saveClientDetail(@ModelAttribute("clientDetails") ClientDetails clientDetails ,@RequestParam("pic") Byte[] pic) {
+    public ModelAndView saveClientDetail(@ModelAttribute("clientDetails") ClientDetails clientDetails )
+    {
+//    @RequestParam("pic") Byte[] pic)
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
-//        mv.setViewName("PdfGenerator");
         mv.setViewName("PdfGenerator");
 //        image1.setImage(pic);
 //        clientDetails.setImage(image1);
         clientDetailsRepository.saveAndFlush(clientDetails);
-//        mv.addObject("message", "Kyc Form has been submitted");
+        mv.addObject("message", "Kyc Form has been submitted");
 
         //After save
         List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByIdDesc();
@@ -115,30 +116,21 @@ public class ClientDetailsController {
 //                .contentType(MediaType.APPLICATION_PDF)
 //                .body(new InputStreamResource(bis));
 //    }
-//
-////    @RequestMapping(value = "/pdfreport/{id}", method = RequestMethod.GET)
-////    public String clientReport(@PathVariable("id") Integer id,Model model)
-////    {
-////        ClientDetails clientDetails=clientDetailsRepository.findById(id);
-////        model.addAttribute("clientDetails",clientDetails);
-////        return "update-notice";
-////
-////
-////    }
+
 
 
     @GetMapping("/pdfreport/{id}")
     public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
-        String image = getImgData(clientDetails.get().getPic());
-        modelAndView.addObject("image",image);
+//        String image = getImgData(clientDetails.get().getPic());
+//        modelAndView.addObject("image",image);
         modelAndView.addObject("clientDetails", clientDetails);
         modelAndView.setViewName("pdfkyc");
         return modelAndView;
     }
-    public String getImgData(byte[] byteData) {
-        return Base64.getMimeEncoder().encodeToString(byteData);
-    }
+//    public String getImgData(byte[] byteData) {
+//        return Base64.getMimeEncoder().encodeToString(byteData);
+//    }
 }
 
 

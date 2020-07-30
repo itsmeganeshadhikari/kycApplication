@@ -53,7 +53,7 @@ public class ClientAddress {
      private String per_tole;
 
 
-    @OneToOne( mappedBy = "clientAddress" ,fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToOne( mappedBy = "clientAddress" ,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private ClientDetails clientDetails;
 
 
@@ -221,9 +221,6 @@ public class ClientAddress {
     public void setPer_mun(String per_mun) {
         this.per_mun = per_mun;
     }
-//    @OneToOne(cascade=CascadeType.ALL)
-//    @JoinColumn(name="client_details_id")
-//    private ClientDetails clientDetails;
 
 
 
