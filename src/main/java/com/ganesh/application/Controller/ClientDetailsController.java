@@ -2,15 +2,23 @@ package com.ganesh.application.Controller;
 
 import com.ganesh.application.Model.ClientDetails;
 import com.ganesh.application.Model.Countries;
-import com.ganesh.application.Repository.*;
+import com.ganesh.application.Repository.ClientDetailsRepository;
+import com.ganesh.application.Repository.CountriesRepository;
+import com.ganesh.application.Repository.DistrictRepository;
+import com.ganesh.application.Repository.ProvinceRepository;
 import com.ganesh.application.utils.enums.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -74,15 +82,13 @@ public class ClientDetailsController {
 
     //Process input data to kyc form
     @PostMapping("/saveDetail")
-    public ModelAndView saveClientDetail(@ModelAttribute("clientDetails") ClientDetails clientDetails, @RequestParam("pic") byte[] pic)
-    {
+    public ModelAndView saveClientDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException {
 //    @RequestParam("pic") Byte[] pic)
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
         mv.setViewName("PdfGenerator");
+        clientDetails.setPic(pic.getBytes());
 
-//        image1.setImage(pic);
-        clientDetails.setPic(pic);
         clientDetailsRepository.saveAndFlush(clientDetails);
         mv.addObject("message", "Kyc Form has been submitted");
 
@@ -114,16 +120,16 @@ public class ClientDetailsController {
 //    }
 
 
-
     @GetMapping("/pdfreport/{id}")
     public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
         String image = getImgData(clientDetails.get().getPic());
-        modelAndView.addObject("image",image);
+        modelAndView.addObject("image", image);
         modelAndView.addObject("clientDetails", clientDetails);
         modelAndView.setViewName("pdfkyc");
         return modelAndView;
     }
+
     public String getImgData(byte[] byteData) {
         return Base64.getMimeEncoder().encodeToString(byteData);
     }

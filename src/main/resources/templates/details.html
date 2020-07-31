@@ -28,10 +28,8 @@
     <br/>
 
     <!--code for making tabs-->
-    <form id="register_form" method="POST"  th:action="@{/saveDetail}" th:autocomplete="off"
+    <form id="register_form" method="POST"  th:action="@{/saveDetail}"   enctype="multipart/form-data" th:autocomplete="off"
           th:object="${clientDetails}"  data-toggle="validator" role="form" name="myform">
-<!--        enctype="multipart/form-data"-->
-        <!--        <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>-->
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active_tab1" id="list_Client_details" style="border:1px solid #ccc">Client<br>
@@ -98,12 +96,6 @@
                                         <div class="choose-img">
                                             <input type="file" name="pic" th:field="*{pic}" id="exampleInputFile">
                                         </div>
-                                        <script>
-                                            $('#exampleInputFile').on('change',function () {
-                                                alert("clicked");
-                                                // alert("image_alert",this.value());
-                                            });
-                                        </script>
                                     </div>
                                 </div>
                             </div>
