@@ -1,4 +1,5 @@
 package com.ganesh.application.Model;
+import com.ganesh.application.utils.enums.Municipality;
 import com.ganesh.application.utils.enums.Relation;
 import lombok.*;
 
@@ -32,7 +33,9 @@ public class GuardianDetails
 
     private String district;
 
-    private String municipality;
+    private Municipality municipality;
+
+    private String municipality_name;
 
     private String ward_no;
 
@@ -48,7 +51,11 @@ public class GuardianDetails
     @Lob
     private byte[] images;
 
-    public GuardianDetails(String name, Relation relation, String other_relation_name, String correspondance_address, String country, String province, String district, String municipality, String ward_no, String telephone_no, String fax_no, String mobile_no, String pan_no, String email, byte[] images) {
+
+    @OneToOne( mappedBy = "guardianDetails" ,fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private ClientDetails clientDetails;
+
+    public GuardianDetails(String name, Relation relation, String other_relation_name, String correspondance_address, String country, String province, String district, Municipality municipality,String municipality_name, String ward_no, String telephone_no, String fax_no, String mobile_no, String pan_no, String email, byte[] images) {
         this.name = name;
         this.relation = relation;
         this.other_relation_name = other_relation_name;
@@ -57,6 +64,7 @@ public class GuardianDetails
         this.province = province;
         this.district = district;
         this.municipality = municipality;
+        this.municipality_name=municipality_name;
         this.ward_no = ward_no;
         this.telephone_no = telephone_no;
         this.fax_no = fax_no;
@@ -130,11 +138,11 @@ public class GuardianDetails
         this.district = district;
     }
 
-    public String getMunicipality() {
+    public Municipality getMunicipality() {
         return municipality;
     }
 
-    public void setMunicipality(String municipality) {
+    public void setMunicipality(Municipality municipality) {
         this.municipality = municipality;
     }
 
@@ -194,7 +202,14 @@ public class GuardianDetails
         this.images = images;
     }
 
-    @OneToOne( mappedBy = "guardianDetails" ,fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private ClientDetails clientDetails;
+    public String getMunicipality_name() {
+        return municipality_name;
+    }
+
+    public void setMunicipality_name(String municipality_name) {
+        this.municipality_name = municipality_name;
+    }
+
+
 
 }

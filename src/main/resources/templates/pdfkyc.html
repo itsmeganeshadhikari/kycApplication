@@ -40,8 +40,7 @@
 </head>
 <body>
 <div class="container" style="width:67%;border:1px solid black;">
-    <div class="panel">
-        <br>
+
         <div class="panel-body">
             <div class="form-group">
                 <!--Cliennt Deatils-->
@@ -54,18 +53,22 @@
                         <input type="text" th:value="${clientDetails.get().getBranch()}" class="e">
                     </div>
 
-<!--                    <div class="col-xs-4" style="height:20px;margin-top:3px;">-->
-<!--                        <div style="height:20px;">-->
-<!--                            <img alt="Image" width="100" height="100"-->
-<!--                                 style="alignment: left;margin-left: 100px; margin-top: 10px"-->
-<!--                                 th:src="*{'data:image/jpg;base64,'+image}"/>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="col-xs-4" style="height:20px;margin-top:3px;">
+                        <div style="height:20px;">
+                            <img alt="Image" width="100" height="100"
+                                 style="alignment: left;margin-left: 100px; margin-top: 10px"
+                                 th:src="*{'data:image/jpg;base64,'+image}"/>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
 
                 <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Details
                     of Client</strong>
                 </h1></div>
+    <br>
+                <div class="panel-body">
                 <div class="form-row">
                     <div class="col-xs-4" style="margin-top:15px;">
                         <label><b>First Name:</b></label>
@@ -167,14 +170,14 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 
 
     <!--Address-->
     <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Current
         Address</strong>
     </h1></div>
+    <br>
 
     <div class="panel-body">
         <div class="form-row" style="margin-top:3px;">
@@ -223,7 +226,7 @@
 
             <div class="col-xs-6">
                 <label><b>Telephone No:</b></label>
-                <input type="text" th:value="${clientDetails.get().getClientAddress().getTelephone_no()}"class="e">
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getTemp_telephone_no()}"class="e">
             </div>
         </div>
         <br>
@@ -238,12 +241,14 @@
                 <input type="text" th:value="${clientDetails.get().getClientAddress().getMobile_no()}"class="e">
             </div>
         </div>
+    </div>
 
 
         <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Permanent
             Address</strong>
         </h1></div>
-        <br>
+    <br>
+        <div class="panel-body">
         <div class="form-row">
             <div class="col-xs-4">
 
@@ -286,7 +291,7 @@
         <div class="form-row">
             <div class="col-xs-4">
                 <label><b>Telephone:</b></label>
-                <input type="text" class="e">
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getPer_telephone_no()}"class="e">
             </div>
             <div class="col-xs-4">
                 <label><b>Ward No:</b></label>
@@ -294,7 +299,7 @@
             </div>
             <div class="col-xs-4">
                 <label><b>Block No:</b></label>
-                <input type="text" class="e">
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getBlock_no()}" class="e">
             </div>
 
         </div>
@@ -303,6 +308,8 @@
     <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Family and Bank Details
         of Client</strong>
     </h1></div>
+    <br>
+    <div class="panel-body">
     <div class="form-row">
         <div class="row">
             <div class="col-md-12" style="border:1px solid red;" th:each="ff:${clientDetails}">
@@ -329,24 +336,15 @@
 
 
     </div>
+    </div>
     <br>
 
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class="container" style="width:67%;border:1px solid black;">
-        <div class="panel">
-            <br>
-            <div class="panel-body">
+<!--Occupation Details-->
                     <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Occupation Details
                         </strong>
                     </h1></div>
+    <br>
+    <div class="panel-body">
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-xs-6">
@@ -412,11 +410,12 @@
                     </div>
 
             </div>
-        </div>
+<!--        </div>-->
 <!--Transaction Details-->
     <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Transaction
         Details</strong>
     </h1></div>
+    <br>
 
     <div class="panel-body">
         <div class="form-row">
@@ -482,6 +481,7 @@
     <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Rehabilated
         Details</strong>
     </h1></div>
+    <br>
 
     <div class="panel-body">
         <div class="form-group">
@@ -535,6 +535,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <!--Guardian Details-->
         <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Guardian
             Details</strong></h1></div>
@@ -548,6 +549,7 @@
 
                     </div>
                 </div>
+                <br>
                 <div class="form-row">
 
                     <div class="col-xs-4">
@@ -565,14 +567,14 @@
                 </div>
 
 
-
+<br>
                 <div class="form-row">
                     <div class="col-xs-12">
                         <label><b>Correspondance Address:</b></label>
                         <input type="text"th:value="${clientDetails.get().getGuardianDetails().getCorrespondance_address()}"class="e">
                     </div>
                 </div>
-
+<br>
                 <div class="form-row">
                     <div class="col-xs-4">
                         <label ><b>Country:</b></label>
@@ -589,25 +591,27 @@
                         <input type="text"th:value="${clientDetails.get().getGuardianDetails().getDistrict()}"class="e">
                     </div>
                 </div>
+                <br>
 
                 <div class="form-row">
                     <div class="col-xs-6">
-                        <lablel><b>Rural Municipality:</b></label>
-                            <input type="text"th:value="${clientDetails.get().getGuardianDetails().getMunicipality()}"class="e">
+                        <label><input type="text"style="font-weight: bold;" th:value="${clientDetails.get().getGuardianDetails().getMunicipality().getDisplay()}" class="e"></label>
+                        <input type="text" th:value="${clientDetails.get().getGuardianDetails().getMunicipality_name()}" class="e">
                     </div>
 
-                    <div class="col-xs-46">
+                    <div class="col-xs-6">
                         <label><b>Ward No:</b></label>
                         <input type="text" th:value="${clientDetails.get().getGuardianDetails().getWard_no()}"class="e">
                     </div>
                 </div>
+                <br>
                 <div class="form-row">
                     <div class="col-md-12">
                         <label><b>Telephone No:</b></label>
                         <input type="text" th:value="${clientDetails.get().getGuardianDetails().getTelephone_no()}"class="e">
                     </div>
                 </div>
-
+<br>
                 <div class="form-row">
                     <div class="col-xs-4">
                         <label><b>Fax No:</b></label>
@@ -631,7 +635,7 @@
                     </div>
                 </div>
 
-
+<br>
                 <div class="form-row">
                     <div class="col-md-12">
                         <input type="text"class="e">
@@ -640,12 +644,196 @@
                 </div>
             </div>
         </div>
+        <!--Additional Details-->
+        <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Additional
+            Details</strong>
+        </h1></div>
+<br>
+        <div class="panel-body">
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>1. Are you a political or high-ranking person?</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getPolitical()}"class="e">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>If yes,then Mention concerned political/high ranking person:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getAdditionalDetails().getPolitical_name()}"class="e">
+
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Mention the relation:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getAdditionalDetails().getPolitical_relation()}"class="e">
+
+                </div>
+            </div>
+
+            <br>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>2.Do you have a beneficiary?</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary()}"class="e">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>If yes,then Mention Name of beneficary:<b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_name()}"class="e">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Mention beneficary relatiion:<b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_relation()}"class="e">
+                </div>
+            </div>
+            <br>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>3.Have you been convicted of a felony in the
+                        past?</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getFelony()}"class="e">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Please note if there are offenses as per clause 2 of section 2 of the Asset
+                        Forfeiture Details Act 2064</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getOffenses()}"class="e">
+                </div>
+
+
+
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <h3 style="text-align:center;"><b>धितोपत्र कारोबारको सम्बन्धमा तपसिल बमोजिमको सो
+                        घोषणा गर्दछु|</b></h3>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>१.म/हामी धितोपत्र खरिदका लागि पर्योग गर्ने रकम सम्पत्ति शुद्धीकरणसम्बन्धी
+                        प्रचालित कानुन विपरीत आर्जन गरेको हुने छैन</b></p>
+                </div>
+                <div class="col-xs-6">
+                    <p><b>२.धितोपत्रमा गरिएको लगानीमा निहित जोखिमको सम्बन्ध जानकार छु</b></p>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="col-xs-6">
+                    <p><b>3.म/हामी खरिद गरेको धितोपत्रहरु बापत् को भुक्तानी लिने दिने कार्य तोकिएको
+                        समयभित्र गर्नेछु</b></p>
+                </div>
+
+
+                <div class="col-xs-6">
+                    <p><b>4.म/हामीले धितोपत्र सम्बन्धी तथा अन्य प्रचलित नियम कानुनको पालना गर्नेछु</b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>5.म/हामी कर्जा सूचना केन्द्रको कालोसूचीमा रहेको छु</b></p>
+                </div>
+
+                <div class="col-xs-6">
+                    <p><b>6.सम्पत्ति शुद्धीकरण निवारण ऐन 2064 र यस अन्तर्गत जारी भएका नियमवाली तथा
+                        निर्देशन आदिबाट माग भए अनुसार, सूचना विवरण तथा कागजातहरू कम्पनीले उपलब्ध गराउने
+                        छु/र्छौं |</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>7.कम्पनीलाई गर्नुपर्ने भुक्तानी नगरी बाँकी राखेको कारणबाट मेरो/हाम्रो को
+                        कारोबार अन्य धितोपत्र दलाल कम्पनीहरुमा समेत निलम्बन गर्ने पत्राचार वा परिपत्र
+                        गर्ने मेरो हाम्रो मन्जुरी छ |</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <h3 style="text-align:center;"><b>संलग्न गर्नुपर्ने कागजात</b></h3>
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <p><b>1.नेपाली नागरिकहरूको हकमा नागरिकताका प्रमाणपत्रको प्रतिलिपि</b></p>
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class="col-xs-6">
+                    <p><b>2.अन्य देशको नागरिकको हकमा पासपोर्टको प्रतिलिपी</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+
+                <div class="col-xs-12">
+                    <p><b>3.नाबालकको हकमा सरक्षक तथा नाबालक दुवैको photo</b></p>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <p><b>4.कानूनी सरक्षक भए सो सम्बन्धित कागजात</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>5.आमा वा बाबुको संरक्षक भएमा छोरा वा छोरीको जन्मदर्ता प्रमाणपत्रको
+                        प्रतिलिपि</b></p>
+                </div>
+                <div class="col-xs-6">
+                    <p><b>6.निवेदकको हस्ताक्षर तथा औंठा छापमा संरक्षकको हस्ताक्षर तथा औंठा छाप</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <p><b>I/We hereby acknowledge that the above disclosed details are true.I further
+                        hereby consent to bear any legal actions in case any false disclosure of
+                        information related to me/us.</b></p>
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col-xs-12">
+
+                    <input type="text"class="e">
+
+
+                    <p><b>Client's Signature</b></p>
+                </div>
+            </div>
+
+        </div>
 
 
 
 
 
-        <section>
+
+
+
+
+    <section>
         <button type="button" id="btnPrint" class="btn btn-info btn-lg">Print</button>
     </section>
 

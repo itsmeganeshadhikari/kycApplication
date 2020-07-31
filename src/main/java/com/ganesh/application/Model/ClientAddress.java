@@ -32,7 +32,7 @@ public class ClientAddress {
 
     private String temp_tole;
 
-    private String telephone_no;
+    private String temp_telephone_no;
 
     private String email;
 
@@ -52,13 +52,17 @@ public class ClientAddress {
 
      private String per_tole;
 
+     private String per_telephone_no;
+
+     private String block_no;
+
 
     @OneToOne( mappedBy = "clientAddress" ,fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private ClientDetails clientDetails;
 
 
 
-    public ClientAddress(String temp_country, String temp_province, String temp_district, Municipality temp_municipality,String temp_mun ,String temp_ward, String temp_tole, String telephone_no, String email, String mobile_no, String per_country, String per_province, String per_district,Municipality per_municipality,String per_mun, String per_ward, String per_tole) {
+    public ClientAddress(String temp_country, String temp_province, String temp_district, Municipality temp_municipality,String temp_mun ,String temp_ward, String temp_tole, String temp_telephone_no, String email, String mobile_no, String per_country, String per_province, String per_district,Municipality per_municipality,String per_mun, String per_ward, String per_tole,String per_telephone_no,String block_no) {
         this.temp_country = temp_country;
         this.temp_province = temp_province;
         this.temp_district = temp_district;
@@ -66,7 +70,7 @@ public class ClientAddress {
         this.temp_mun=temp_mun;
         this.temp_ward = temp_ward;
         this.temp_tole = temp_tole;
-        this.telephone_no = telephone_no;
+        this.temp_telephone_no = temp_telephone_no;
         this.email = email;
         this.mobile_no = mobile_no;
         this.per_country = per_country;
@@ -76,6 +80,8 @@ public class ClientAddress {
         this.per_mun=per_mun;
         this.per_ward = per_ward;
         this.per_tole = per_tole;
+        this.per_telephone_no=per_telephone_no;
+        this.block_no=block_no;
     }
 
     public Integer getId() {
@@ -134,12 +140,28 @@ public class ClientAddress {
         this.temp_tole = temp_tole;
     }
 
-    public String getTelephone_no() {
-        return telephone_no;
+    public String getTemp_telephone_no() {
+        return temp_telephone_no;
     }
 
-    public void setTelephone_no(String telephone_no) {
-        this.telephone_no = telephone_no;
+    public void setTemp_telephone_no(String temp_telephone_no) {
+        this.temp_telephone_no = temp_telephone_no;
+    }
+
+    public String getPer_telephone_no() {
+        return per_telephone_no;
+    }
+
+    public void setPer_telephone_no(String per_telephone_no) {
+        this.per_telephone_no = per_telephone_no;
+    }
+
+    public String getBlock_no() {
+        return block_no;
+    }
+
+    public void setBlock_no(String block_no) {
+        this.block_no = block_no;
     }
 
     public String getEmail() {
@@ -221,6 +243,7 @@ public class ClientAddress {
     public void setPer_mun(String per_mun) {
         this.per_mun = per_mun;
     }
+
 
 
 

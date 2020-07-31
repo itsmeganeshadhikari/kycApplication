@@ -164,7 +164,7 @@ public class GeneratePdfReport {
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
                 table.addCell("TELEPHONE NO");
-                table.addCell((clientDetails.get().getClientAddress().getTelephone_no()));
+                table.addCell((clientDetails.get().getClientAddress().getTemp_telephone_no()));
 
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
@@ -415,7 +415,7 @@ public class GeneratePdfReport {
             hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(hcell);
             table.addCell("MUNICIPALITY");
-            table.addCell((clientDetails.get().getGuardianDetails().getMunicipality()));
+            table.addCell((clientDetails.get().getGuardianDetails().getMunicipality_name()));
 
             hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(hcell);

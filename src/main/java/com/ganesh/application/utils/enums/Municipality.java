@@ -4,7 +4,7 @@ public enum Municipality
 {
     RURALMUNICIPALITY("RURALMUNICIPALITY", "Rural Municipality"),
     SUBMETEROPOLITIANCITY("SUBMETEROPOLITIANCITY", "Sub Meteropolitian City"),
-    MUNICIPLAITY("MUNICIPALITY", "Municipality"),
+    MUNICIPALITY("MUNICIPALITY", "Municipality"),
     METROPOLITIANCITY("METEROPOLITIANCITY", "Meteropolitian city");
 
     private String type;

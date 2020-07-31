@@ -26,9 +26,6 @@
 <br/>
 <div class="container box">
     <br/>
-    <!--    <div>-->
-    <!--        <a th:href="@{ClientDetails/export }">Export to pdf</a>-->
-    <!--    </div>-->
 
     <!--code for making tabs-->
     <form id="register_form" method="POST"  th:action="@{/saveDetail}" th:autocomplete="off"
@@ -101,12 +98,12 @@
                                         <div class="choose-img">
                                             <input type="file" name="pic" th:field="*{pic}" id="exampleInputFile">
                                         </div>
-<!--                                        <script>-->
-<!--                                            $('#exampleInputFile').on('change',function () {-->
-<!--                                                alert("clicked");-->
-<!--                                                // alert("image_alert",this.value());-->
-<!--                                            });-->
-<!--                                        </script>-->
+                                        <script>
+                                            $('#exampleInputFile').on('change',function () {
+                                                alert("clicked");
+                                                // alert("image_alert",this.value());
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -332,9 +329,8 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-<!--                                    <p><b>Rural Municipality/Sub Metropolitan city/Metropolitan city:</b></p>-->
                                         <div class="form-group">
-<!--                                            <label for="municipality10"><b>Select Municiplaity</b></label>-->
+
                                             <select class="form-control" id="municipality10"
                                                     th:field="${clientDetails.clientAddress.temp_municipality}">
                                                 <option th:each="municipality:${municipalityList}" th:text="${municipality.getDisplay()}"
@@ -376,7 +372,7 @@
                                 <div class="col-md-6">
                                     <p><b>Telephone No:</b></p>
                                     <input class="form-control" placeholder="Enter Telephone No"
-                                           th:field="${clientDetails.clientAddress.telephone_no}" type="text">
+                                           th:field="${clientDetails.clientAddress.temp_telephone_no}" type="text">
                                 </div>
                             </div>
                             <br>
@@ -482,6 +478,23 @@
                                     <span id="toleerror1" class="text-danger font-weight-bold"></span>
                                 </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Telephone No:</b></p>
+                                    <input class="form-control" id="telephone131" name="telephone131" placeholder="Enter telephone no"
+                                           th:field="${clientDetails.clientAddress.per_telephone_no}" type="text">
+<!--                                    <span id="warderror1" class="text-danger font-weight-bold"></span>-->
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Block No:</b></p>
+                                    <input class="form-control" id="block" name="block" placeholder="Enter Block No"
+                                           th:field="${clientDetails.clientAddress.block_no}" type="text">
+<!--                                    <span id="toleerror1" class="text-danger font-weight-bold"></span>-->
+                                </div>
+                            </div>
+
+
                             <br>
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-lg" id="previous_btn_Client_Address"
@@ -1090,21 +1103,35 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-7">
-                                    <p><b>Rural Municipality/Municipality/Sub Metropolitan city/Metropolitan city:</b>
-                                    </p>
-                                    <input class="form-control" placeholder="Mention here"
-                                           th:field="${clientDetails.guardianDetails.municipality}"
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <select class="form-control" id="municipality101"
+                                                th:field="${clientDetails.guardianDetails.municipality}">
+                                            <option th:each="municipality101:${municipalityList}" th:text="${municipality101.getDisplay()}"
+                                                    th:value="${municipality101.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" placeholder="Mention Name of yur region"
+                                           th:field="${clientDetails.guardianDetails.municipality_name}"
                                            type="text">
+
+                                    </div>
                                 </div>
 
-                                <div class="col-md-2">
+                                <br>
+
+                              <div class="row">
+
+                                <div class="col-md-6">
                                     <p><b>Ward No:</b></p>
                                     <input class="form-control" placeholder="Mention Ward"
                                            th:field="${clientDetails.guardianDetails.ward_no}"
                                            type="text">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <p><b>Telephone No:</b></p>
                                     <input class="form-control" placeholder="Mention Telephone"
                                            th:field="${clientDetails.guardianDetails.telephone_no}"
