@@ -1,7 +1,7 @@
 .e
 {
     border:none;
-    border-bottom: 1px solid black;
+    /*border-bottom: 1px solid black;*/
 }
 .i
 {
@@ -11,13 +11,17 @@
 .f
 {
     border:none;
-    width:135px;
-    border-bottom: 1px solid black;
+
 }
 .g
 {
     border:none;
-    width:400px;
-    border-bottom: 1px solid black;
+    /*width:400px;*/
+    /*border-bottom: 1px solid black;*/
 
+}
+section
+{
+    margin-top:5px;
+    margin-left:790px;
 }

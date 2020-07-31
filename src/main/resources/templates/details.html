@@ -585,7 +585,7 @@
 
 
                                             <TD><textarea class="form-control" style="resize:none" id="bankname"
-                                                          name="name" cols="30" rows="3"
+                                                          name="name" cols="20" rows="3"
                                                           th:field="${clientDetails.bankDetails.name_and_address_bank}"
                                                           placeholder="Mention the name and address of the bank"></textarea>
                                             </TD>
@@ -1164,17 +1164,26 @@
                             <br>
 
                             <div class="row">
-                                <div class="col-md-12">
+
+
+                                <div class="col-md-12" style="height:20px;margin-top:3px;">
                                     <div style="height:20px;">
-                                        <input hidden="hidden" id="real-file1" type="file"
-                                               th:field="${clientDetails.guardianDetails.images}"/>
-                                        <button id="custom-buttom1" type="button">CHOOSE A FILE</button>
-                                        <span id="custom-text1">No file chosen,yet.</span>
+<!--                                        <label><b>Choose Image</b></label>-->
+                                        <div class="choose-img">
+                                            <input type="file" name="images" th:field="${clientDetails.guardianDetails.images}" id="exampleInputFile">
+                                        </div>
                                     </div>
                                     <br>
+
+
                                     <p><b>Guardian's Signature</b></p>
                                 </div>
+
+
+
                             </div>
+                            <br>
+                            <br>
                             <br>
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-lg" id="previous_btn_Guardian_details"
@@ -1383,17 +1392,25 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="height:20px;margin-top:3px;">
                                     <div style="height:20px;">
-                                        <input hidden="hidden" id="real-file2" type="file"
-                                               th:field="${clientDetails.additionalDetails.images}"/>
-                                        <button id="custom-buttom2" type="button">CHOOSE A FILE</button>
-                                        <span id="custom-text2">No file chosen,yet.</span>
+
+                                        <div class="choose-img">
+                                            <input type="file" name="images" th:field="${clientDetails.additionalDetails.images}" id="exampleInputFile">
+                                        </div>
                                     </div>
                                     <br>
+
+
                                     <p><b>Client's Signature</b></p>
                                 </div>
+
+
+
                             </div>
+                            <BR>
+                            <BR>
+                            <br>
                             <div class="col-md-12">
                                 <button class="btn btn-default btn-lg" id="previous_btn_Addtional_details"
                                         name="previous_btn_Addtional_details" type="button">
@@ -2161,25 +2178,25 @@
 
 </SCRIPT>
 
-<script type="text/javascript">
-    const realFileBtn = document.getElementById("real-file");
-    const customBtn = document.getElementById("custom-buttom");
-    const customTxt = document.getElementById("custom-text");
+<!--<script type="text/javascript">-->
+<!--    const realFileBtn = document.getElementById("real-file");-->
+<!--    const customBtn = document.getElementById("custom-buttom");-->
+<!--    const customTxt = document.getElementById("custom-text");-->
 
-    customBtn.addEventListener("click", function () {
-        realFileBtn.click();
-    });
-    realFileBtn.addEventListener("change", function () {
-        if (realFileBtn.value) {
-            customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/
-            )[1];
-        } else {
-            customTxt.innerHTML = "No file chosen,yet.";
+<!--    customBtn.addEventListener("click", function () {-->
+<!--        realFileBtn.click();-->
+<!--    });-->
+<!--    realFileBtn.addEventListener("change", function () {-->
+<!--        if (realFileBtn.value) {-->
+<!--            customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/-->
+<!--            )[1];-->
+<!--        } else {-->
+<!--            customTxt.innerHTML = "No file chosen,yet.";-->
 
-        }
-    });
+<!--        }-->
+<!--    });-->
 
-</script>
+<!--</script>-->
 <!--<script type="text/javascript">-->
 <!--    $(document).ready(function() {-->
 <!--        $('#btn_Client_details').bind("click", function () {-->
@@ -2195,40 +2212,40 @@
 <!--        });-->
 <!--    });-->
 <!--</script>-->
-<script type="text/javascript">
-    const realFileBtn1 = document.getElementById("real-file1");
-    const customBtn1 = document.getElementById("custom-buttom1");
-    const customTxt1 = document.getElementById("custom-text1");
-    customBtn1.addEventListener("click", function () {
-        realFileBtn1.click();
-    });
-    realFileBtn1.addEventListener("change", function () {
-        if (realFileBtn1.value) {
-            customTxt1.innerHTML = realFileBtn1.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/
-            )[1];
-        } else {
-            customTxt1.innerHTML = "No file chosen,yet.";
+<!--<script type="text/javascript">-->
+<!--    const realFileBtn1 = document.getElementById("real-file1");-->
+<!--    const customBtn1 = document.getElementById("custom-buttom1");-->
+<!--    const customTxt1 = document.getElementById("custom-text1");-->
+<!--    customBtn1.addEventListener("click", function () {-->
+<!--        realFileBtn1.click();-->
+<!--    });-->
+<!--    realFileBtn1.addEventListener("change", function () {-->
+<!--        if (realFileBtn1.value) {-->
+<!--            customTxt1.innerHTML = realFileBtn1.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/-->
+<!--            )[1];-->
+<!--        } else {-->
+<!--            customTxt1.innerHTML = "No file chosen,yet.";-->
 
-        }
-    });
-</script>
-<script type="text/javascript">
-    const realFileBtn2 = document.getElementById("real-file2");
-    const customBtn2 = document.getElementById("custom-buttom2");
-    const customTxt2 = document.getElementById("custom-text2");
-    customBtn2.addEventListener("click", function () {
-        realFileBtn2.click();
-    });
-    realFileBtn2.addEventListener("change", function () {
-        if (realFileBtn2.value) {
-            customTxt2.innerHTML = realFileBtn2.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/
-            )[1];
-        } else {
-            customTxt2.innerHTML = "No file chosen,yet.";
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+<!--    const realFileBtn2 = document.getElementById("real-file2");-->
+<!--    const customBtn2 = document.getElementById("custom-buttom2");-->
+<!--    const customTxt2 = document.getElementById("custom-text2");-->
+<!--    customBtn2.addEventListener("click", function () {-->
+<!--        realFileBtn2.click();-->
+<!--    });-->
+<!--    realFileBtn2.addEventListener("change", function () {-->
+<!--        if (realFileBtn2.value) {-->
+<!--            customTxt2.innerHTML = realFileBtn2.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/-->
+<!--            )[1];-->
+<!--        } else {-->
+<!--            customTxt2.innerHTML = "No file chosen,yet.";-->
 
-        }
-    });
-</script>
+<!--        }-->
+<!--    });-->
+<!--</script>-->
 <script>
     $(document).ready(function()
     {

@@ -31,9 +31,7 @@ public class ClientDetailsController {
 
     @Autowired
     private ClientDetailsRepository clientDetailsRepository;
-//
-//    @Autowired
-//    private ImageRepository imageRepository;
+
 
 
     @Autowired
@@ -82,12 +80,15 @@ public class ClientDetailsController {
 
     //Process input data to kyc form
     @PostMapping("/saveDetail")
-    public ModelAndView saveClientDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException {
-//    @RequestParam("pic") Byte[] pic)
+    public ModelAndView saveClientDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException
+    {
+
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
         mv.setViewName("PdfGenerator");
         clientDetails.setPic(pic.getBytes());
+        clientDetails.getGuardianDetails().setImages(pic.getBytes());
+        clientDetails.getAdditionalDetails().setImages(pic.getBytes());
 
         clientDetailsRepository.saveAndFlush(clientDetails);
         mv.addObject("message", "Kyc Form has been submitted");
@@ -125,6 +126,13 @@ public class ClientDetailsController {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
         String image = getImgData(clientDetails.get().getPic());
         modelAndView.addObject("image", image);
+
+        String image1=getImgData(clientDetails.get().getGuardianDetails().getImages());
+        modelAndView.addObject("image1", image1);
+
+        String image2=getImgData(clientDetails.get().getAdditionalDetails().getImages());
+        modelAndView.addObject("image2", image2);
+
         modelAndView.addObject("clientDetails", clientDetails);
         modelAndView.setViewName("pdfkyc");
         return modelAndView;
