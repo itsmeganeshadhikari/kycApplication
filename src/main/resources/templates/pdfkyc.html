@@ -54,7 +54,7 @@
                             fields/boxes.</b></p>
                         <p><b>Siprabi Securities(P.)Ltd.</b></p>
                         <label><b>Branch:</b></label>
-                        <input type="text" th:value="${clientDetails.get().getBranch()}" class="e">
+                        <input  th:value="${clientDetails.get().getBranch()}" class="i">
                     </div>
 
                     <div class="col-xs-4" style="height:20px;margin-top:3px;">
@@ -75,18 +75,18 @@
                 <div class="form-row">
                     <div class="col-xs-4" style="margin-top:15px;">
                         <label><b>First Name:</b></label>
-                        <input type="text" th:value="${clientDetails.get().getFirst_name()}" class="e">
+                        <input  th:value="${clientDetails.get().getFirst_name()}" class="e">
                     </div>
 
                     <div class="col-xs-4" style="margin-top:15px;">
                         <label><b>Middle Name:</b></label>
-                        <input type="text" th:value="${clientDetails.get().getMiddle_name()}" class="e">
+                        <input  th:value="${clientDetails.get().getMiddle_name()}" class="e">
 
                     </div>
 
                     <div class="col-xs-4" style="margin-top:15px">
                         <label><b>SurName:</b></label>
-                        <input type="text"th:value="${clientDetails.get().getSur_name()}" class="e">
+                        <input th:value="${clientDetails.get().getSur_name()}" class="e">
 
                     </div>
                 </div>
@@ -145,14 +145,14 @@
                     <div class="col-xs-4">
 
                         <label><b>Issue District:</b></label>
-                        <input type="text" th:value="${clientDetails.get().getIssue_district()}"class="f">
+                        <input type="text" th:value="${clientDetails.get().getIssue_district()}"class="e">
                     </div>
                     </div>
                     <br>
                     <div class="form-row">
                     <div class="col-xs-6">
                         <lable><b>Issue Date:</b></lable>
-                        <input type="text"th:value="${clientDetails.get().getIssue_date()}" class="f">
+                        <input type="text"th:value="${clientDetails.get().getIssue_date()}" class="e">
                     </div>
 <!--                </div>-->
 
@@ -160,7 +160,7 @@
 <!--                <div class="form-row">-->
                     <div class="col-xs-6">
                         <label><b>Beneficary ID No:</b></label>
-                        <input type="text"th:value="${clientDetails.get().getBeneficary_no()}" class="e">
+                        <input type="text"th:value="${clientDetails.get().getBeneficary_no()}" class="f">
                     </div>
                     </div>
                     <br>
@@ -168,7 +168,7 @@
 
                     <div class="col-xs-12">
                         <label><b>Permanent Account No.(PAN):</b></label>
-                        <input type="text" th:value="${clientDetails.get().getPermanent_account_no()}"class="e">
+                        <input type="text" th:value="${clientDetails.get().getPermanent_account_no()}"class="i">
                     </div>
                 </div>
                 <br>
@@ -176,7 +176,7 @@
                     <div class="col-xs-12">
                         <lablel><b>Identification No. and address:(In case of NRN):</b></lablel>
 
-                        <input type="text"th:value="${clientDetails.get().getIdentification_no()}" class="g">
+                        <input type="text"th:value="${clientDetails.get().getIdentification_no()}" class="i">
                     </div>
                 </div>
             </div>
@@ -319,31 +319,29 @@
     </div>
     <!--Family and Bank Details-->
     <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Family and Bank Details
-        of Client</strong>
+        </strong>
     </h1></div>
     <br>
     <div class="panel-body">
     <div class="form-row">
         <div class="row">
             <div class="col-md-12" th:each="ff:${clientDetails}">
-                <strong>Family Members Name:</strong>
+                <lable><strong>Family Members Name:</strong></lable>
+                <input type="text"  th:text="${ff.get().getBankDetails().getFamily_name()}"class="k">
                 <br>
-                <input type="text"  th:text="${ff.get().getBankDetails().getFamily_name()}"class="i">
-                <br>
-                <strong>RelationShip:</strong>
-                <br>
-                <input type="text" th:text="${ff.get().getBankDetails().getRelation()}" class="i">
+                <lable><strong>RelationShip:</strong></label>
+                    <input type="text" th:text="${ff.get().getBankDetails().getRelation()}" class="e">
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-md-12">
-                <strong>Bank Account No:</strong>
+                <label><strong>Bank Account No:</strong></label>
+                <input type="text"  th:text="${clientDetails.get().getBankDetails().getAccount_no()}"class="l">
                 <br>
-                <input type="text"  th:text="${clientDetails.get().getBankDetails().getAccount_no()}"class="i">
-                <br>
-                <strong>Name and Address of Bank:</strong>
-                <br>
-                <input type="text" th:text="${clientDetails.get().getBankDetails().getName_and_address_bank()}" class="i">
+                <label><strong>Name and Address of Bank:</strong></label>
+
+                <input type="text" th:text="${clientDetails.get().getBankDetails().getName_and_address_bank()}" class="m">
             </div>
         </div>
 
@@ -386,7 +384,7 @@
                         <div class="form-row">
                             <div class="col-xs-12">
                                 <label><b>Financial Details:</b></label>
-                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getFinancial_details().getDisplay()}" class="i">
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getFinancial_details().getDisplay()}" class="g">
 
                             </div>
 <!--                            <div class="col-xs-6">--
@@ -399,7 +397,7 @@
                         <div class="form-row">
                             <div class="col-xs-12">
                                 <label><b>Organization Address:</b></label>
-                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getAddress()}" class="e">
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getAddress()}" class="i">
 
                             </div>
                         </div>
@@ -408,20 +406,20 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label><b>Designation:</b></label>
-                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getDesignation()}" class="e">
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getDesignation()}" class="j">
 
                             </div>
                             <div class="col-xs-6">
 
                                 <label><b>Organization Name:</b></label>
-                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getOrganization_name()}" class="e">
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getOrganization_name()}" class="j">
                             </div>
                         </div>
                         <br>
                             <div class="form-row">
                             <div class="col-md-12">
                                 <label><b>Employee Id:</b></label>
-                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getEmployee_id()}" class="e">
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getEmployee_id()}" class="i">
 
                             </div>
                         </div>
@@ -449,14 +447,14 @@
             </div>
             <div class="col-xs-8">
                 <label><b>If,Yes then Mention Company Name:</b></label>
-                <input type="text" th:value="${clientDetails.get().getTransactionDetails().getCompany()}"class="e">
+                <input type="text" th:value="${clientDetails.get().getTransactionDetails().getCompany()}"class="f">
             </div>
         </div>
         <div class="form-row">
             <div class="col-xs-12">
                 <div class="form-group">
                     <label><b>If,Yes then mention Customer Code:</b></label>
-                    <input type="text"th:value="${clientDetails.get().getTransactionDetails().getCustomer_code()}"class="e">
+                    <input type="text"th:value="${clientDetails.get().getTransactionDetails().getCustomer_code()}"class="f">
                 </div>
             </div>
         </div>
@@ -481,7 +479,7 @@
             <div class="col-xs-12">
 
                 <label><b>If yes,then Mention Company Name:</b></label>
-                <input type="text"th:value="${clientDetails.get().getTransactionDetails().getInvestment_company_name()}"class="e">
+                <input type="text"th:value="${clientDetails.get().getTransactionDetails().getInvestment_company_name()}"class="f">
             </div>
         </div>
         <br>
@@ -572,7 +570,7 @@
                 <div class="form-row">
                     <div class="col-xs-12">
                         <label><b>FULL NAME:</b></label>
-                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getName()}"class="e">
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getName()}"class="g">
 
                     </div>
                 </div>
@@ -598,7 +596,7 @@
                 <div class="form-row">
                     <div class="col-xs-12">
                         <label><b>Correspondance Address:</b></label>
-                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getCorrespondance_address()}"class="e">
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getCorrespondance_address()}"class="i">
                     </div>
                 </div>
 <br>
@@ -657,7 +655,7 @@
                 <div class="form-row">
                     <div class="col-md-12">
                         <label><b>E-mail ID:</b></label>
-                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getEmail()}"class="e">
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getEmail()}"class="i">
 
                     </div>
                 </div>
@@ -698,7 +696,7 @@
             <div class="form-row">
                 <div class="col-xs-12">
                     <label><b>Mention the relation:</b></label>
-                    <input type="text"th:value="${clientDetails.get().getAdditionalDetails().getPolitical_relation()}"class="e">
+                    <input type="text"th:value="${clientDetails.get().getAdditionalDetails().getPolitical_relation()}"class="i">
 
                 </div>
             </div>
@@ -707,20 +705,20 @@
             <div class="form-row">
                 <div class="col-xs-12">
                     <label><b>Do you have a beneficiary?</b></label>
-                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary()}"class="e">
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary()}"class="i">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col-xs-12">
                     <label><b>If yes,then Mention Name of beneficary:<b></label>
-                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_name()}"class="e">
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_name()}"class="i">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-xs-12">
                     <label><b>Mention beneficary relatiion:<b></label>
-                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_relation()}"class="e">
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_relation()}"class="i">
                 </div>
             </div>
             <br>
@@ -738,7 +736,7 @@
                 <div class="col-xs-12">
                     <label><b>Please note if there are offenses as per clause 2 of section 2 of the Asset
                         Forfeiture Details Act 2064:</b></label>
-                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getOffenses()}"class="e">
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getOffenses()}"class="i">
                 </div>
 
 

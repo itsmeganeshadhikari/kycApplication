@@ -72,7 +72,7 @@ public class GeneratePdfReport {
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);
                 table.addCell("BIRTH DATE IN B.S");
-                table.addCell((clientDetails.get().getBirth_date0()));
+                table.addCell((clientDetails.get().getBirth_date0().toString()));
 
                 hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(hcell);

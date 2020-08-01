@@ -6,16 +6,49 @@
 .i
 {
     border:none;
+    width:500px;
     /*border-bottom: 1px solid black;*/
 }
 .f
 {
     border:none;
+    width:450px;
+
+}
+.j
+{
+    border:none;
+    width:250px;
 
 }
 .g
 {
     border:none;
+    width:550px;
+    /*width:400px;*/
+    /*border-bottom: 1px solid black;*/
+
+}
+.k
+{
+    border:none;
+    width:98px;
+    /*width:400px;*/
+    /*border-bottom: 1px solid black;*/
+
+}
+.l
+{
+    border:none;
+    width:145px;
+    /*width:400px;*/
+    /*border-bottom: 1px solid black;*/
+
+}
+.m
+{
+    border:none;
+    width:78px;
     /*width:400px;*/
     /*border-bottom: 1px solid black;*/
 

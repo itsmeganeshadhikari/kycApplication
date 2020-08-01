@@ -3,7 +3,9 @@ package com.ganesh.application.Model;
 import com.ganesh.application.utils.enums.Gender;
 import com.ganesh.application.utils.enums.MartialStatus;
 import com.ganesh.application.utils.enums.Nationality;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,8 +33,8 @@ public class ClientDetails {
 
     private String sur_name;
 
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String birth_date0;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birth_date0;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth_date1;
@@ -97,7 +99,7 @@ public class ClientDetails {
     private BankDetails bankDetails;
 
 
-    public ClientDetails(String branch, byte[] pic, String first_name, String middle_name, String sur_name, String birth_date0, Date birth_date1, MartialStatus martialStatus, Gender gender,Nationality nationality,String nationality_name, String citizenship_no, Date issue_date, String issue_district, Date createdDate, String beneficary_no, String permanent_account_no, String identification_no) {
+    public ClientDetails(String branch, byte[] pic, String first_name, String middle_name, String sur_name, Date birth_date0, Date birth_date1, MartialStatus martialStatus, Gender gender, Nationality nationality, String nationality_name, String citizenship_no, Date issue_date, String issue_district, Date createdDate, String beneficary_no, String permanent_account_no, String identification_no) {
         this.branch = branch;
         this.pic = pic;
         this.first_name = first_name;
@@ -168,11 +170,11 @@ public class ClientDetails {
         this.sur_name = sur_name;
     }
 
-    public String getBirth_date0() {
+    public Date getBirth_date0() {
         return birth_date0;
     }
 
-    public void setBirth_date0(String birth_date0) {
+    public void setBirth_date0(Date birth_date0) {
         this.birth_date0 = birth_date0;
     }
 
