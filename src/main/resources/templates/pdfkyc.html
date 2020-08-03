@@ -117,10 +117,6 @@
                         <label><b>Gender:</b></label>
                         <input type="text" th:value="${clientDetails.get().getGender()}"class="e">
                     </div>
-<!--                </div>-->
-<!--                <br>-->
-
-<!--                <div class="form-row">-->
 
                     <div class="col-xs-4">
                         <label><b>Nationality:</b></label>
@@ -136,8 +132,7 @@
 <!--                </div>-->
 
 
-<!--                <br>-->
-<!--                <div class="form-row">-->
+
                     <div class="col-xs-4">
                         <label><b>CitizenShip No:</b></label>
                         <input type="text" th:value="${clientDetails.get().getCitizenship_no()}"class="e">
@@ -216,8 +211,9 @@
         <br>
         <div class="form-row">
             <div class="col-xs-6">
-                <label><input type="text"style="font-weight: bold;" th:value="${clientDetails.get().getClientAddress().getTemp_municipality().getDisplay()}" class="e"></label>
+                <label><b><input type="text"style="font-weight: bold;" th:value="${clientDetails.get().getClientAddress().getTemp_municipality().getDisplay()}" class="v"></b></label>
 <!--                <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>-->
+                <label><b><p>:</p></b></label>
                 <input type="text"th:value="${clientDetails.get().getClientAddress().getTemp_mun()}" class="e">
             </div>
             <div class="col-xs-6">
@@ -287,8 +283,9 @@
         <br>
         <div class="form-row">
             <div class="col-xs-6">
-                <label><input type="text" style="font-weight: bold;" th:value="${clientDetails.get().getClientAddress().getPer_municipality().getDisplay()}" class="e"></b></label>
+                <label><b><input type="text" style="font-weight: bold;" th:value="${clientDetails.get().getClientAddress().getPer_municipality().getDisplay()}" class="v"></b></label>
 <!--                <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>-->
+                <label><b><p>:</p></b></label>
                 <input type="text"th:value="${clientDetails.get().getClientAddress().getPer_mun()}" class="e">
 
             </div>
@@ -336,6 +333,9 @@
         <br>
         <div class="row">
             <div class="col-md-12">
+                <label><strong>AccountType:</strong></label>
+                <input type="text" th:text="${clientDetails.get().getBankDetails().getAccount_type()}"class="lm">
+                <BR>
                 <label><strong>Bank Account No:</strong></label>
                 <input type="text"  th:text="${clientDetails.get().getBankDetails().getAccount_no()}"class="l">
                 <br>
@@ -620,7 +620,8 @@
 
                 <div class="form-row">
                     <div class="col-xs-6">
-                        <label><input type="text"style="font-weight: bold;" th:value="${clientDetails.get().getGuardianDetails().getMunicipality().getDisplay()}" class="e"></label>
+                        <label><input type="text"style="font-weight: bold;" th:value="${clientDetails.get().getGuardianDetails().getMunicipality().getDisplay()}" class="v"></label>
+                        <label><b><p>:</p></b></label>
                         <input type="text" th:value="${clientDetails.get().getGuardianDetails().getMunicipality_name()}" class="e">
                     </div>
 
@@ -660,8 +661,8 @@
                     </div>
                 </div>
 
-<br
-    <br>
+<br>
+
                 <div class="form-row">
 <!--                    <div class="col-xs-12" style="height:20px;margin-top:3px;">-->
 <!--                        <div style="height:20px;">-->
@@ -670,9 +671,14 @@
 <!--                                 th:src="*{'data:image1/jpg;base64,'+image1}"/>-->
 <!--                        </div>-->
 <!--                    </div>-->
+                    <div class="col-xs-4">
+
+
+                        <input type="text"class="z">
                         <p><b>Guardian's Signature</b></p>
                 </div>
             </div>
+        </div>
         </div>
         <!--Additional Details-->
         <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Additional
@@ -752,11 +758,11 @@
 
             <div class="form-row">
                 <div class="col-xs-6">
-                    <p><b>१.म/हामी धितोपत्र खरिदका लागि पर्योग गर्ने रकम सम्पत्ति शुद्धीकरणसम्बन्धी
+                    <p><b>1.म/हामी धितोपत्र खरिदका लागि पर्योग गर्ने रकम सम्पत्ति शुद्धीकरणसम्बन्धी
                         प्रचालित कानुन विपरीत आर्जन गरेको हुने छैन</b></p>
                 </div>
                 <div class="col-xs-6">
-                    <p><b>२.धितोपत्रमा गरिएको लगानीमा निहित जोखिमको सम्बन्ध जानकार छु</b></p>
+                    <p><b>2.धितोपत्रमा गरिएको लगानीमा निहित जोखिमको सम्बन्ध जानकार छु</b></p>
                 </div>
 
             </div>
@@ -800,7 +806,7 @@
                     <h3 style="text-align:center;"><b>संलग्न गर्नुपर्ने कागजात</b></h3>
                 </div>
             </div>
-            <br>
+
             <div class="form-row">
                 <div class="col-xs-12">
                     <p><b>1.नेपाली नागरिकहरूको हकमा नागरिकताका प्रमाणपत्रको प्रतिलिपि</b></p>
@@ -842,21 +848,25 @@
                         information related to me/us.</b></p>
                 </div>
             </div>
-            <br>
+
             <div class="form-row">
 
 
-<!--                    <div class="col-xs-12" style="height:20px;margin-top:3px;">-->
-<!--                        <div style="height:20px;">-->
-<!--                            <img alt="Image" width="300" height="50"-->
-<!--                                 style="alignment: left;margin-left: 100px; margin-top: 10px"-->
-<!--                                 th:src="*{'data:image2/jpg;base64,'+image2}"/>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                <!--                    <div class="col-xs-12" style="height:20px;margin-top:3px;">-->
+                <!--                        <div style="height:20px;">-->
+                <!--                            <img alt="Image" width="300" height="50"-->
+                <!--                                 style="alignment: left;margin-left: 100px; margin-top: 10px"-->
+                <!--                                 th:src="*{'data:image2/jpg;base64,'+image2}"/>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <div class="col-xs-4">
 
+
+                    <input type="text"class="z">
 
                     <p><b>Client's Signature</b></p>
                 </div>
+            </div>
             </div>
 <!--        <section>-->
 <!--        <button type="button" id="btnPrint" class="btn btn-info btn-lg">Print</button>-->

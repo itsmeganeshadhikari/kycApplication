@@ -73,6 +73,7 @@ public class ClientDetailsController {
         modelAndView.addObject("beneficaryList", Beneficary.values());
         modelAndView.addObject("felonyList", Felony.values());
         modelAndView.addObject("municipalityList", Municipality.values());
+        modelAndView.addObject("accountTypeList", AccountType.values());
         modelAndView.setViewName("details");
         return modelAndView;
     }
@@ -138,7 +139,8 @@ public class ClientDetailsController {
         return modelAndView;
     }
 
-    public String getImgData(byte[] byteData) {
+    public String getImgData(byte[] byteData)
+    {
         return Base64.getMimeEncoder().encodeToString(byteData);
     }
 }

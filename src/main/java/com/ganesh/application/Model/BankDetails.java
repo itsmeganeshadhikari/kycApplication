@@ -1,5 +1,8 @@
 package com.ganesh.application.Model;
-import lombok.*;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -20,13 +23,20 @@ public class BankDetails
 
     private  String account_no;
 
+    private String account_type;
+
     @Column(length = 65535, columnDefinition = "text")
     private String name_and_address_bank;
 
-    public BankDetails(String family_name, String relation, String account_no, String name_and_address_bank) {
+
+    @OneToOne( mappedBy = "bankDetails" ,fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private ClientDetails clientDetails;
+
+    public BankDetails(String family_name, String relation, String account_no, String account_type, String name_and_address_bank) {
         this.family_name = family_name;
         this.relation = relation;
         this.account_no = account_no;
+        this.account_type=account_type;
         this.name_and_address_bank = name_and_address_bank;
     }
 
@@ -70,9 +80,11 @@ public class BankDetails
         this.name_and_address_bank = name_and_address_bank;
     }
 
-    @OneToOne( mappedBy = "bankDetails" ,fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private ClientDetails clientDetails;
+    public String getAccount_type() {
+        return account_type;
+    }
 
-
-
+    public void setAccount_type(String account_type) {
+        this.account_type = account_type;
+    }
 }

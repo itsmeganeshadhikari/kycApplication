@@ -534,11 +534,9 @@
 
                                             <TD>
 
-                                                <!--                                                    <label for="exampleFormControlSelect30"></label>-->
+
                                                 <select class="form-control" style="margin-top:0px;"
                                                         th:field="${clientDetails.bankDetails.relation}">
-                                                    <!--                                                        <option th:each="relation:${relationList}" th:text="${relation.getDisplay()}"-->
-                                                    <!--                                                                th:value="${relation.getType()}"></option>-->
                                                     <OPTION value="FATHER">FATHER</OPTION>
                                                     <OPTION value="MOTHER">MOTHER</OPTION>
                                                     <OPTION value="HUSBAND">HUSBAND</OPTION>
@@ -561,6 +559,18 @@
                                     </TABLE>
                                 </div>
 
+<!--                                <div class="col-md-2">-->
+
+<!--                                    <div class="form-group">-->
+<!--                                        <select class="form-control" id="AccountType20"-->
+<!--                                                th:field="${clientDetails.bankDetails.account_type}">-->
+<!--                                            <option th:each="account:{accountList}" th:text="${account.getDisplay()}"-->
+<!--                                                    th:value="${account.getType()}"></option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                    -->
+<!--                                </div>-->
+
                                 <div class="col-md-6">
 
 
@@ -577,6 +587,22 @@
                                         <TR>
 
                                             <TD><INPUT type="checkbox" name="chk"/></TD>
+                                            <td>
+
+
+
+                                                <select class="form-control" style="margin-top:0px;"
+                                                        th:field="${clientDetails.bankDetails.account_type}">
+<!--                                                            <option th:each="account:{account}" th:text="${account.getDisplay()}"-->
+<!--                                                                    th:value="${account.getType()}"></option>-->
+                                                    <OPTION value="SAVING">SAVING</OPTION>
+                                                    <OPTION value="CURRENT">CURRENT</OPTION>
+                                                        </select>
+
+
+
+
+                                            </td>
                                             <TD><INPUT class="form-control" type="text"
                                                        th:field="${clientDetails.bankDetails.account_no}" id="accountno"
                                                        placeholder="Mention the account no"/>
@@ -585,7 +611,7 @@
 
 
                                             <TD><textarea class="form-control" style="resize:none" id="bankname"
-                                                          name="name" cols="20" rows="3"
+                                                          name="name" cols="18" rows="3"
                                                           th:field="${clientDetails.bankDetails.name_and_address_bank}"
                                                           placeholder="Mention the name and address of the bank"></textarea>
                                             </TD>
@@ -1106,7 +1132,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control" placeholder="Mention Name of yur region"
+                                    <input class="form-control" placeholder="Mention Name of your region"
                                            th:field="${clientDetails.guardianDetails.municipality_name}"
                                            type="text">
 
@@ -2246,6 +2272,8 @@
 <!--        }-->
 <!--    });-->
 <!--</script>-->
+
+<!--date-->
 <!--<script>-->
 <!--    $(document).ready(function()-->
 <!--    {-->

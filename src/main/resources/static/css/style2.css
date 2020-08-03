@@ -3,6 +3,17 @@
     border:none;
     /*border-bottom: 1px solid black;*/
 }
+.z
+{
+    border:none;
+    width:250px;
+    border-bottom: 1px solid black;
+}
+.v
+{
+    border:none;
+    width:185px;
+}
 .i
 {
     border:none;
@@ -41,6 +52,14 @@
 {
     border:none;
     width:145px;
+    /*width:400px;*/
+    /*border-bottom: 1px solid black;*/
+
+}
+.lm
+{
+    border:none;
+    width:180px;
     /*width:400px;*/
     /*border-bottom: 1px solid black;*/
 
