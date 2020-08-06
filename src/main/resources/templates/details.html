@@ -73,15 +73,31 @@
                 <div class="panel">
                     <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Details</strong>
                     </h1></div>
-                    <br>
                     <div class="panel-body">
                         <div class="form-group">
+                            <div class="form-row">
+
+
+                   <!-- <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect105"><b>Select the Bank</b></label>
+                            <select class="form-control" id="exampleFormControlSelect105"
+                                    th:field="${clientDetails.bankNameName}">
+                                <option th:each="bank1:${Banks}"
+                                        th:text="${bank1.bank_name}"
+                                        th:value="${bank1.bank_name}"></option>
+                            </select>
+                        </div>
+                    </div>-->
+                            </div>
+<!--                    <div class="panel-body">-->
+<!--                        <div class="form-group">-->
                             <!--Cliennt Deatils-->
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <p><b>Please complete all details and strike out the non-applicable
                                         fields/boxes.</b></p>
-                                    <p><b>Siprabi Securities(P.)Ltd.</b></p>
+<!--                                    <p><b>Siprabi Securities(P.)Ltd.</b></p>-->
                                     <input class="form-control" placeholder="Please Specify the branch"
                                            th:field="*{branch}" id="branchname"
                                            name="branchname"
@@ -91,8 +107,9 @@
                                 </div>
 
                                 <div class="col-md-4" style="height:20px;margin-top:3px;">
-                                    <div style="height:20px;">
+                                    <div style="height:10px;">
                                         <label><b>Choose Image</b></label>
+                                        <br>
                                         <div class="choose-img">
                                             <input type="file" name="pic" th:field="*{pic}" id="exampleInputFile">
                                         </div>

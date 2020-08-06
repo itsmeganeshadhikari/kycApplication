@@ -1,12 +1,14 @@
 package com.ganesh.application.init;
 
 
+import com.ganesh.application.Model.BankName;
 import com.ganesh.application.Model.Countries;
-import com.ganesh.application.Model.District;
-import com.ganesh.application.Model.Province;
+import  com.ganesh.application.Model.District;
+import  com.ganesh.application.Model.Province;
+import com.ganesh.application.Repository.BankNameRepository;
 import com.ganesh.application.Repository.CountriesRepository;
-import com.ganesh.application.Repository.DistrictRepository;
-import com.ganesh.application.Repository.ProvinceRepository;
+import  com.ganesh.application.Repository.DistrictRepository;
+import  com.ganesh.application.Repository.ProvinceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +29,16 @@ public class DatabaseLoader implements CommandLineRunner {
     @Autowired
     private DistrictRepository districtRepository;
 
+    @Autowired
+    private BankNameRepository bankNameRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
         createCountry();
         createProvince();
         createDistrict();
+        createBankName();
 
 
     }
@@ -370,4 +376,45 @@ public class DatabaseLoader implements CommandLineRunner {
         }
         return "District_saved";
     }
+
+
+    public String createBankName()
+    {
+        if (bankNameRepository.count() == 0) {
+            logger.info("Loading data from  Bank.....");
+
+            bankNameRepository.saveAndFlush(new BankName("Nepal Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Rastriya Banijya Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Nabil Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Nepal Investment Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Standard Chartered Bank Nepal Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Himalayan Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Nepal SBI Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Nepal Bangaladesh Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Everest Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Bank of Kathmandu Lumbini Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Nepal Credit and Commerce Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("NIC ASIA Bank Ltd. "));
+            bankNameRepository.saveAndFlush(new BankName("Machhapuchhre Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Kumari Bank Ltd. "));
+            bankNameRepository.saveAndFlush(new BankName("Laxmi Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Siddhartha Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Agriculture Development Bank Ltd. "));
+            bankNameRepository.saveAndFlush(new BankName("Global IME Bank Ltd. "));
+            bankNameRepository.saveAndFlush(new BankName("Citizens Bank International Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Prime Commercial Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Sunrise Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("NMB Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Prabhu Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Mega Bank Nepal "));
+            bankNameRepository.saveAndFlush(new BankName("Civil Bank Ltd."));
+            bankNameRepository.saveAndFlush(new BankName("Century Commercial Bank Ltd. "));
+            bankNameRepository.saveAndFlush(new BankName("Sanima Bank Ltd."));
+        }
+        else {
+            System.out.println("BankName already saved");
+        }
+        return "BankName_saved";
+    }
+
 }

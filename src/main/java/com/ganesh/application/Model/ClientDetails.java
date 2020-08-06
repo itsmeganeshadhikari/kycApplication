@@ -21,6 +21,15 @@ public class ClientDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private BankName bankName;
+
+
+    @Transient
+    private String bankNameName;
+
     private String branch;
 
 
@@ -99,7 +108,8 @@ public class ClientDetails {
     private BankDetails bankDetails;
 
 
-    public ClientDetails(String branch, byte[] pic, String first_name, String middle_name, String sur_name, Date birth_date0, Date birth_date1, MartialStatus martialStatus, Gender gender, Nationality nationality, String nationality_name, String citizenship_no, Date issue_date, String issue_district, Date createdDate, String beneficary_no, String permanent_account_no, String identification_no) {
+    public ClientDetails(String bankNameName, String branch, byte[] pic, String first_name, String middle_name, String sur_name, Date birth_date0, Date birth_date1, MartialStatus martialStatus, Gender gender, Nationality nationality, String nationality_name, String citizenship_no, Date issue_date, String issue_district, Date createdDate, String beneficary_no, String permanent_account_no, String identification_no) {
+        this.bankNameName=bankNameName;
         this.branch = branch;
         this.pic = pic;
         this.first_name = first_name;
@@ -333,5 +343,21 @@ public class ClientDetails {
 
     public void setNationality_name(String nationality_name) {
         this.nationality_name = nationality_name;
+    }
+
+    public String getBankNameName() {
+        return bankNameName;
+    }
+
+    public void setBankNameName(String bankNameName) {
+        this.bankNameName = bankNameName;
+    }
+
+    public BankName getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(BankName bankName) {
+        this.bankName = bankName;
     }
 }
