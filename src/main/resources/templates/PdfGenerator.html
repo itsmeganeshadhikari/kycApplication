@@ -48,7 +48,7 @@
     <div class="card">
         <div class="card-body">
             <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>
-            <p class="card-text"><b>KYC FORM<b></b></p>
+            <p class="card-text"><b>KYC FORM</b></p>
             <!-- <a href="#" class="btn">Generate PDF</a> -->
             <div class="row">
                 <div class="col-md-4">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-md-2">
 <!--                    <button class="btn">Generate PDF</button>-->
-                    <a th:href="@{/pdfreport/{id}(id=${clientDetailsId})}" class="btn">Generate PDF<img src="../static/images/pdf.png" style="width:40px;"></a>
+                    <a th:href="@{/pdfreport/{id}}" class="btn">Generate PDF<img src="../static/images/pdf.png" style="width:40px;"></a>
                 </div>
             </div>
         </div>

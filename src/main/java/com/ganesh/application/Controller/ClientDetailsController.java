@@ -1,11 +1,9 @@
 package com.ganesh.application.Controller;
 
+import com.ganesh.application.Model.Bank;
 import com.ganesh.application.Model.ClientDetails;
 import com.ganesh.application.Model.Countries;
-import com.ganesh.application.Repository.ClientDetailsRepository;
-import com.ganesh.application.Repository.CountriesRepository;
-import com.ganesh.application.Repository.DistrictRepository;
-import com.ganesh.application.Repository.ProvinceRepository;
+import com.ganesh.application.Repository.*;
 import com.ganesh.application.utils.enums.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +30,8 @@ public class ClientDetailsController {
     @Autowired
     private ClientDetailsRepository clientDetailsRepository;
 
-
+    @Autowired
+    private BankNameRepository bankNameRepository;
 
     @Autowired
     private CountriesRepository countriesRepository;
@@ -46,7 +45,7 @@ public class ClientDetailsController {
 
     //To show DetailsPart
     @GetMapping("/")
-    public ModelAndView showClientDetailsForm(ModelAndView modelAndView, ClientDetails clientDetails, Countries countries) {
+    public ModelAndView showClientDetailsForm(ModelAndView modelAndView, ClientDetails clientDetails, Bank bank, Countries countries) {
 //       TO GET A LIST ALLL THE COUNTRIES,PROVINCE,DISTRICT AND ADD IT TO THE MODEL AND VIEW AS AN OBJECT
 
 //        ModelAndView mv = new ModelAndView();
@@ -54,9 +53,11 @@ public class ClientDetailsController {
         modelAndView.addObject("countries", countriesRepository.findAll());
         modelAndView.addObject("provinces", provinceRepository.findAll());
         modelAndView.addObject("districties", districtRepository.findAll());
+        modelAndView.addObject("bankList", bankNameRepository.findAll());
 
 
         modelAndView.addObject("clientDetails", clientDetails);
+        modelAndView.addObject("bankName", bank);
         modelAndView.addObject("genderList", Gender.values());
         modelAndView.addObject("maritalStatusList", MartialStatus.values());
         modelAndView.addObject("nationalityList", Nationality.values());
@@ -81,19 +82,15 @@ public class ClientDetailsController {
 
     //Process input data to kyc form
     @PostMapping("/saveDetail")
-    public ModelAndView saveClientDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException
-    {
-
+    public ModelAndView saveClientDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException {
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
         mv.setViewName("PdfGenerator");
         clientDetails.setPic(pic.getBytes());
         clientDetails.getGuardianDetails().setImages(pic.getBytes());
         clientDetails.getAdditionalDetails().setImages(pic.getBytes());
-
-        clientDetailsRepository.saveAndFlush(clientDetails);
         mv.addObject("message", "Kyc Form has been submitted");
-
+        clientDetailsRepository.save(clientDetails);
         //After save
         List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByIdDesc();
         for (ClientDetails clientDetails1 : clientDetails2) {
@@ -122,25 +119,25 @@ public class ClientDetailsController {
 //    }
 
 
-    @GetMapping("/pdfreport/{id}")
-    public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
+    @GetMapping("/pdfreport/{id}/{bankName}")
+    public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id, @PathVariable("bankName") String bankName) {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
         String image = getImgData(clientDetails.get().getPic());
         modelAndView.addObject("image", image);
 
-        String image1=getImgData(clientDetails.get().getGuardianDetails().getImages());
+        String image1 = getImgData(clientDetails.get().getGuardianDetails().getImages());
         modelAndView.addObject("image1", image1);
 
-        String image2=getImgData(clientDetails.get().getAdditionalDetails().getImages());
+        String image2 = getImgData(clientDetails.get().getAdditionalDetails().getImages());
         modelAndView.addObject("image2", image2);
+        modelAndView.addObject("bankNameName", bankName);
 
         modelAndView.addObject("clientDetails", clientDetails);
         modelAndView.setViewName("pdfkyc");
         return modelAndView;
     }
 
-    public String getImgData(byte[] byteData)
-    {
+    public String getImgData(byte[] byteData) {
         return Base64.getMimeEncoder().encodeToString(byteData);
     }
 }

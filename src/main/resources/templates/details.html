@@ -78,17 +78,17 @@
                             <div class="form-row">
 
 
-                   <!-- <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleFormControlSelect105"><b>Select the Bank</b></label>
                             <select class="form-control" id="exampleFormControlSelect105"
-                                    th:field="${clientDetails.bankNameName}">
-                                <option th:each="bank1:${Banks}"
-                                        th:text="${bank1.bank_name}"
-                                        th:value="${bank1.bank_name}"></option>
+                                    th:field="${clientDetails.bank.name}">
+                                <option th:each="bank1:${bankList}"
+                                        th:text="${bank1.name}"
+                                        th:value="${bank1.name}"></option>
                             </select>
                         </div>
-                    </div>-->
+                    </div>
                             </div>
 <!--                    <div class="panel-body">-->
 <!--                        <div class="form-group">-->
