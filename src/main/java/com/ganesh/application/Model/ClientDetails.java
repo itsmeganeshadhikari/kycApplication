@@ -21,13 +21,8 @@ public class ClientDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Bank bank;
-
-
-    @Transient
-    private String bankName;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private BankBank bankBank;
 
     private String branch;
 

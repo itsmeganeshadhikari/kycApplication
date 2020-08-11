@@ -3,7 +3,6 @@ package com.ganesh.application.Model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -25,6 +24,4 @@ public class Bank {
         this.name = name;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "bank")
-    private List<ClientDetails> clientDetails;
 }

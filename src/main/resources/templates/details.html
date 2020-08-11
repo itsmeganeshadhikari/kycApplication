@@ -82,7 +82,7 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect105"><b>Select the Bank</b></label>
                             <select class="form-control" id="exampleFormControlSelect105"
-                                    th:field="${clientDetails.bank.name}">
+                                    th:field="*{bankBank.name}">
                                 <option th:each="bank1:${bankList}"
                                         th:text="${bank1.name}"
                                         th:value="${bank1.name}"></option>
@@ -1220,12 +1220,8 @@
                                         </div>
                                     </div>
                                     <br>
-
-
                                     <p><b>Guardian's Signature</b></p>
                                 </div>
-
-
 
                             </div>
                             <br>
@@ -1446,13 +1442,8 @@
                                         </div>
                                     </div>
                                     <br>
-
-
                                     <p><b>Client's Signature</b></p>
                                 </div>
-
-
-
                             </div>
                             <BR>
                             <BR>

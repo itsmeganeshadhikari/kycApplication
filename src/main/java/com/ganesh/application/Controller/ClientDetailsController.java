@@ -1,6 +1,7 @@
 package com.ganesh.application.Controller;
 
 import com.ganesh.application.Model.Bank;
+import com.ganesh.application.Model.BankBank;
 import com.ganesh.application.Model.ClientDetails;
 import com.ganesh.application.Model.Countries;
 import com.ganesh.application.Repository.*;
@@ -31,7 +32,7 @@ public class ClientDetailsController {
     private ClientDetailsRepository clientDetailsRepository;
 
     @Autowired
-    private BankNameRepository bankNameRepository;
+    private BankRepository bankRepository;
 
     @Autowired
     private CountriesRepository countriesRepository;
@@ -53,11 +54,12 @@ public class ClientDetailsController {
         modelAndView.addObject("countries", countriesRepository.findAll());
         modelAndView.addObject("provinces", provinceRepository.findAll());
         modelAndView.addObject("districties", districtRepository.findAll());
-        modelAndView.addObject("bankList", bankNameRepository.findAll());
+        modelAndView.addObject("bankList", bankRepository.findAll());
 
 
         modelAndView.addObject("clientDetails", clientDetails);
-        modelAndView.addObject("bankName", bank);
+        modelAndView.addObject("bank", bank);
+        //Yesari patuneee
         modelAndView.addObject("genderList", Gender.values());
         modelAndView.addObject("maritalStatusList", MartialStatus.values());
         modelAndView.addObject("nationalityList", Nationality.values());
@@ -90,7 +92,7 @@ public class ClientDetailsController {
         clientDetails.getGuardianDetails().setImages(pic.getBytes());
         clientDetails.getAdditionalDetails().setImages(pic.getBytes());
         mv.addObject("message", "Kyc Form has been submitted");
-        clientDetailsRepository.save(clientDetails);
+        clientDetailsRepository.saveAndFlush(clientDetails);
         //After save
         List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByIdDesc();
         for (ClientDetails clientDetails1 : clientDetails2) {
@@ -119,8 +121,8 @@ public class ClientDetailsController {
 //    }
 
 
-    @GetMapping("/pdfreport/{id}/{bankName}")
-    public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id, @PathVariable("bankName") String bankName) {
+    @GetMapping("/pdfreport/{id}")
+    public ModelAndView getPdfForm(ModelAndView modelAndView, BankBank bankBank, @PathVariable("id") Integer id) {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
         String image = getImgData(clientDetails.get().getPic());
         modelAndView.addObject("image", image);
@@ -130,9 +132,16 @@ public class ClientDetailsController {
 
         String image2 = getImgData(clientDetails.get().getAdditionalDetails().getImages());
         modelAndView.addObject("image2", image2);
-        modelAndView.addObject("bankNameName", bankName);
+
+        Optional<Bank> bank = bankRepository.findById(id);
+        String bankName = bank.get().getName();
+        //set and get transient
+        bankBank.setName(bankName);
+        String bankNameName = bankBank.getName();
 
         modelAndView.addObject("clientDetails", clientDetails);
+//        modelAndView.addObject("bankName", bankName);
+        modelAndView.addObject("bankNameName", bankNameName);
         modelAndView.setViewName("pdfkyc");
         return modelAndView;
     }

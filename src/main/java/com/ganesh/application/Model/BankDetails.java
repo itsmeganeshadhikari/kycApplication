@@ -17,6 +17,7 @@ public class BankDetails
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
+
     private String family_name;
 
     private String relation;
