@@ -22,9 +22,11 @@ public class ClientDetails {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Bank bank;
+    private BankBank bankBank;
 
+    @Transient
     private String bankName;
+
     private String branch;
 
     @Lob

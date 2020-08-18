@@ -13,8 +13,7 @@ import java.util.List;
 @ToString
 @Getter
 @Setter
-public class Bank {
-
+public class BankBank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,12 +21,11 @@ public class Bank {
     private String name;
 
 
+    @OneToMany(targetEntity = ClientDetails.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bankBank")
+    private List<ClientDetails> clientDetails;
 
-    public Bank() {
+    public BankBank() {
     }
 
-    public Bank(String name) {
-        this.name = name;
-    }
 
 }
