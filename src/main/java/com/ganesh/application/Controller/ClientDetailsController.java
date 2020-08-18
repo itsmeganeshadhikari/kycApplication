@@ -1,7 +1,6 @@
 package com.ganesh.application.Controller;
 
 import com.ganesh.application.Model.Bank;
-import com.ganesh.application.Model.BankBank;
 import com.ganesh.application.Model.ClientDetails;
 import com.ganesh.application.Model.Countries;
 import com.ganesh.application.Repository.*;
@@ -122,7 +121,7 @@ public class ClientDetailsController {
 
 
     @GetMapping("/pdfreport/{id}")
-    public ModelAndView getPdfForm(ModelAndView modelAndView, BankBank bankBank, @PathVariable("id") Integer id) {
+    public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
         String image = getImgData(clientDetails.get().getPic());
         modelAndView.addObject("image", image);
@@ -133,15 +132,8 @@ public class ClientDetailsController {
         String image2 = getImgData(clientDetails.get().getAdditionalDetails().getImages());
         modelAndView.addObject("image2", image2);
 
-        Optional<Bank> bank = bankRepository.findById(id);
-        String bankName = bank.get().getName();
-        //set and get transient
-        bankBank.setName(bankName);
-        String bankNameName = bankBank.getName();
-
         modelAndView.addObject("clientDetails", clientDetails);
 //        modelAndView.addObject("bankName", bankName);
-        modelAndView.addObject("bankNameName", bankNameName);
         modelAndView.setViewName("pdfkyc");
         return modelAndView;
     }

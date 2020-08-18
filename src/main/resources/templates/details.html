@@ -82,10 +82,10 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect105"><b>Select the Bank</b></label>
                             <select class="form-control" id="exampleFormControlSelect105"
-                                    th:field="*{bankBank.name}">
-                                <option th:each="bank1:${bankList}"
-                                        th:text="${bank1.name}"
-                                        th:value="${bank1.name}"></option>
+                                    th:field="*{bankName}">
+                                <option th:each="bank:${bankList}"
+                                        th:text="${bank.name}"
+                                        th:value="${bank.name}"></option>
                             </select>
                         </div>
                     </div>

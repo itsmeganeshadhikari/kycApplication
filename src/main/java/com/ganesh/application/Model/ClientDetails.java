@@ -22,10 +22,10 @@ public class ClientDetails {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private BankBank bankBank;
+    private Bank bank;
 
+    private String bankName;
     private String branch;
-
 
     @Lob
     private byte[] pic;
