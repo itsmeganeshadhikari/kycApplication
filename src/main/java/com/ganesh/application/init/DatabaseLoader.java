@@ -5,7 +5,7 @@ import com.ganesh.application.Model.Bank;
 import com.ganesh.application.Model.Countries;
 import  com.ganesh.application.Model.District;
 import  com.ganesh.application.Model.Province;
-import com.ganesh.application.Repository.BankNameRepository;
+import com.ganesh.application.Repository.BankRepository;
 import com.ganesh.application.Repository.CountriesRepository;
 import  com.ganesh.application.Repository.DistrictRepository;
 import  com.ganesh.application.Repository.ProvinceRepository;
@@ -30,7 +30,7 @@ public class DatabaseLoader implements CommandLineRunner {
     private DistrictRepository districtRepository;
 
     @Autowired
-    private BankNameRepository bankNameRepository;
+    private BankRepository bankNameRepository;
 
 
     @Override

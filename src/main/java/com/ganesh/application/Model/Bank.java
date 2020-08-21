@@ -1,12 +1,8 @@
 package com.ganesh.application.Model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -20,8 +16,6 @@ public class Bank {
     private Integer id;
 
     private String name;
-
-
 
     public Bank() {
     }
