@@ -1,9 +1,8 @@
 package com.ganesh.application.utils.enums;
 
-public enum FormType
+public enum BrokerFormType
 {
-    ADB("ADB", "Agriculture Deveploment Bank Ltd"),
-    NIC("NIC", "NIC Asia Bank Ltd"),
+
     SIPRABI("SIPRABI", "Siprabi"),
     NALTA("NALTA", "Nalta");
 
@@ -11,7 +10,7 @@ public enum FormType
     private String type;
     private String display;
 
-    FormType(String type, String display) {
+    BrokerFormType(String type, String display) {
         this.type = type;
         this.display = display;
     }
@@ -24,9 +23,9 @@ public enum FormType
         return display;
     }
 
-    public static FormType getByType(String type) {
+    public static BrokerFormType getByType(String type) {
 
-        for (FormType entry : FormType.values()) {
+        for (BrokerFormType entry : BrokerFormType.values()) {
             if (entry.type.equals(type)) {
                 return entry;
             }
@@ -34,8 +33,8 @@ public enum FormType
         return null;
     }
 
-    public static FormType getByDisplay(String display) {
-        for (FormType entry : FormType.values()) {
+    public static BrokerFormType getByDisplay(String display) {
+        for (BrokerFormType entry : BrokerFormType.values()) {
             if (entry.display.equals(display)) {
                 return entry;
             }
@@ -45,8 +44,8 @@ public enum FormType
 
     public static String[] getByList() {
         int i = 0;
-        String[] animalTypeList = new String[FormType.values().length];
-        for (FormType entry : FormType.values()) {
+        String[] animalTypeList = new String[BrokerFormType.values().length];
+        for (BrokerFormType entry : BrokerFormType.values()) {
             animalTypeList[i] = entry.display;
             i++;
         }

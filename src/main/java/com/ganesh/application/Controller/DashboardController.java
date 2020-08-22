@@ -42,7 +42,8 @@ public class DashboardController {
 
     @GetMapping("/")
     public ModelAndView showSelectForm(ModelAndView modelAndView) {
-        modelAndView.addObject("formList", FormType.values());
+        modelAndView.addObject("brokerList", BrokerFormType.values());
+        modelAndView.addObject("bankList", BankFormType.values());
         modelAndView.addObject("kycList", KycType.values());
         modelAndView.setViewName("kycdropdown");
         return modelAndView;

@@ -10,7 +10,7 @@
     <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           rel="stylesheet">
-    <link rel="stylesheet" th:href="@{css/style1.css}">
+    <link rel="stylesheet" th:href="@{/css/style1.css}">
     <script src="js/myscripts.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
@@ -38,50 +38,95 @@
         <div class="row">
 
 
-            <div class="col-md-6" style="margin-top: 250px;">
+            <div class="col-md-4" style="margin-top: 250px;">
                 <label for="selectLevel"><b>Select For which you have to fill kyc form</b></label>
-<!--                <select class="form-control" name="selectLevel" id="selectLevel">-->
-<!--                    <option value="">&#45;&#45;Select&#45;&#45;</option>-->
-<!--                    <option value="broker" >Broker</option>-->
-<!--                    <option value="bank">Bank</option>-->
-<!--                </select>-->
+                <!--                <select class="form-control" name="selectLevel" id="selectLevel">-->
+                <!--                    <option value="">&#45;&#45;Select&#45;&#45;</option>-->
+                <!--                    <option value="broker" >Broker</option>-->
+                <!--                    <option value="bank">Bank</option>-->
+                <!--                </select>-->
                 <select class="form-control" id="selectLevel" name="selectLevel">
                     <option th:each="kyc:${kycList}" th:text="${kyc.getDisplay()}"
                             th:value="${kyc.getType()}"></option>
+
                 </select>
+
 
             </div>
 
 
-            <div class="col-md-6" style="margin-top: 250px;">
+            <div class="col-md-4" style="margin-top: 250px;">
+                <div id="selectType"></div>
                 <label for="selectSubject"><b>Select</b></label>
-                <select class="form-control" id="selectSubject" name="selectSubject">
-                        <option th:each="form:${formList}" th:text="${form.getDisplay()}"
-                                th:value="${form.getType()}"></option>
-                    </select>
+
+                <select class="form-control" id="selectSubject1" name="selectSubject">
+                    <option th:each="broker:${brokerList}" th:text="${broker.getDisplay()}"
+                            th:value="${broker.getType()}"></option>
+
+                </select>
+            </div>
+
+                <!--                <select class="form-control" name="selectSubject" id="selectSubject">-->
+                <!--                    <option value=""> &#45;&#45; Select&#45;&#45;</option>-->
+                <!--                    <option data-value="broker" value="siprabi" >Siprabi</option>-->
+                <!--                    <option data-value="broker" value="nalta">Nalta</option>-->
+
+                <!--                    <option data-value="bank" value="Agriculture Deveploment Bank Ltd">Agriculture Deveploment Bank Ltd</option>-->
+
+
+                <!--                </select>-->
+
+
+                <!--                <input type="submit" id="submit" value="Submit" style="margin-top:5px">-->
+                <!--    </form>-->
+
+            <div class="col-md-4" style="margin-top: 250px;">
+                <label for="selectSubject1"><b>Select</b></label>
+
+                <select class="form-control" id="selectSubject2" name="selectSubject">
+                    <option th:each="bank:${bankList}" th:text="${bank.getDisplay()}"
+                            th:value="${bank.getType()}"></option>
+                </select>
+
+
+                <!--                <select class="form-control" name="selectSubject" id="selectSubject">-->
+                <!--                    <option value=""> &#45;&#45; Select&#45;&#45;</option>-->
+                <!--                    <option data-value="broker" value="siprabi" >Siprabi</option>-->
+                <!--                    <option data-value="broker" value="nalta">Nalta</option>-->
+
+                <!--                    <option data-value="bank" value="Agriculture Deveploment Bank Ltd">Agriculture Deveploment Bank Ltd</option>-->
+
+
+                <!--                </select>-->
+
+
+<!--            </div>-->
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#selectLevel').on('change', function () {
+                        $('#selectType').html(
+                        <label for="selectSubject"><b>Select</b></label>
+
+                        <select class="form-control" id="selectSubject1" name="selectSubject">
+                            <option th:each="broker:${brokerList}" th:text="${broker.getDisplay()}"
+                        th:value="${broker.getType()}"></option>
+
+                            </select>
+                        );
+
+
+
+                    });
+                });
+
+            </script>
 
 
 
 
-
-<!--                <select class="form-control" name="selectSubject" id="selectSubject">-->
-<!--                    <option value=""> &#45;&#45; Select&#45;&#45;</option>-->
-<!--                    <option data-value="broker" value="siprabi" >Siprabi</option>-->
-<!--                    <option data-value="broker" value="nalta">Nalta</option>-->
-
-<!--                    <option data-value="bank" value="Agriculture Deveploment Bank Ltd">Agriculture Deveploment Bank Ltd</option>-->
-
-
-<!--                </select>-->
-
-
-                <input type="submit" id="submit" value="Submit" style="margin-top:5px">
+            <input type="submit" id="submit" value="Submit" style="margin-top:5px">
     </form>
-
-</div>
-
-
-</div>
 </div>
 
 
@@ -89,35 +134,70 @@
 </html>
 
 
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+
+<!--// Save all selects' id in an array -->
+<!--// to determine which select's option and value would be changed-->
+<!--// after you select an option in another select.-->
+<!--        var selectors = ['selectLevel', 'selectSubject']-->
+
+<!--        $('select').on('change', function () {-->
+<!--            var index = selectors.indexOf(this.id)-->
+<!--            var value = this.value-->
+
+<!--            // check if it is the last one or not-->
+<!--            if (index < selectors.length - 1) {-->
+<!--                var next = $('#' + selectors[index + 1])-->
+
+<!--                // Show all the options in next select-->
+<!--                $(next).find('option').show()-->
+<!--                if (value != "") {-->
+<!--                    // if this select's value is not empty-->
+<!--                    // hide some of the options-->
+<!--                    $(next).find('option[value!=' + value + ']').hide()-->
+<!--                }-->
+
+<!--                // set next select's value to be the first option's value-->
+<!--                // and trigger change()-->
+<!--                $(next).val($(next).find("option:first").val()).change()-->
+<!--            }-->
+<!--        })-->
+<!--    });-->
+<!--</script>-->
 <script>
-    $(document).ready(function () {
+    $(function() {
+        $('#selectLevel').on('change', function (e) {
 
-// Save all selects' id in an array 
-// to determine which select's option and value would be changed
-// after you select an option in another select.
-        var selectors = ['selectLevel', 'selectSubject']
+            var selected = $('#selectLevel').val().toUpperCase();
+            var currentDep = $('#selectSubject').val().charAt(0).toUpperCase();
+            var changedSelected = false;
 
-        $('select').on('change', function () {
-            var index = selectors.indexOf(this.id)
-            var value = this.value
+            $('#selectSubject option').each(function() {
 
-            // check if it is the last one or not
-            if (index < selectors.length - 1) {
-                var next = $('#' + selectors[index + 1])
+                var opt = $(this);
+                var value = opt.val().charAt(0).toUpperCase();
 
-                // Show all the options in next select
-                $(next).find('option').show()
-                if (value != "") {
-                    // if this select's value is not empty
-                    // hide some of the options
-                    $(next).find('option[data-value!=' + value + ']').hide()
+                if (value !== selected) {
+
+                    opt.addClass('hide');
+                    opt.removeAttr('selected');
+
+                } else {
+
+                    opt.removeClass('hide');
+
+                    if (!changedSelected) {
+
+                        opt.attr('selected', 'selected');
+                        changedSelected = true;
+
+                    } else {
+                        opt.removeAttr('selected');
+                    }
                 }
-
-                // set next select's value to be the first option's value
-                // and trigger change()
-                $(next).val($(next).find("option:first").val()).change()
-            }
-        })
+            });
+        });
     });
-</script>
 
+</script>
