@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agricultural Development Bank</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Bootstrap core CSS -->
+
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style1.css}">
+    <script src="js/myscripts.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link href="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v3.min.css" rel="stylesheet" type="text/css"/>
+    <script src="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v3.min.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+<br/>
+<div class="container box">
+    <br/>
+    <form id="register_form" th:action="@{/saveBankDetail}"  th:object="${clientDetails}"   data-toggle="validator" role="form" name="myform">
+        <ul class="nav nav-tabs">
+            <li class="nav-item1">
+                <a class="nav-link active_tab1" id="list_Client_details" style="border:1px solid #ccc">Client<br>
+                    Details</a>
+            </li>
+            <li class="nav-item1">
+                <a class="nav-link inactive_tab1" id="list_Client_Address" style="border:1px solid #ccc">Client<br>
+                    Address</a>
+            </li>
+            <li class="nav-item1">
+                <a class="nav-link inactive_tab1" id="list_family_details" style="border:1px solid #ccc">Family<br> Details</a>
+            </li>
+            <li class="nav-item1">
+                <a class="nav-link inactive_tab1" id="list_profession_details" style="border:1px solid #ccc">Associated Profession/<br>Business</a>
+            </li>
+            
+        </ul><!--end of tab-->
+        <div class="tab-content" style="margin-top:16px;">
+
+            <div class="tab-pane active frm" id="Client_details">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Details</strong>
+                    </h1></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            
+
+                            <!--Cliennt Deatils-->
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <p><b>Please complete all details and strike out the non-applicable
+                                        fields/boxes.</b></p>
+<!--                                    <p><b>Siprabi Securities(P.)Ltd.</b></p>-->
+                                    <input class="form-control" placeholder="Please Specify the branch"
+                                           th:field="*{branch}" id="branchname"
+                                           name="branchname"
+                                           type="text"/>
+
+                                </div>
+
+                                <div class="col-md-4">
+<!--                                    <div style="height:10px;">-->
+                                        <label><b>Choose Image</b></label>
+                                        <br>
+                                        <div class="choose-img">
+                                            <input type="file" name="pic" th:field="*{pic}" id="exampleInputFile">
+                                        </div>
+                                    </div>
+                                </div>
+<!--                            </div>-->
+                         
+                            <div class="row">
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <div class="form-group">
+                                        <label><b>Type of Account</b></label>
+                                        <input class="form-control"
+                                                type="text"/>
+                                    </div>
+                               
+                                    </div>
+
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <div class="form-group">
+                                        <label><b>Account Title</b></label>
+                                        <input class="form-control"
+                                                type="text"/>
+                                    </div>
+                               
+                                    </div>
+                                    <div class="col-md-4" style="margin-top:15px;">
+                                        <div class="form-group">
+                                            <label><b>Account No</b></label>
+                                            <input class="form-control"
+                                                    type="text"/>
+                                        </div>
+                                   
+                                        </div>
+                                        </div>
+                            <div class="row">
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <div class="form-group">
+                                        <label><b>First Name(In Block Letter):</b></label>
+                                        <input class="form-control" id="firstname"
+                                               name="firstname"
+                                               placeholder="Enter the  first name in Block letter"
+                                               th:field="*{first_name}" type="text"/>
+
+                                        <span id="firstnameerror" class="text-danger font-weight-bold"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <label><b>Middle Name(In Block Letter):</b></label>
+                                    <input class="form-control" id="middlename"
+                                           name="middlename"
+                                           placeholder="Enter the  Middle name in Block letter"
+                                           th:field="*{middle_name}" type="text"/>
+                                    <span id="middlenameerror" class="text-danger font-weight-bold"></span>
+                                </div>
+
+                                <div class="col-md-4" style="margin-top:15px;">
+                                    <label><b>SurName(In Block Letter):</b></label>
+                                    <input class="form-control" id="lastname"
+                                           name="lastname"
+                                           placeholder="Enter the  SurName in Block letter" th:field="*{sur_name}"
+                                           type="text" required="required"/>
+                                    <span id="lastnameerror" class="text-danger font-weight-bold"></span>
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Date of Birth in (B.S):</b></p>
+                                    <input class="form-control" placeholder="Enter date of Birth in B.S" id="dob"
+                                           th:field="*{birth_date0}" type="date" required>
+
+
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Date of Birth in (A.D):</b></p>
+                                    <input class="form-control " placeholder="Enter date of Birth in A.D"
+                                           th:field="*{birth_date1}" type="date" required>
+                                </div>
+
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1"><b>Select Martial Status</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                                th:field="*{martialStatus}">
+                                            <option th:each="marital:${maritalStatusList}"
+                                                    th:text="${marital.getDisplay()}"
+                                                    th:value="${marital.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect22"><b>Select Gender</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect22"
+                                                th:field="*{gender}">
+                                            <option th:each="gender:${genderList}" th:text="${gender.getDisplay()}"
+                                                    th:value="${gender.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+
+                                        <label for="seeAnotherField65"><b>Select Nationality</b></label>
+                                        <select class="form-control" id="seeAnotherField65"
+                                                th:field="*{nationality}">
+                                            <option th:each="nationality:${nationalityList}" th:text="${nationality.getDisplay()}"
+                                                    th:value="${nationality.getType()}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="otherFieldDiv65">
+                                        <strong>If Others,then Mention the Nationality:</strong>
+                                        <input class="form-control" placeholder="Mention the Nationality"
+                                               th:field="*{nationality_name}"
+                                               id="nationalityname" type="text">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label><b>Type of Identification card</b></label>
+                                    <input class="form-control" placeholder="Mention Type" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>Identification No</b></label>
+                                    <input class="form-control" placeholder="Enter Identification No" id="citizenship"
+                                           name="citizenship"
+                                           th:field="*{citizenship_no}" type="text"/>
+                                    <span id="citizenshiperror" class="text-danger font-weight-bold"></span>
+                                </div>
+                                <div class="col-md-3">
+                                   <label for="exampleFormControlSelect55"><b>Issue District</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect55"
+                                                th:field="${clientDetails.issue_district}">
+                                            <option th:each="district1:${districties}"
+                                                    th:text="${district1.district_name}"
+                                                    th:value="${district1.district_name}"></option>
+                                        </select>
+                                   
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>Issue Date</b></label>
+                                    <input class="form-control" placeholder="Enter Issue Date" required
+                                           th:field="*{issue_date}" type="date">
+                                </div>
+    
+    
+                            </div>
+                            
+                            
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label><b>Type of CitizenShip</b></label>
+                                    <input class="form-control" placeholder="Mention Type" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>CitizenShip No</b></label>
+                                    <input class="form-control" placeholder="Enter Citizenship No" id="citizenship"
+                                           name="citizenship"
+                                           th:field="*{citizenship_no}" type="text"/>
+                                    <span id="citizenshiperror" class="text-danger font-weight-bold"></span>
+                                </div>
+                                <div class="col-md-3">
+                                   <label for="exampleFormControlSelect55"><b>Issue District of Citizenship</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect55"
+                                                th:field="${clientDetails.issue_district}">
+                                            <option th:each="district1:${districties}"
+                                                    th:text="${district1.district_name}"
+                                                    th:value="${district1.district_name}"></option>
+                                        </select>
+                                   
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>Issue Date of CitizenShip</b></label>
+                                    <input class="form-control" placeholder="Enter Issue Date" required
+                                           th:field="*{issue_date}" type="date">
+                                </div>
+
+
+                            </div>
+                            <br>
+                        
+
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <label><b>Type of Passport</b></label>
+                                    <input class="form-control" placeholder="Mention Type" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>Passport No</b></label>
+                                    <input class="form-control" placeholder="Enter Passport No" id="citizenship"
+                                           name="citizenship"
+                                           th:field="*{citizenship_no}" type="text"/>
+                                    <span id="citizenshiperror" class="text-danger font-weight-bold"></span>
+                                </div>
+                                <div class="col-md-3">
+                                   <label for="exampleFormControlSelect55"><b>Issue District of Passport</b></label>
+                                        <select class="form-control" id="exampleFormControlSelect55"
+                                                th:field="${clientDetails.issue_district}">
+                                            <option th:each="district1:${districties}"
+                                                    th:text="${district1.district_name}"
+                                                    th:value="${district1.district_name}"></option>
+                                        </select>
+                                   
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>Issue Date of Passport</b></label>
+                                    <input class="form-control" placeholder="Enter Issue Date" required
+                                           th:field="*{issue_date}" type="date">
+                                </div>
+
+
+                            </div>
+                        <br>
+                 
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>Expiry Date of Passport</b></label>
+                                <input class="form-control"  type="date">
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>Eductaional Qualification</b></label>
+                                <input class="form-control" placeholder="Enter Qualification"  type="text"/>
+                               
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>PAN NO(if,available)</b></label>
+                                <input class="form-control" placeholder="Enter PAN No"
+                                       type="text"/>
+                               
+                            </div>
+                        </div>
+                        <br>
+                    
+                            <div class="col-md-12">
+                                <button class="btn btn-info btn-lg" id="btn_Client_details" name="btn_Client_details"
+                                        type="button">
+                                    Next
+                                </button>
+
+                            </div>
+                            <br/>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!--End of ClientDetails-->
+
+             <!--Client Address-->
+             <div class="tab-pane frm" id="Client_Address">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Address</strong>
+                    </h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <h3><b>Current Address</b></h3>
+                            <div class="row" style="margin-top:3px;">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="district_p"><b>Select District</b></label>
+                                        <select class="form-control" id="district_p" name="district"
+                                                th:field="${clientDetails.clientAddress.temp_district}">
+                                            <option th:each="district:${districties}"
+                                                    th:text="${district.district_name}"
+                                                    th:value="${district.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><b>Select the Municipality/VDC</b></label>
+
+                                        <select class="form-control" id="municipality10"
+                                                th:field="${clientDetails.clientAddress.temp_municipality}">
+                                            <option th:each="municipality:${municipalityList}" th:text="${municipality.getDisplay()}"
+                                                    th:value="${municipality.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label><b>Enter the name of Municipality/VDC</b></label>
+                                <input class="form-control" id="municipality" name="municipality"
+                                       placeholder="Enter Name of Rural/Municipality/Sub Meteropolitian City/MetropolitianCity"
+                                       required
+                                       th:field="${clientDetails.clientAddress.temp_mun}" type="text">
+                               
+                            </div>
+                            </div>
+
+                             </div>
+                            <br>
+                    <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>Ward No:</b></p>
+                                    <input class="form-control" id="ward" name="ward" placeholder="Enter Ward No"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_ward}" type="text">
+                                   
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>Tole:</b></p>
+                                    <input class="form-control" id="tole" name="tole" placeholder="Enter Tole Name"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_tole}" type="text">
+                              
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>House No:</b></p>
+                                    <input class="form-control" id="house" name="house" placeholder="Enter House No"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_tole}" type="text">
+                                   
+                                </div>
+
+
+                            </div>
+                            <br>
+                            
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>Landline No:</b></p>
+                                    <input class="form-control" placeholder="Enter LandLine No" required id="mobile"
+                                           th:field="${clientDetails.clientAddress.mobile_no}" type="text">
+                                    
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <p><b>Mobile No:</b></p>
+                                    <input class="form-control" placeholder="Enter Mobile No" required id="mobile"
+                                           th:field="${clientDetails.clientAddress.mobile_no}" type="text">
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>E-mail ID:</b></p>
+                                    <input class="form-control" placeholder="Enter E-mail Id" type="email"
+                                           th:field="${clientDetails.clientAddress.email}">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>If in rent,HouseOwner name:</b></p>
+                                    <input class="form-control" placeholder="Mention the name of House owner" required id="mobile"
+                                           th:field="${clientDetails.clientAddress.mobile_no}" type="text">
+                                    
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <p><b>Address:</b></p>
+                                    <input class="form-control" placeholder="Enter Address of HouseOwner" required id="mobile"
+                                           th:field="${clientDetails.clientAddress.mobile_no}" type="text">
+                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>Phone No:</b></p>
+                                    <input class="form-control" placeholder="Mention the Phone no of HouseOwner" type="email"
+                                           th:field="${clientDetails.clientAddress.email}">
+                                </div>
+                            </div>
+                            <br>
+
+
+
+                       <div class="row">
+                                <div class="col-md-12">
+                                    <h3><strong>Permanent Address</strong></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>
+                                        <input id="present" name="present" onclick="permanent1()" type="checkbox"
+                                               value=""/>Same as Current address:
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="margin-top:3px;">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="district_p"><b>Select District</b></label>
+                                        <select class="form-control" id="district_m" name="district_m"
+                                                th:field="${clientDetails.clientAddress.temp_district}">
+                                            <option th:each="district:${districties}"
+                                                    th:text="${district.district_name}"
+                                                    th:value="${district.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><b>Select the Municipality/VDC</b></label>
+
+                                        <select class="form-control" id="municipality1"
+                                                th:field="${clientDetails.clientAddress.temp_municipality}">
+                                            <option th:each="municipality:${municipalityList}" th:text="${municipality.getDisplay()}"
+                                                    th:value="${municipality.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label><b>Enter the name of Municipality/VDC</b></label>
+                                <input class="form-control" id="municipality20" name="municipality20"
+                                       placeholder="Enter Name of Rural/Municipality/Sub Meteropolitian City/MetropolitianCity"
+                                       required
+                                       th:field="${clientDetails.clientAddress.temp_mun}" type="text">
+                               
+                            </div>
+                            </div>
+
+                             </div>
+                            <br>
+                             <div class="row">
+                                <div class="col-md-4">
+                                    <p><b>Ward No:</b></p>
+                                    <input class="form-control" id="ward1" name="ward1" placeholder="Enter Ward No"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_ward}" type="text">
+                                   
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>Tole:</b></p>
+                                    <input class="form-control" id="tole1" name="tole1" placeholder="Enter Tole Name"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_tole}" type="text">
+                              
+                                </div>
+                                <div class="col-md-4">
+                                    <p><b>House No:</b></p>
+                                    <input class="form-control" id="house1" name="house1" placeholder="Enter House No"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_tole}" type="text">
+                                   
+                                </div>
+
+
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                   <h3><strong>Birth Address</strong></h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>
+                                        <input id="permanent12" name="permanent12" onclick="birth()"   type="checkbox"
+                                               value=""/>Same as Permanent address:
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row" style="margin-top:3px;">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="district_p"><b>Select District</b></label>
+                                        <select class="form-control" id="district_q" name="district"
+                                                th:field="${clientDetails.clientAddress.temp_district}">
+                                            <option th:each="district:${districties}"
+                                                    th:text="${district.district_name}"
+                                                    th:value="${district.district_name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><b>Select the Municipality/VDC</b></label>
+
+                                        <select class="form-control" id="municipality101" name="municipality101"
+                                                th:field="${clientDetails.clientAddress.temp_municipality}">
+                                            <option th:each="municipality:${municipalityList}" th:text="${municipality.getDisplay()}"
+                                                    th:value="${municipality.getType()}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label><b>Enter the name of Municipality/VDC</b></label>
+                                <input class="form-control" id="municipality23" name="municipality23"
+                                       placeholder="Enter Name of Rural/Municipality/Sub Meteropolitian City/MetropolitianCity"
+                                       required
+                                       th:field="${clientDetails.clientAddress.temp_mun}" type="text">
+                               
+                            </div>
+                            </div>
+
+                             </div>
+                            <br>
+                             <div class="row">
+                                
+                                <div class="col-md-6">
+                                    <p><b>Tole:</b></p>
+                                    <input class="form-control" id="tole10" name="tole10" placeholder="Enter Tole Name"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_tole}" type="text">
+                              
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Ward No:</b></p>
+                                    <input class="form-control" id="ward10" name="ward10" placeholder="Enter Ward No"
+                                           required
+                                           th:field="${clientDetails.clientAddress.temp_tole}" type="text">
+                              
+                                </div>
+                                
+                                
+
+
+                            </div>
+                            <br>
+                            
+                            
+
+                            
+                            
+
+
+                            <br>
+                            <div class="col-md-12">
+                                <button class="btn btn-default btn-lg" id="previous_btn_Client_Address"
+                                        name="previous_btn_Client_Address"
+                                        type="button">Previous
+                                </button>
+                                <button class="btn btn-info btn-lg" id="btn_Client_Address" name="btn_Client_Address"
+                                        type="button">Next
+                                </button>
+                            </div>
+
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div><!--End of client Addess-->
+
+
+
+
+
+<!--Family details-->
+
+            <div class="tab-pane frm" id="family_details">
+                <div class="panel">
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Family Details</strong></h1></div>
+                    <br>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <INPUT type="button" value="Add More Family details" onclick="addRow('dataTable')"/>
+
+                                    <INPUT type="button" value="Delete Family details"
+                                           onclick="deleteRow('dataTable')"/>
+                                    <br>
+
+                                    <TABLE id="dataTable" width="350px" class="col-md-12">
+
+
+                                        <TR>
+
+                                            <TD><INPUT type="checkbox" name="chk"/></TD>
+                                            <TD><INPUT class="form-control" id="familyname" type="text" name="txt"
+                                                       th:field="${clientDetails.bankDetails.family_name}"
+                                                       placeholder="Mention the Family name"/></TD>
+                                          
+
+                                            <TD>
+
+
+                                                <select class="form-control" style="margin-top:0px;"
+                                                        th:field="${clientDetails.bankDetails.relation}">
+                                                    <OPTION value="FATHER">FATHER</OPTION>
+                                                    <OPTION value="MOTHER">MOTHER</OPTION>
+                                                    <OPTION value="HUSBAND">HUSBAND</OPTION>
+                                                    <OPTION value="WIFE">WIFE</OPTION>
+                                                    <OPTION value="BROTHER">BROTHER</OPTION>
+                                                    <OPTION value="SISTER">SISTER</OPTION>
+                                                    <OPTION value="SISTERINLAW">SISTER-IN-LAW</OPTION>
+                                                    <OPTION value="BROTHERINLAW">BROTHER-IN-LAW</OPTION>
+                                                    <OPTION value="SON">SON</OPTION>
+                                                    <OPTION value="DAUGHTER">DAUGHTER</OPTION>
+                                                    <OPTION value="UNCLE">UNCLE</OPTION>
+                                                    <OPTION value="AUNT">AUNT</OPTION>
+                                                    <OPTION value="OTHER">OTHER</OPTION>
+
+                                                </select>
+
+
+                                            </TD>
+                                        </TR>
+                                    </TABLE>
+                                </div>
+                                </div>
+
+                                <br>
+
+                                <div class="col-md-12">
+                                    <button class="btn btn-default btn-lg" id="previous_btn_family_details"
+                                            name="previous_btn_family_details"
+                                            type="button">Previous
+                                    </button>
+                                    <button class="btn btn-info btn-lg" id="btn_family_details" name="btn_family_details"
+                                            type="button">Next
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><!--End  of Family Details-->
+
+    <!--Associated Profession/Business-->
+    <div class="tab-pane frm" id="profession_details">
+        <div class="panel">
+            <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Fill Associated Profession/Business Details</strong></h1></div>
+            <br>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><b>Name of Organization</b></label>
+                            <input class="form-control" id="Organization" name="Organization"
+                                   placeholder="Enter Name of Organization"
+                                    type="text">
+                           
+                        </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><b>Address Organization</b></label>
+                            <input class="form-control" id="Address" name="Address"
+                                   placeholder="Enter the Addess"
+                                    type="text">
+                           
+                        </div>
+
+                        </div>
+                      
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><b>Designation</b></label>
+                            <input class="form-control" id="Designation" name="Designation"
+                                   placeholder="Enter the Designation"
+                                    type="text">
+                           
+                        </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><b>Expected Annual Income</b></label>
+                            <input class="form-control" id="Income" name="In"
+                                   placeholder="Enter the Annual Income"
+                                    type="text">
+                           
+                        </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label><b>Total Expected Annual Income</b></label>
+                            <input class="form-control" id="Income" name="In"
+                                   placeholder="Enter the Annual Income"
+                                    type="text">
+                           
+                        </div>
+
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-md-12">
+                            <p><b>Information/Details and documents furnished by me/us to update and above mentioned account opened earlier by
+                                 by me/us in Agricultural Development bank Ltd are true and correct.I/we agree all the terms and conditions 
+                                of the Bank in relation to opening of account.I/We accept any action taken by the bank in accordance with law,
+                                if any of information/details and document furnished herein above is found to br false.
+                            </b></p>
+                        </div>
+                        
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><b>Full Name</b></label>
+                            <input class="form-control"
+                                   placeholder="Enter the full Name"
+                                    type="text">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>Code No</b></label>
+                            <input class="form-control"
+                                   placeholder="Enter the Code No"
+                                    type="text">
+
+                            </div>
+                            <div class="col-md-4">
+                                <label><b>Date</b></label>
+                            <input class="form-control"
+                                  type="date">
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-md-12" >
+                           
+                            <input type="text"class="z">
+                            <p><b>Client's Signature</b></p>
+                            </div>
+                         </div>  
+                        <br>
+                        <div class="col-md-12">
+                            <button class="btn btn-default btn-lg" id="previous_btn_profession_details"
+                                    name="previous_btn_profession_details" type="button">
+                                Previous
+                            </button>
+                            <button class="btn btn-info btn-lg" id="btn_profession_details"
+                                    name="btn_profession_details"
+                                    type="button">Next
+                            </button>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div><!-- End of Associated Profession/Business-->
+                    </div>
+            </form>
+            </div>
+            </body>
+            </html>
+            <script>
+                $(document).ready(function()
+                {
+                    
+                $(".frm").hide("fast");
+                $("#Client_details").show("slow");
+                    
+               //Client  details next Button
+                $("#btn_Client_details").click(function () 
+                    {
+                $('#list_Client_details').removeClass('active active_tab1');
+                $('#list_Client_details').removeAttr('href data-toggle');
+                $('#Client_details').removeClass('active ');
+                $('#list_Client_details').addClass('inactive_tab1');
+                $('#list_Client_Address').removeClass('inactive_tab1');
+                $('#list_Client_Address').addClass('active_tab1 active');
+                $('#list_Client_Address').attr('href', '#Client_Address');
+                $('#list_Client_Address').attr('data-toggle', 'tab');
+                $('#Client_Address').addClass('active in');
+                $(".frm").hide("fast");
+                $("#Client_Address").show("slow");
+                    });
+            
+            // ClientAddress Previous Button
+            $('#previous_btn_Client_Address').click(function () {
+
+            $('#list_Client_Address').removeClass(' active active_tab1');
+            $('#list_Client_Address').removeAttr(' href data-toggle');
+            $('#Client_Address').removeClass('active in');
+            $('#list_Client_Address').addClass('inactive_tab1');
+            $('#list_Client_details').removeClass('inactive_tab1');
+            $('#list_Client_details').addClass('active_tab1 active');
+            $('#list_Client_details').attr('href', '#Client_details');
+            $('#list_Client_details').attr('data-toggle', 'tab');
+            $('#Client_details').addClass('active in');
+            $(".frm").hide("fast");
+            $("#Client_details").show("slow");
+                });
+
+            // ClientAddress Next Button
+        $('#btn_Client_Address').click(function () {
+            $('#list_Client_Address').removeClass('active active_tab1');
+                $('#list_Client_Address').removeAttr('href data-toggle');
+                $('#Client_Address').removeClass('active in');
+                $('#list_Client_Address').addClass('inactive_tab1');
+                $('#list_family_details').removeClass('inactive_tab1');
+                $('#list_family_details').addClass('active_tab1 active');
+                $('#list_family_details').attr('href', '#family_details');
+                $('#list_family_details').attr('data-toggle', 'tab');
+                $('#family_details').addClass('active in ');
+
+                $(".frm").hide("fast");
+                $("#family_details").show("slow");
+            
+            });
+            // Family Previous Button
+        $('#previous_btn_family_details').click(function () {
+            $('#list_family_details').removeClass(' active active_tab1');
+            $('#list_family_details').removeAttr(' href data-toggle');
+            $('#fank_details').removeClass('active in');
+            $('#list_family_details').addClass('inactive_tab1');
+            $('#list_Client_Address').removeClass('inactive_tab1');
+            $('#list_Client_Address').addClass('active_tab1 active');
+            $('#list_Client_Address').attr('href', '#Client_Address');
+            $('#list_Client_Address').attr('data-toggle', 'tab');
+            $('#Client_Address').addClass('active in');
+
+            $(".frm").hide("fast");
+            $("#Client_Address").show("slow");
+        });
+            // Family next Button
+        $('#btn_family_details').click(function () {
+
+
+            $('#list_family_details').removeClass('active active_tab1');
+                $('#list_family_details').removeAttr('href data-toggle');
+                $('#family_details').removeClass('active in');
+                $('#list_family_details').addClass('inactive_tab1');
+                $('#list_profession_details').removeClass('inactive_tab1');
+                $('#list_profession_details').addClass('active_tab1 active');
+                $('#list_profession_details').attr('href', '#profession_details');
+                $('#list_profession_details').attr('data-toggle', 'tab');
+                $('#profession_details').addClass('active  in');
+
+                $(".frm").hide("fast");
+                $("#profession_details").show("slow");
+        });
+        //profession Previous Button
+        $('#previous_btn_profession_details').click(function () {
+            $('#list_profession_details').removeClass(' active active_tab1');
+            $('#list_profession_details').removeAttr(' href data-toggle');
+            $('#profession_details').removeClass('active in');
+            $('#list_profession_details').addClass('inactive_tab1');
+            $('#list_family_details').removeClass('inactive_tab1');
+            $('#list_family_details').addClass('active_tab1 active');
+            $('#list_family_details').attr('href', '#family_details');
+            $('#list_family_details').attr('data-toggle', 'tab');
+            $('#family_details').addClass('active in');
+            $(".frm").hide("fast");
+            $("#family_details").show("slow");
+        });
+
+        $('#btn_profession_details').click(function () {
+
+$('#btn_family_details').attr("disabled", "disabled");
+$(document).css('cursor', 'progress');
+$('#register_form').submit();
+
+
+});
+    });
+        
+            </script>
+
+<SCRIPT language="javascript">
+    function addRow(tableID) {
+
+        var table = document.getElementById(tableID);
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        var colCount = table.rows[0].cells.length;
+
+        for (var i = 0; i < colCount; i++) {
+
+            var newcell = row.insertCell(i);
+
+            newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+            //alert(newcell.childNodes);
+            switch (newcell.childNodes[0].type) {
+                case "text":
+                    newcell.childNodes[0].value = "";
+                    break;
+                case "checkbox":
+                    newcell.childNodes[0].checked = false;
+                    break;
+                case "select-one":
+                    newcell.childNodes[0].selectedIndex = 0;
+                    break;
+            }
+        }
+    }
+
+    function deleteRow(tableID) {
+        try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+
+            for (var i = 0; i < rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[0].childNodes[0];
+                if (null != chkbox && true == chkbox.checked) {
+                    if (rowCount <= 1) {
+                        alert("Cannot delete all the rows.");
+                        break;
+                    }
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+
+
+            }
+        } catch (e) {
+            alert(e);
+        }
+    }
+
+</SCRIPT>
+<script>
+$('#seeAnotherField65').change(function () {
+if ($(this).val() == "OTHER") {
+$('#otherFieldDiv65').show();
+$('#otherFieldDiv65').attr('requires', '');
+$('#otherFieldDiv65').attr('data-error', 'This Field is required');
+} else {
+$('#otherFieldDiv65').hide();
+$('#otherFieldDiv65').removeAttr('required');
+$('#otherFieldDiv65').removeAttr('data-error');
+}
+});
+$("#seeAnotherField65").trigger("change");
+
+</script>
+
+
+
+

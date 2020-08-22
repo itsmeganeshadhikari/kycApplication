@@ -1,52 +1,177 @@
 package com.ganesh.application.Controller;
 
+import com.ganesh.application.Model.Bank;
+import com.ganesh.application.Model.ClientDetails;
+import com.ganesh.application.Model.Countries;
+import com.ganesh.application.Repository.*;
+import com.ganesh.application.utils.enums.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.List;
+
 @Controller
-public class DashboardController
-{
+public class DashboardController {
+    private static Logger logger = LoggerFactory.getLogger(ClientDetailsController.class);
+
+    @Autowired
+    private ClientDetailsRepository clientDetailsRepository;
+
+    @Autowired
+    private BankRepository bankRepository;
+
+    @Autowired
+    private CountriesRepository countriesRepository;
+
+    @Autowired
+    private DistrictRepository districtRepository;
+
+
+    @Autowired
+    private ProvinceRepository provinceRepository;
+
+
     @GetMapping("/")
-    public ModelAndView showSelectForm(ModelAndView modelAndView)
-    {
+    public ModelAndView showSelectForm(ModelAndView modelAndView) {
+        modelAndView.addObject("formList", FormType.values());
+        modelAndView.addObject("kycList", KycType.values());
         modelAndView.setViewName("kycdropdown");
         return modelAndView;
 
     }
 
     @PostMapping("/selectForm")
-    public String selectForm(@RequestParam("selectLevel") String selectLevel,@RequestParam("selectSubject") String selectSubject)
-    {
+    public String selectForm(@RequestParam("selectLevel") String selectLevel, @RequestParam("selectSubject") String selectSubject) {
         System.out.println("Inside select form");
         System.out.println(selectLevel);
 //        String broker=selectLevel;
 //
         System.out.println(selectSubject);
 //        String siprabi=selectSubject;
-        if(selectLevel.equals("broker") && selectSubject.equals("siprabi"))
-        {
+        if (selectLevel.equals("MALE") && selectSubject.equals("MALE")) {
 
-            return "redirect:/siprabi";
+            return "redirect:/broker";
 
-        }
-        else if(selectLevel.equals("broker") && selectSubject.equals("nalta"))
-        {
+        } else if (selectLevel.equals("broker") && selectSubject.equals("nalta")) {
 
-            return "redirect:/siprabi";
-        }
-        else if(selectLevel.equals("bank") && selectSubject.equals("nic asia"))
-        {
+            return "redirect:/broker";
+        } else if (selectLevel.equals("bank") && selectSubject.equals("Agriculture Deveploment Bank Ltd")) {
 
-            return "ab.html";
+            return "redirect:/bank";
         }
-        else if(selectLevel.equals("bank") && selectSubject.equals("garima bank"))
-        {
-            return "ab.html";
-        }
+
         return "redirect:/";
     }
 
+    //To show DetailsPart
+    @GetMapping("/bank")
+    public ModelAndView showBankDetailsForm(ModelAndView modelAndView, ClientDetails clientDetails, Bank bank, Countries countries) {
+//       TO GET A LIST ALLL THE COUNTRIES,PROVINCE,DISTRICT AND ADD IT TO THE MODEL AND VIEW AS AN OBJECT
+
+//        ModelAndView mv = new ModelAndView();
+
+        modelAndView.addObject("countries", countriesRepository.findAll());
+        modelAndView.addObject("provinces", provinceRepository.findAll());
+        modelAndView.addObject("districties", districtRepository.findAll());
+        modelAndView.addObject("bankList", bankRepository.findAll());
+
+
+        modelAndView.addObject("clientDetails", clientDetails);
+        modelAndView.addObject("bank", bank);
+        //Yesari patuneee
+        modelAndView.addObject("genderList", Gender.values());
+        modelAndView.addObject("maritalStatusList", MartialStatus.values());
+        modelAndView.addObject("nationalityList", Nationality.values());
+        modelAndView.addObject("occupationList", OccupationType.values());
+        modelAndView.addObject("businessList", BusinessType.values());
+        modelAndView.addObject("financialList", FinancialDetails.values());
+        modelAndView.addObject("incomeList", IncomeType.values());
+        modelAndView.addObject("booleanList", BooleanType.values());
+        modelAndView.addObject("designationList", Designation.values());
+        modelAndView.addObject("debtInformationList", DebtInformation.values());
+        modelAndView.addObject("investmentCompaniesList", InvestmentCompanies.values());
+        modelAndView.addObject("relationList", Relation.values());
+        modelAndView.addObject("politicalList", Political.values());
+        modelAndView.addObject("beneficaryList", Beneficary.values());
+        modelAndView.addObject("felonyList", Felony.values());
+        modelAndView.addObject("municipalityList", Municipality.values());
+        modelAndView.addObject("accountTypeList", AccountType.values());
+        modelAndView.setViewName("ADB");
+        return modelAndView;
+    }
+
+
+    //Process input data to kyc form
+    @PostMapping("/saveBankDetail")
+    public ModelAndView saveBankDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException {
+        ModelAndView mv = new ModelAndView();
+        logger.info("Save detail controlled called ..");
+//        mv.setViewName("PdfGenerator");
+        clientDetails.setPic(pic.getBytes());
+        clientDetails.getGuardianDetails().setImages(pic.getBytes());
+        clientDetails.getAdditionalDetails().setImages(pic.getBytes());
+        mv.addObject("message", "Kyc Form has been submitted");
+        clientDetailsRepository.save(clientDetails);
+        mv.setViewName("PdfGenerator");
+
+        //After save
+        List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByIdDesc();
+        for (ClientDetails clientDetails1 : clientDetails2) {
+            Integer clientDetailsId = clientDetails1.getId();
+            mv.addObject("clientDetailsId", clientDetailsId);
+        }
+        logger.info("data saved ..");
+        return mv;
+    }
+
+
+//    @RequestMapping(value = "/pdfreport/{id}", method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_PDF_VALUE)
+//    public ResponseEntity<InputStreamResource> clientReport(@PathVariable("id") Integer id) throws IOException {
+//        Optional<ClientDetails> clientDetails = (Optional<ClientDetails>) clientDetailsRepository.findById(id);
+//        ByteArrayInputStream bis = GeneratePdfReport.clientReport(clientDetails);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Disposition", "inline; filename=clientreport.pdf");
+//
+//        return ResponseEntity
+//                .ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(new InputStreamResource(bis));
+//    }
+
+
+//    @GetMapping("/pdfreport/{id}")
+//    public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
+//        Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
+//        String image = getImgData(clientDetails.get().getPic());
+//        modelAndView.addObject("image", image);
+//
+//        String image1 = getImgData(clientDetails.get().getGuardianDetails().getImages());
+//        modelAndView.addObject("image1", image1);
+//
+//        String image2 = getImgData(clientDetails.get().getAdditionalDetails().getImages());
+//        modelAndView.addObject("image2", image2);
+//
+//        modelAndView.addObject("clientDetails", clientDetails);
+////        modelAndView.addObject("bankName", bankName);
+//        modelAndView.setViewName("pdfkyc");
+//        return modelAndView;
+//    }
+//
+//    public String getImgData(byte[] byteData) {
+//        return Base64.getMimeEncoder().encodeToString(byteData);
+//    }
 }
+
+

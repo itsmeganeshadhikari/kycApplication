@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>TabKYC FORM</title>
+    <title>Siprabi</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <!-- Bootstrap core CSS -->
@@ -28,7 +28,7 @@
     <br/>
 
     <!--code for making tabs-->
-    <form id="register_form" method="POST"  th:action="@{/saveDetail}"   enctype="multipart/form-data" th:autocomplete="off"
+    <form id="register_form" method="POST"  th:action="@{/saveBrokerDetail}"   enctype="multipart/form-data" th:autocomplete="off"
           th:object="${clientDetails}"  data-toggle="validator" role="form" name="myform">
         <ul class="nav nav-tabs">
             <li class="nav-item">

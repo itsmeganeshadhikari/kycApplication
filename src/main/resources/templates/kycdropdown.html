@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>TabKYC FORM</title>
+    <title>KYC FORM</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <!-- Bootstrap core CSS -->
@@ -40,10 +40,14 @@
 
             <div class="col-md-6" style="margin-top: 250px;">
                 <label for="selectLevel"><b>Select For which you have to fill kyc form</b></label>
-                <select class="form-control" name="selectLevel" id="selectLevel">
-                    <option value="">--Select--</option>
-                    <option value="broker" >Broker</option>
-                    <option value="bank">Bank</option>
+<!--                <select class="form-control" name="selectLevel" id="selectLevel">-->
+<!--                    <option value="">&#45;&#45;Select&#45;&#45;</option>-->
+<!--                    <option value="broker" >Broker</option>-->
+<!--                    <option value="bank">Bank</option>-->
+<!--                </select>-->
+                <select class="form-control" id="selectLevel" name="selectLevel">
+                    <option th:each="kyc:${kycList}" th:text="${kyc.getDisplay()}"
+                            th:value="${kyc.getType()}"></option>
                 </select>
 
             </div>
@@ -51,16 +55,24 @@
 
             <div class="col-md-6" style="margin-top: 250px;">
                 <label for="selectSubject"><b>Select</b></label>
-                <select class="form-control" name="selectSubject" id="selectSubject">
-                    <option value=""> -- Select--</option>
-                    <option data-value="broker" value="siprabi" >Siprabi</option>
-                    <option data-value="broker" value="nalta">Nalta</option>
-
-                    <option data-value="bank" value="nic asia">NIC ASIA</option>
-                    <option data-value="bank" value="garima bank">GARIMA BANK</option>
+                <select class="form-control" id="selectSubject" name="selectSubject">
+                        <option th:each="form:${formList}" th:text="${form.getDisplay()}"
+                                th:value="${form.getType()}"></option>
+                    </select>
 
 
-                </select>
+
+
+
+<!--                <select class="form-control" name="selectSubject" id="selectSubject">-->
+<!--                    <option value=""> &#45;&#45; Select&#45;&#45;</option>-->
+<!--                    <option data-value="broker" value="siprabi" >Siprabi</option>-->
+<!--                    <option data-value="broker" value="nalta">Nalta</option>-->
+
+<!--                    <option data-value="bank" value="Agriculture Deveploment Bank Ltd">Agriculture Deveploment Bank Ltd</option>-->
+
+
+<!--                </select>-->
 
 
                 <input type="submit" id="submit" value="Submit" style="margin-top:5px">

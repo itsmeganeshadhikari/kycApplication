@@ -46,7 +46,7 @@ public class ClientDetailsController {
 
 
     //To show DetailsPart
-    @GetMapping("/siprabi")
+    @GetMapping("/broker")
     public ModelAndView showClientDetailsForm(ModelAndView modelAndView, ClientDetails clientDetails, Bank bank, Countries countries) {
 //       TO GET A LIST ALLL THE COUNTRIES,PROVINCE,DISTRICT AND ADD IT TO THE MODEL AND VIEW AS AN OBJECT
 
@@ -84,7 +84,7 @@ public class ClientDetailsController {
 
 
     //Process input data to kyc form
-    @PostMapping("/saveDetail")
+    @PostMapping("/saveBrokerDetail")
     public ModelAndView saveClientDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException {
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
