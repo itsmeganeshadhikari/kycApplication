@@ -58,14 +58,11 @@ public class DashboardController {
 //
         System.out.println(selectSubject);
 //        String siprabi=selectSubject;
-        if (selectLevel.equals("MALE") && selectSubject.equals("MALE")) {
+        if (selectLevel.equals("BROKER")) {
 
             return "redirect:/broker";
 
-        } else if (selectLevel.equals("broker") && selectSubject.equals("nalta")) {
-
-            return "redirect:/broker";
-        } else if (selectLevel.equals("bank") && selectSubject.equals("Agriculture Deveploment Bank Ltd")) {
+        } else if (selectLevel.equals("BANK")) {
 
             return "redirect:/bank";
         }

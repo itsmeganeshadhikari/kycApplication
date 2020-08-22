@@ -3,8 +3,8 @@ package com.ganesh.application.utils.enums;
 public enum BankFormType
 {
 
-    ADB("ADB", "adb"),
-    NIC("NIC", "Nic");
+    ABD("ABD", "abd"),
+    NIC("NIC", "nic");
 
 
     private String type;
