@@ -5,27 +5,28 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Data
 @ToString
 @Getter
 @Setter
-public class BankBank {
+public class Broker {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
 
-
-    @OneToMany(targetEntity = ClientDetails.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bankBank")
-    private List<ClientDetails> clientDetails;
-
-    public BankBank() {
+    public Broker() {
     }
 
+    public Broker(String name) {
+        this.name = name;
+    }
 
 }

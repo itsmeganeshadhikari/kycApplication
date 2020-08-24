@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Siprabi</title>
+    <title>Broker KYC FORM</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <!-- Bootstrap core CSS -->
@@ -76,19 +76,17 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="form-row">
+                                <div class="col-md-4">
+                                    <label for="exampleFormControlSelect55"><b>Select Broker</b></label>
+                                    <select class="form-control" id="exampleFormControlSelect55"
+                                            th:field="${clientDetails.broker_name}">
+                                        <option th:each="broker:${brokerList}"
+                                                th:text="${broker.name}"
+                                                th:value="${broker.name}"></option>
+                                    </select>
 
+                                </div>
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect105"><b>Select the Bank</b></label>
-                            <select class="form-control" id="exampleFormControlSelect105"
-                                    th:field="*{bankBank.name}">
-                                <option th:each="bank:${bankList}"
-                                        th:text="${bank.name}"
-                                        th:value="${bank.name}"></option>
-                            </select>
-                        </div>
-                    </div>
                             </div>
 <!--                    <div class="panel-body">-->
 <!--                        <div class="form-group">-->

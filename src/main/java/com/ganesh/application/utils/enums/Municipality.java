@@ -2,6 +2,7 @@ package com.ganesh.application.utils.enums;
 
 public enum Municipality
 {
+    VDC("VDC", "Vdc"),
     RURALMUNICIPALITY("RURALMUNICIPALITY", "Rural Municipality"),
     SUBMETEROPOLITIANCITY("SUBMETEROPOLITIANCITY", "Sub Meteropolitian City"),
     MUNICIPALITY("MUNICIPALITY", "Municipality"),

@@ -34,10 +34,10 @@
 </style>
 <body>
 <div class="container box">
-    <form method="POST" th:action="@{/selectForm}" th:autocomplete="off"
+    <form method="POST" th:action="@{/selectForm}"   th:autocomplete="off"
           data-toggle="validator" role="form" name="myform">
         <div class="row">
-            <div class="col-md-4" style="margin-top: 250px;">
+            <div class="col-md-12" style="margin-top: 250px;">
                 <label for="selectLevel"><b>Select For which you have to fill kyc form</b></label>
                 <select class="form-control" id="selectLevel" name="selectLevel">
                     <option th:each="kyc:${kycList}" th:text="${kyc.getDisplay()}"
@@ -46,115 +46,48 @@
                 </select>
             </div>
 
-            <div id ="brokerType"  class="col-md-4" style="margin-top: 250px;">
-                <label><b>Select</b></label>
-                <select class="form-control" id="selectSubject1" name="selectSubject">
-                    <option th:each="broker:${brokerList}" th:text="${broker.getDisplay()}"
-                            th:value="${broker.getType()}"></option>
-                </select>
+<!--            <div id ="brokerType"  class="col-md-6" style="margin-top: 250px;">-->
+<!--                <label><b>Select</b></label>-->
+<!--                <select class="form-control" id="selectSubject1" name="selectSubject">-->
+<!--                    <option th:each="broker:${brokerList}" th:text="${broker.getDisplay()}"-->
+<!--                            th:value="${broker.getType()}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+
+<!--            <div id ="bankType" class="col-md-6" style="margin-top: 250px;display: none;">-->
+<!--                <label><b>Select</b></label>-->
+<!--                <select class="form-control" id="selectSubject2" name="selectSubject">-->
+<!--                    <option th:each="bank:${bankList}" th:text="${bank.getDisplay()}"-->
+<!--                            th:value="${bank.getType()}"></option>-->
+<!--                </select>-->
+<!--            </div>-->
+        </div>
+<br>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="submit" id="submit" value="Submit" style="margin-top:2px">
             </div>
-
-            <div id ="bankType" class="col-md-4" style="margin-top: 250px;display: none;">
-                <label><b>Select</b></label>
-                <select class="form-control" id="selectSubject2" name="selectSubject">
-                    <option th:each="bank:${bankList}" th:text="${bank.getDisplay()}"
-                            th:value="${bank.getType()}"></option>
-                </select>
-            </div>
-
-            <div class="col-md-4" style="margin-top: 250px;">
-                <input type="submit" id="submit" value="Submit" style="margin-top:5px">
-            </div>
-
-            <script>
-                $(document).ready(function () {
-                    $('#selectLevel').on('change', function () {
-                        var selectLevel = $(this).val();
-                        if (selectLevel==="BROKER"){
-                            $('#brokerType').show();
-                            $('#bankType').hide();
-                        }
-                        else {
-                            $('#brokerType').hide();
-                            $('#bankType').show();
-                        }
-                    });
-                });
-
-            </script>
         </div>
     </form>
 </div>
-
-
 </body>
 </html>
 
+<!--            <script>-->
+<!--                $(document).ready(function () {-->
+<!--                    $('#selectLevel').on('change', function () {-->
+<!--                        var selectLevel = $(this).val();-->
+<!--                        if (selectLevel==="BROKER"){-->
+<!--                            $('#brokerType').show();-->
+<!--                            $('#bankType').hide();-->
+<!--                        }-->
+<!--                        else {-->
+<!--                            $('#brokerType').hide();-->
+<!--                            $('#bankType').show();-->
+<!--                        }-->
+<!--                    });-->
+<!--                });-->
 
-<!--<script>-->
-<!--    $(document).ready(function () {-->
+<!--            </script>-->
 
-<!--// Save all selects' id in an array -->
-<!--// to determine which select's option and value would be changed-->
-<!--// after you select an option in another select.-->
-<!--        var selectors = ['selectLevel', 'selectSubject']-->
 
-<!--        $('select').on('change', function () {-->
-<!--            var index = selectors.indexOf(this.id)-->
-<!--            var value = this.value-->
-
-<!--            // check if it is the last one or not-->
-<!--            if (index < selectors.length - 1) {-->
-<!--                var next = $('#' + selectors[index + 1])-->
-
-<!--                // Show all the options in next select-->
-<!--                $(next).find('option').show()-->
-<!--                if (value != "") {-->
-<!--                    // if this select's value is not empty-->
-<!--                    // hide some of the options-->
-<!--                    $(next).find('option[value!=' + value + ']').hide()-->
-<!--                }-->
-
-<!--                // set next select's value to be the first option's value-->
-<!--                // and trigger change()-->
-<!--                $(next).val($(next).find("option:first").val()).change()-->
-<!--            }-->
-<!--        })-->
-<!--    });-->
-<!--</script>-->
-<script>
-    $(function () {
-        $('#selectLevel').on('change', function (e) {
-
-            var selected = $('#selectLevel').val().toUpperCase();
-            var currentDep = $('#selectSubject').val().charAt(0).toUpperCase();
-            var changedSelected = false;
-
-            $('#selectSubject option').each(function () {
-
-                var opt = $(this);
-                var value = opt.val().charAt(0).toUpperCase();
-
-                if (value !== selected) {
-
-                    opt.addClass('hide');
-                    opt.removeAttr('selected');
-
-                } else {
-
-                    opt.removeClass('hide');
-
-                    if (!changedSelected) {
-
-                        opt.attr('selected', 'selected');
-                        changedSelected = true;
-
-                    } else {
-                        opt.removeAttr('selected');
-                    }
-                }
-            });
-        });
-    });
-
-</script>

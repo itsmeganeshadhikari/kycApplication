@@ -1,16 +1,18 @@
 package com.ganesh.application.utils.enums;
 
-public enum AccountType
+public enum TitleType
 {
+    INDIVIDUAL("INDIVIDUAL", "Individual"),
+    JOINT("JOINT", "Joint"),
+    CUSTODIAL("CUSTODIAL", "Custodial"),
+    TRUST("TRUST", "Trust");
 
-    SAVING("SAVING","Saving"),
-    CURRENT("CURRENT","Current"),
-    FIXED("FIXED","Fixed Deposit");
+
 
     private String type;
     private String display;
 
-    AccountType(String type, String display) {
+    TitleType(String type, String display) {
         this.type = type;
         this.display = display;
     }
@@ -23,9 +25,9 @@ public enum AccountType
         return display;
     }
 
-    public static AccountType getByType(String type) {
+    public static TitleType  getByType(String type) {
 
-        for (AccountType entry:AccountType .values()) {
+        for (TitleType  entry : TitleType.values()) {
             if (entry.type.equals(type)) {
                 return entry;
             }
@@ -33,8 +35,8 @@ public enum AccountType
         return null;
     }
 
-    public static AccountType getByDisplay(String display) {
-        for (AccountType  entry : AccountType.values()) {
+    public static TitleType  getByDisplay(String display) {
+        for (TitleType  entry : TitleType .values()) {
             if (entry.display.equals(display)) {
                 return entry;
             }
@@ -44,17 +46,12 @@ public enum AccountType
 
     public static String[] getByList() {
         int i = 0;
-        String[] animalTypeList = new String[AccountType.values().length];
-        for(AccountType entry:AccountType.values()) {
+        String[] animalTypeList = new String[TitleType.values().length];
+        for (TitleType  entry : TitleType .values()) {
             animalTypeList[i] = entry.display;
             i++;
         }
         return animalTypeList;
     }
-
-
-
-
-
-
 }
+

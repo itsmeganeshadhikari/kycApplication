@@ -52,12 +52,12 @@
             <!-- <a href="#" class="btn">Generate PDF</a> -->
             <div class="row">
                 <div class="col-md-4">
-<!--                    <button class="btn">Cancel</button>-->
+                    <!--                    <button class="btn">Cancel</button>-->
                     <a th:href="@{/}" class="btn">Cancel</a>
                 </div>
                 <div class="col-md-2">
-<!--                    <button class="btn">Generate PDF</button>-->
-                    <a th:href="@{/pdfreport/{id}(id=${clientDetailsId})}" class="btn">Generate PDF<img src="../static/images/pdf.png" style="width:40px;"></a>
+                    <!--                    <button class="btn">Generate PDF</button>-->
+                    <a th:href="@{/bankpdf/{id}(id=${clientDetailsId})}" class="btn">Generate PDF<img src="../static/images/pdf.png" style="width:40px;"></a>
                 </div>
             </div>
         </div>

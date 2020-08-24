@@ -2,13 +2,12 @@ package com.ganesh.application.init;
 
 
 import com.ganesh.application.Model.Bank;
+import com.ganesh.application.Model.Broker;
 import com.ganesh.application.Model.Countries;
 import  com.ganesh.application.Model.District;
 import  com.ganesh.application.Model.Province;
-import com.ganesh.application.Repository.BankRepository;
-import com.ganesh.application.Repository.CountriesRepository;
-import  com.ganesh.application.Repository.DistrictRepository;
-import  com.ganesh.application.Repository.ProvinceRepository;
+import com.ganesh.application.Repository.*;
+import com.sun.deploy.security.BrowserKeystore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,9 @@ public class DatabaseLoader implements CommandLineRunner {
     @Autowired
     private BankRepository bankNameRepository;
 
+    @Autowired
+    private BrokerRepositry brokerRepositry;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -39,6 +41,7 @@ public class DatabaseLoader implements CommandLineRunner {
         createProvince();
         createDistrict();
         createBankName();
+        createBrokerName();
 
 
     }
@@ -385,36 +388,46 @@ public class DatabaseLoader implements CommandLineRunner {
 
             bankNameRepository.saveAndFlush(new Bank("Nepal Bank Ltd."));
             bankNameRepository.saveAndFlush(new Bank("Rastriya Banijya Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Nabil Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Nepal Investment Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Standard Chartered Bank Nepal Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Himalayan Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Nepal SBI Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Nepal Bangaladesh Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Everest Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Bank of Kathmandu Lumbini Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Nepal Credit and Commerce Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("NIC ASIA Bank Ltd. "));
-            bankNameRepository.saveAndFlush(new Bank("Machhapuchhre Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Kumari Bank Ltd. "));
-            bankNameRepository.saveAndFlush(new Bank("Laxmi Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Siddhartha Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Agriculture Development Bank Ltd. "));
-            bankNameRepository.saveAndFlush(new Bank("Global IME Bank Ltd. "));
-            bankNameRepository.saveAndFlush(new Bank("Citizens Bank International Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Prime Commercial Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Sunrise Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("NMB Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Prabhu Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Mega Bank Nepal "));
-            bankNameRepository.saveAndFlush(new Bank("Civil Bank Ltd."));
-            bankNameRepository.saveAndFlush(new Bank("Century Commercial Bank Ltd. "));
-            bankNameRepository.saveAndFlush(new Bank("Sanima Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Nabil Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Nepal Investment Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Standard Chartered Bank Nepal Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Himalayan Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Nepal SBI Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Nepal Bangaladesh Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Everest Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Bank of Kathmandu Lumbini Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Nepal Credit and Commerce Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("NIC ASIA Bank Ltd. "));
+//            bankNameRepository.saveAndFlush(new Bank("Machhapuchhre Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Kumari Bank Ltd. "));
+//            bankNameRepository.saveAndFlush(new Bank("Laxmi Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Siddhartha Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Agriculture Development Bank Ltd. "));
+//            bankNameRepository.saveAndFlush(new Bank("Global IME Bank Ltd. "));
+//            bankNameRepository.saveAndFlush(new Bank("Citizens Bank International Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Prime Commercial Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Sunrise Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("NMB Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Prabhu Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Mega Bank Nepal "));
+//            bankNameRepository.saveAndFlush(new Bank("Civil Bank Ltd."));
+//            bankNameRepository.saveAndFlush(new Bank("Century Commercial Bank Ltd. "));
+//            bankNameRepository.saveAndFlush(new Bank("Sanima Bank Ltd."));
         }
         else {
             System.out.println("BankName already saved");
         }
         return "BankName_saved";
+    }
+    public String createBrokerName() {
+        if (brokerRepositry.count() == 0) {
+            logger.info("Loading data from  broker.....");
+            brokerRepositry.saveAndFlush(new Broker("Siprabi"));
+            brokerRepositry.saveAndFlush(new Broker("Nalta"));
+        } else {
+            System.out.println("BrokerName already saved");
+        }
+        return "BrokerName_saved";
     }
 
 }

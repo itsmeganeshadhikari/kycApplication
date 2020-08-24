@@ -43,6 +43,9 @@ public class ClientDetailsController {
     @Autowired
     private ProvinceRepository provinceRepository;
 
+    @Autowired
+    private BrokerRepositry brokerRepositry;
+
 
 
     //To show DetailsPart
@@ -55,7 +58,7 @@ public class ClientDetailsController {
         modelAndView.addObject("countries", countriesRepository.findAll());
         modelAndView.addObject("provinces", provinceRepository.findAll());
         modelAndView.addObject("districties", districtRepository.findAll());
-        modelAndView.addObject("bankList", bankRepository.findAll());
+        modelAndView.addObject("brokerList", brokerRepositry.findAll());
 
 
         modelAndView.addObject("clientDetails", clientDetails);
@@ -78,7 +81,11 @@ public class ClientDetailsController {
         modelAndView.addObject("felonyList", Felony.values());
         modelAndView.addObject("municipalityList", Municipality.values());
         modelAndView.addObject("accountTypeList", AccountType.values());
-        modelAndView.setViewName("details");
+        modelAndView.addObject("citizenshipList", CitizenShipType.values());
+        modelAndView.addObject("passportList", PassportType.values());
+        modelAndView.addObject("educationalList", EducationalType.values());
+        modelAndView.addObject("titleTypeList", TitleType.values());
+        modelAndView.setViewName("broker");
         return modelAndView;
     }
 
@@ -94,7 +101,7 @@ public class ClientDetailsController {
         clientDetails.getAdditionalDetails().setImages(pic.getBytes());
         mv.addObject("message", "Kyc Form has been submitted");
         clientDetailsRepository.save(clientDetails);
-        mv.setViewName("PdfGenerator");
+        mv.setViewName("BrokerPdfGenerator");
 
         //After save
         List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByIdDesc();
@@ -124,7 +131,7 @@ public class ClientDetailsController {
 //    }
 
 
-    @GetMapping("/pdfreport/{id}")
+    @GetMapping("/brokerpdf/{id}")
     public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
         Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
         String image = getImgData(clientDetails.get().getPic());
