@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TabKYC FORM</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!-- Bootstrap core CSS -->
+
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style2.css}">
+    <script src="js/myscripts.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnPrint').click(function () {
+                $('#btnPrint').hide();
+                var css = '@page{size: a4;}';
+                head = document.head || document.getElementsByTagName('head')[0];
+                style = document.createElement('style');
+                style.type = 'text/css';
+                style.media = 'print';
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = css;
+                } else {
+                    style.appendChild(document.createTextNode(css));
+                }
+                head.appendChild(style);
+                window.print();
+
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div class="container" style="width:67%;">
+    <section>
+        <button type="button" id="btnPrint" class="btn btn-info btn-lg">Print</button>
+    </section>
+
+
+        <div class="panel-body">
+            <div class="form-group">
+                <!--Cliennt Deatils-->
+                <div class="form-row">
+                    <div class="col-xs-8">
+                        <p><b>Please complete all details and strike out the non-applicable
+                            fields/boxes.</b></p>
+                        <p><b>Siprabi Securities Pvt.Ltd</b></p>
+                        <label><b>Branch:</b></label>
+                        <input  th:value="${clientDetails.get().getBranch()}" class="i">
+                    </div>
+
+                    <div class="col-xs-4" style="height:20px;margin-top:3px;">
+                        <div style="height:20px;">
+                            <img alt="Image" width="100" height="100"
+                                 style="alignment: left;margin-left: 100px; margin-top: 10px"
+                                 th:src="*{'data:image/jpg;base64,'+image}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Details</strong>
+                </h1></div>
+    <br>
+                <div class="panel-body">
+                <div class="form-row">
+                    <div class="col-xs-4" style="margin-top:15px;">
+                        <label><b>First Name:</b></label>
+                        <input  th:value="${clientDetails.get().getFirst_name()}" class="e">
+                    </div>
+
+                    <div class="col-xs-4" style="margin-top:15px;">
+                        <label><b>Middle Name:</b></label>
+                        <input  th:value="${clientDetails.get().getMiddle_name()}" class="e">
+
+                    </div>
+
+                    <div class="col-xs-4" style="margin-top:15px">
+                        <label><b>SurName:</b></label>
+                        <input th:value="${clientDetails.get().getSur_name()}" class="e">
+
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-row">
+                    <div class="col-xs-6">
+                        <label><b>Date of Birth in (B.S):</b></label>
+
+                        <input type="text"th:value="${clientDetails.get().getBirth_date0()}" class="e">
+
+                    </div>
+                    <div class="col-xs-6">
+                        <label><b>Date of Birth in (A.D):</b></label>
+                        <input type="text"th:value="${clientDetails.get().getBirth_date1()}" class="e">
+
+                    </div>
+
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col-xs-4">
+                        <label><b>Martial Status:</b></label>
+                        <input type="text"  th:value="${clientDetails.get().getMartialStatus()}"class="e">
+                    </div>
+
+                    <div class="col-xs-4">
+                        <label><b>Gender:</b></label>
+                        <input type="text" th:value="${clientDetails.get().getGender()}"class="e">
+                    </div>
+
+                    <div class="col-xs-4">
+                        <label><b>Nationality:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getNationality()}" class="e">
+                    </div>
+                </div>
+                    <br>
+                    <div class="form-row">
+                    <div class="col-xs-4">
+                        <label><b>Other:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getNationality_name()}" class="e">
+                    </div>
+<!--                </div>-->
+
+
+
+                    <div class="col-xs-4">
+                        <label><b>CitizenShip No:</b></label>
+                        <input type="text" th:value="${clientDetails.get().getCitizenship_no()}"class="e">
+                    </div>
+                    <div class="col-xs-4">
+
+                        <label><b>Issue District:</b></label>
+                        <input type="text" th:value="${clientDetails.get().getIssue_district()}"class="e">
+                    </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                    <div class="col-xs-6">
+                        <lable><b>Issue Date:</b></lable>
+                        <input type="text"th:value="${clientDetails.get().getIssue_date()}" class="e">
+                    </div>
+<!--                </div>-->
+
+<!--                <br>-->
+<!--                <div class="form-row">-->
+                    <div class="col-xs-6">
+                        <label><b>Beneficary ID No:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getBeneficary_no()}" class="f">
+                    </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+
+                    <div class="col-xs-12">
+                        <label><b>Permanent Account No.(PAN):</b></label>
+                        <input type="text" th:value="${clientDetails.get().getPermanent_account_no()}"class="i">
+                    </div>
+                </div>
+                <br>
+                    <div class="form-row">
+                    <div class="col-xs-12">
+                        <lablel><b>Identification No. and address:(In case of NRN):</b></lablel>
+
+                        <input type="text"th:value="${clientDetails.get().getIdentification_no()}" class="i">
+                    </div>
+                </div>
+            </div>
+
+
+
+    <!--Address-->
+    <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Current
+        Address</strong>
+    </h1></div>
+    <br>
+
+    <div class="panel-body">
+        <div class="form-row" style="margin-top:3px;">
+
+            <div class="col-xs-sm-4">
+                <label for="country"><b>Country:</b></label>
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getTemp_country()}"class="e">
+
+            </div>
+
+
+            <div class="col-xs-sm-4">
+                <label for="province"><b>Province:</b></label>
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getTemp_province()}" class="e">
+
+            </div>
+
+
+            <div class="col-xs-4">
+                <label for="district_p"><b>District:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getTemp_district()}" class="e">
+            </div>
+        </div>
+
+
+        <br>
+        <div class="form-row">
+            <div class="col-xs-6">
+                <label><b><input type="text"style="font-weight: bold;" th:value="${clientDetails.get().getClientAddress().getTemp_municipality().getDisplay()}" class="v"></b></label>
+<!--                <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>-->
+                <label><b><p>:</p></b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getTemp_mun()}" class="e">
+            </div>
+            <div class="col-xs-6">
+                <label><b>Ward No:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getTemp_ward()}" class="e">
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-xs-4">
+                <label><b>Tole:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getTemp_tole()}" class="e">
+
+            </div>
+
+
+            <div class="col-xs-4">
+                <label><b>Telephone No:</b></label>
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getTemp_telephone_no()}"class="e">
+            </div>
+<!--        </div>-->
+<!--        <br>-->
+
+<!--        <div class="form-row">-->
+            <div class="col-xs-4">
+                <label><b>E-mail ID:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getEmail()}" class="e">
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-xs-12">
+                <label><b>Mobile No:</b></label>
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getMobile_no()}"class="e">
+            </div>
+        </div>
+    </div>
+
+
+        <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Permanent
+            Address</strong>
+        </h1></div>
+    <br>
+        <div class="panel-body">
+        <div class="form-row">
+            <div class="col-xs-4">
+
+                <label for="district_m"><b>Country:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getPer_country()}" class="e">
+
+            </div>
+
+            <div class="col-xs-4">
+                <label for="province1"><b>Province:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getPer_province()}" class="e">
+
+            </div>
+
+            <div class="col-xs-4">
+
+                <label for="district_m"><b>District:</b></label>
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getPer_district()}"class="e">
+
+            </div>
+
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-xs-6">
+                <label><b><input type="text" style="font-weight: bold;" th:value="${clientDetails.get().getClientAddress().getPer_municipality().getDisplay()}" class="v"></b></label>
+<!--                <label><b>Rural Municipality/Munincipality/<br>Sub Metropolitan city/Metropolitan city:</b></label>-->
+                <label><b><p>:</p></b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getPer_mun()}" class="e">
+
+            </div>
+            <div class="col-xs-6">
+                <label><b>Tole:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getPer_tole()}" class="e">
+
+            </div>
+
+        </div>
+
+        <br>
+        <div class="form-row">
+            <div class="col-xs-4">
+                <label><b>Telephone:</b></label>
+                <input type="text" th:value="${clientDetails.get().getClientAddress().getPer_telephone_no()}"class="e">
+            </div>
+            <div class="col-xs-4">
+                <label><b>Ward No:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getPer_ward()}" class="e">
+            </div>
+            <div class="col-xs-4">
+                <label><b>Block No:</b></label>
+                <input type="text"th:value="${clientDetails.get().getClientAddress().getBlock_no()}" class="e">
+            </div>
+
+        </div>
+    </div>
+    <!--Family and Bank Details-->
+    <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Family and Bank Details
+        </strong>
+    </h1></div>
+    <br>
+    <div class="panel-body">
+    <div class="form-row">
+        <div class="row">
+            <div class="col-md-12" th:each="ff:${clientDetails}">
+                <lable><strong>Family Members Name:</strong></lable>
+                <input type="text"  th:text="${ff.get().getBankDetails().getFamily_name()}"class="k">
+                <br>
+                <lable><strong>RelationShip:</strong></label>
+                    <input type="text" th:text="${ff.get().getBankDetails().getRelation()}" class="e">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <label><strong>AccountType:</strong></label>
+                <input type="text" th:text="${clientDetails.get().getBankDetails().getAccount_type()}"class="lm">
+                <BR>
+                <label><strong>Bank Account No:</strong></label>
+                <input type="text"  th:text="${clientDetails.get().getBankDetails().getAccount_no()}"class="l">
+                <br>
+                <label><strong>Name and Address of Bank:</strong></label>
+
+                <input type="text" th:text="${clientDetails.get().getBankDetails().getName_and_address_bank()}" class="m">
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <br>
+
+<!--Occupation Details-->
+                    <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Occupation Details
+                        </strong>
+                    </h1></div>
+    <br>
+    <div class="panel-body">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-xs-6">
+                                <label><b>Occupation:</b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getOccupation_type()}" class="e">
+                            </div>
+                            <div class="col-xs-6">
+                                <label><b>If Others,Mention it:</b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getOccupation_name()}" class="e">
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="form-row">
+
+                            <div class="col-xs-6">
+                                <label><b>BusinessType:<b></b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getBusiness_type()}" class="e">
+                            </div>
+                            <div class="col-xs-6">
+                                <label><b>If Others,Mention it:<b></b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getBusiness_name()}" class="e">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-xs-12">
+                                <label><b>Financial Details:</b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getFinancial_details().getDisplay()}" class="g">
+
+                            </div>
+<!--                            <div class="col-xs-6">--
+
+                              <label><b>Organization Name:</b></label>-->
+<!--                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getOrganization_name()}" class="e">-->
+<!--                            </div>-->
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-xs-12">
+                                <label><b>Organization Address:</b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getAddress()}" class="i">
+
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label><b>Designation:</b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getDesignation()}" class="j">
+
+                            </div>
+                            <div class="col-xs-6">
+
+                                <label><b>Organization Name:</b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getOrganization_name()}" class="j">
+                            </div>
+                        </div>
+                        <br>
+                            <div class="form-row">
+                            <div class="col-md-12">
+                                <label><b>Employee Id:</b></label>
+                                <input type="text"th:value="${clientDetails.get().getOcccupationDetail().getEmployee_id()}" class="i">
+
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+<!--        </div>-->
+<!--Transaction Details-->
+    <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Transaction
+        Details</strong>
+    </h1></div>
+    <br>
+
+    <div class="panel-body">
+        <div class="form-row">
+            <div class="col-xs-12">
+                <label><b>Income Source:</b></label>
+                <input type="text"  th:value="${clientDetails.get().getTransactionDetails().getIncome_type()}"class="e">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-xs-4">
+                <label><b>Other transaction are done in Brokerage company:</b></label>
+                <input type="text"th:value="${clientDetails.get().getTransactionDetails().getBoolean_type()}"class="e">
+            </div>
+            <div class="col-xs-8">
+                <label><b>If,Yes then Mention Company Name:</b></label>
+                <input type="text" th:value="${clientDetails.get().getTransactionDetails().getCompany()}"class="f">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label><b>If,Yes then mention Customer Code:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getTransactionDetails().getCustomer_code()}"class="f">
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-xs-12">
+
+                <label><b>Your debt Information Center (Security Corporation)Lt. Is on the blacklist:</b></label>
+                <input type="text"th:value="${clientDetails.get().getTransactionDetails().getDebt_information()}"class="e">
+
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-xs-12">
+
+                <label><b>Involvement in Investment companies which were established for securities trading:</b></label>
+                <input type="text"th:value="${clientDetails.get().getTransactionDetails().getInvestment_companies()}"class="e">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-xs-12">
+
+                <label><b>If yes,then Mention Company Name:</b></label>
+                <input type="text"th:value="${clientDetails.get().getTransactionDetails().getInvestment_company_name()}"class="f">
+            </div>
+        </div>
+        <br>
+
+        <div class="form-row">
+            <div class="col-xs-6">
+                <label ><b>Designation:</b></label>
+                <input type="text"th:value="${clientDetails.get().getTransactionDetails().getDesignation()}"class="e">
+            </div>
+            <div class="col-xs-6">
+
+                <label ><b>If Others,then Mention Name of Designation:</b></label>
+                <input type="text" th:value="${clientDetails.get().getTransactionDetails().getDesignation_name()}"class="e">
+            </div>
+        </div>
+    </div>
+    <!--Rehabilated Details-->
+    <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Rehabilated
+        Details</strong>
+    </h1></div>
+    <br>
+
+    <div class="panel-body">
+        <div class="form-group">
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <label><b>Household Name:</b></label>
+                    <input type="text" th:value="${clientDetails.get().getRehabilitatedDetails().getHouse_hold_name()}"class="e">
+
+                </div>
+
+
+                <div class="col-xs-6">
+                    <label><b>Telephone number:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getRehabilitatedDetails().getTelephone_no()}"class="e">
+
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col-xs-4">
+                    <label><b>Mobile number:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getRehabilitatedDetails().getMobile_no()}"class="e">
+                </div>
+<!--            </div>-->
+
+<!--            <div class="form-row">-->
+                <div class="col-xs-4">
+                    <label><b>District:</b></label>
+                    <input type="text" th:value="${clientDetails.get().getRehabilitatedDetails().getDistrict_name()}"class="e">
+
+                </div>
+
+
+                <div class="col-xs-4">
+                    <label><b>VDC:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getRehabilitatedDetails().getVdc_name()}"class="e">
+
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col-xs-4">
+                    <label><b>Ward number:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getRehabilitatedDetails().getVdc_name()}"class="e">
+                </div>
+<!--            </div>-->
+
+<!--            <div class="form-row">-->
+                <div class="col-xs-4">
+                    <label><b>Tole:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getRehabilitatedDetails().getTole_name()}"class="e">
+                </div>
+                <div class="col-xs-4">
+                    <label><b>House number:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getRehabilitatedDetails().getHouse_no()}"class="e">
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--Guardian Details-->
+        <div class="panel-heading"><h1 class="text-center bg-dark text-white"><strong>Guardian
+            Details</strong></h1></div>
+        <br>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-xs-12">
+                        <label><b>FULL NAME:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getName()}"class="g">
+
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+
+                    <div class="col-xs-4">
+                        <label><b>Relationship with applicant:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getRelation()}"class="e">
+
+                    </div>
+
+                    <div class="col-xs-8">
+
+                        <label><b>If Other, Mention the RelationShip:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getOther_relation_name()}"class="e">
+
+                    </div>
+                </div>
+
+
+<br>
+                <div class="form-row">
+                    <div class="col-xs-12">
+                        <label><b>Correspondance Address:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getCorrespondance_address()}"class="i">
+                    </div>
+                </div>
+<br>
+                <div class="form-row">
+                    <div class="col-xs-4">
+                        <label ><b>Country:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getCountry()}"class="e">
+                    </div>
+
+                    <div class="col-xs-4">
+                        <label><b>Province:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getProvince()}"class="e">
+                    </div>
+
+                    <div class="col-xs-4">
+                        <label><b>District:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getDistrict()}"class="e">
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-row">
+                    <div class="col-xs-6">
+                        <label><input type="text"style="font-weight: bold;" th:value="${clientDetails.get().getGuardianDetails().getMunicipality().getDisplay()}" class="v"></label>
+                        <label><b><p>:</p></b></label>
+                        <input type="text" th:value="${clientDetails.get().getGuardianDetails().getMunicipality_name()}" class="e">
+                    </div>
+
+                    <div class="col-xs-6">
+                        <label><b>Ward No:</b></label>
+                        <input type="text" th:value="${clientDetails.get().getGuardianDetails().getWard_no()}"class="e">
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <label><b>Telephone No:</b></label>
+                        <input type="text" th:value="${clientDetails.get().getGuardianDetails().getTelephone_no()}"class="e">
+                    </div>
+                </div>
+<br>
+                <div class="form-row">
+                    <div class="col-xs-4">
+                        <label><b>Fax No:</b></label>
+                        <input type="text" th:value="${clientDetails.get().getGuardianDetails().getFax_no()}"class="e">
+                    </div>
+                    <div class="col-xs-4">
+                        <label><b>Mobile No:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getMobile_no()}"class="e">
+                    </div>
+                    <div class="col-xs-4">
+                        <label><b>PAN NO:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getPan_no()}"class="e">
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <label><b>E-mail ID:</b></label>
+                        <input type="text"th:value="${clientDetails.get().getGuardianDetails().getEmail()}"class="i">
+
+                    </div>
+                </div>
+
+<br>
+
+                <div class="form-row">
+<!--                    <div class="col-xs-12" style="height:20px;margin-top:3px;">-->
+<!--                        <div style="height:20px;">-->
+<!--                            <img alt="Image" width="300" height="50"-->
+<!--                                 style="alignment: left;margin-left: 100px; margin-top: 10px"-->
+<!--                                 th:src="*{'data:image1/jpg;base64,'+image1}"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="col-xs-4">
+
+
+                        <input type="text"class="z">
+                        <p><b>Guardian's Signature</b></p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!--Additional Details-->
+        <div class="panel-heading"><h1 class="text-center bg-dark text-white" style="margin-top:6px;"><strong>Additional
+            Details</strong>
+        </h1></div>
+<br>
+        <div class="panel-body">
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Are you a political or high-ranking person?</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getPolitical()}"class="e">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>If yes,then Mention concerned political/high ranking person:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getAdditionalDetails().getPolitical_name()}"class="e">
+
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Mention the relation:</b></label>
+                    <input type="text"th:value="${clientDetails.get().getAdditionalDetails().getPolitical_relation()}"class="i">
+
+                </div>
+            </div>
+
+            <br>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Do you have a beneficiary?</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary()}"class="i">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>If yes,then Mention Name of beneficary:<b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_name()}"class="i">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Mention beneficary relatiion:<b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getBeneficary_relation()}"class="i">
+                </div>
+            </div>
+            <br>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Have you been convicted of a felony in the
+                        past?</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getFelony()}"class="e">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <label><b>Please note if there are offenses as per clause 2 of section 2 of the Asset
+                        Forfeiture Details Act 2064:</b></label>
+                    <input type="text" th:value="${clientDetails.get().getAdditionalDetails().getOffenses()}"class="i">
+                </div>
+
+
+
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <h3 style="text-align:center;"><b>धितोपत्र कारोबारको सम्बन्धमा तपसिल बमोजिमको सो
+                        घोषणा गर्दछु|</b></h3>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>1.म/हामी धितोपत्र खरिदका लागि पर्योग गर्ने रकम सम्पत्ति शुद्धीकरणसम्बन्धी
+                        प्रचालित कानुन विपरीत आर्जन गरेको हुने छैन</b></p>
+                </div>
+                <div class="col-xs-6">
+                    <p><b>2.धितोपत्रमा गरिएको लगानीमा निहित जोखिमको सम्बन्ध जानकार छु</b></p>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="col-xs-6">
+                    <p><b>3.म/हामी खरिद गरेको धितोपत्रहरु बापत् को भुक्तानी लिने दिने कार्य तोकिएको
+                        समयभित्र गर्नेछु</b></p>
+                </div>
+
+
+                <div class="col-xs-6">
+                    <p><b>4.म/हामीले धितोपत्र सम्बन्धी तथा अन्य प्रचलित नियम कानुनको पालना गर्नेछु</b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>5.म/हामी कर्जा सूचना केन्द्रको कालोसूचीमा रहेको छु</b></p>
+                </div>
+
+                <div class="col-xs-6">
+                    <p><b>6.सम्पत्ति शुद्धीकरण निवारण ऐन 2064 र यस अन्तर्गत जारी भएका नियमवाली तथा
+                        निर्देशन आदिबाट माग भए अनुसार, सूचना विवरण तथा कागजातहरू कम्पनीले उपलब्ध गराउने
+                        छु/र्छौं |</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>7.कम्पनीलाई गर्नुपर्ने भुक्तानी नगरी बाँकी राखेको कारणबाट मेरो/हाम्रो को
+                        कारोबार अन्य धितोपत्र दलाल कम्पनीहरुमा समेत निलम्बन गर्ने पत्राचार वा परिपत्र
+                        गर्ने मेरो हाम्रो मन्जुरी छ |</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <h3 style="text-align:center;"><b>संलग्न गर्नुपर्ने कागजात</b></h3>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <p><b>1.नेपाली नागरिकहरूको हकमा नागरिकताका प्रमाणपत्रको प्रतिलिपि</b></p>
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class="col-xs-6">
+                    <p><b>2.अन्य देशको नागरिकको हकमा पासपोर्टको प्रतिलिपी</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+
+                <div class="col-xs-12">
+                    <p><b>3.नाबालकको हकमा सरक्षक तथा नाबालक दुवैको photo</b></p>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <p><b>4.कानूनी सरक्षक भए सो सम्बन्धित कागजात</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-6">
+                    <p><b>5.आमा वा बाबुको संरक्षक भएमा छोरा वा छोरीको जन्मदर्ता प्रमाणपत्रको
+                        प्रतिलिपि</b></p>
+                </div>
+                <div class="col-xs-6">
+                    <p><b>6.निवेदकको हस्ताक्षर तथा औंठा छापमा संरक्षकको हस्ताक्षर तथा औंठा छाप</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-xs-12">
+                    <p><b>I/We hereby acknowledge that the above disclosed details are true.I further
+                        hereby consent to bear any legal actions in case any false disclosure of
+                        information related to me/us.</b></p>
+                </div>
+            </div>
+
+            <div class="form-row">
+
+
+                <!--                    <div class="col-xs-12" style="height:20px;margin-top:3px;">-->
+                <!--                        <div style="height:20px;">-->
+                <!--                            <img alt="Image" width="300" height="50"-->
+                <!--                                 style="alignment: left;margin-left: 100px; margin-top: 10px"-->
+                <!--                                 th:src="*{'data:image2/jpg;base64,'+image2}"/>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <div class="col-xs-4">
+
+
+                    <input type="text"class="z">
+
+                    <p><b>Client's Signature</b></p>
+                </div>
+            </div>
+            </div>
+<!--        <section>-->
+<!--        <button type="button" id="btnPrint" class="btn btn-info btn-lg">Print</button>-->
+<!--    </section>-->
+
+</div>
+
+</body>
+</html>
+
+
