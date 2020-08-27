@@ -176,12 +176,12 @@ public class BankController {
        if(name.equals("Nepal Bank Ltd."))
        {
 
-           modelAndView.setViewName("ab");
+           modelAndView.setViewName("bankpdfkyc");
        }
        else if(name.equals("Rastriya Banijya Bank Ltd."))
        {
 
-           modelAndView.setViewName("ab");
+           modelAndView.setViewName("bankpdfkyc");
        }
         return modelAndView;
     }
