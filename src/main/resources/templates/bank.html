@@ -31,6 +31,7 @@
     <form id="register_form" method="POST" th:action="@{/saveBankDetail}" enctype="multipart/form-data"
           th:autocomplete="off"
           th:object="${clientDetails}" data-toggle="validator" role="form" name="myform">
+<!--        <input type="hidden" name="id" />-->
         <ul class="nav nav-tabs">
             <li class="nav-item1">
                 <a class="nav-link active_tab1" id="list_Client_details" style="border:1px solid #ccc">Client<br>
@@ -69,6 +70,8 @@
                                     </select>
 
                                 </div>
+
+
 
                             </div>
 

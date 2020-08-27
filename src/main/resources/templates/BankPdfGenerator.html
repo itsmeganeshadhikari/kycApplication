@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-md-2">
                     <!--                    <button class="btn">Generate PDF</button>-->
-                    <a th:href="@{/bankpdf/{id}(id=${clientDetailsId})}" class="btn">Generate PDF<img src="../static/images/pdf.png" style="width:40px;"></a>
+                    <a th:href="@{/bankpdf/{id}(id=${clientDetailsId})/{name}(name=${bank_name})}" class="btn">Generate PDF<img src="../static/images/pdf.png" style="width:40px;"></a>
                 </div>
             </div>
         </div>

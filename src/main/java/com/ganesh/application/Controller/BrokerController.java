@@ -1,6 +1,7 @@
 package com.ganesh.application.Controller;
 
-import com.ganesh.application.Model.Bank;
+import com.ganesh.application.Model.ClientDetails;
+import com.ganesh.application.Model.Broker;
 import com.ganesh.application.Model.ClientDetails;
 import com.ganesh.application.Model.Countries;
 import com.ganesh.application.Repository.*;
@@ -23,9 +24,9 @@ import java.util.Optional;
 
 
 @Controller
-public class ClientDetailsController {
+public class BrokerController {
 
-    private static Logger logger = LoggerFactory.getLogger(ClientDetailsController.class);
+    private static Logger logger = LoggerFactory.getLogger(BrokerController.class);
 
     @Autowired
     private ClientDetailsRepository clientDetailsRepository;
@@ -50,7 +51,7 @@ public class ClientDetailsController {
 
     //To show DetailsPart
     @GetMapping("/broker")
-    public ModelAndView showClientDetailsForm(ModelAndView modelAndView, ClientDetails clientDetails, Bank bank, Countries countries) {
+    public ModelAndView showClientDetailsForm(ModelAndView modelAndView, ClientDetails clientDetails, Broker broker, Countries countries) {
 //       TO GET A LIST ALLL THE COUNTRIES,PROVINCE,DISTRICT AND ADD IT TO THE MODEL AND VIEW AS AN OBJECT
 
 //        ModelAndView mv = new ModelAndView();
@@ -62,7 +63,8 @@ public class ClientDetailsController {
 
 
         modelAndView.addObject("clientDetails", clientDetails);
-        modelAndView.addObject("bank", bank);
+        modelAndView.addObject("broker", broker);
+
         //Yesari patuneee
         modelAndView.addObject("genderList", Gender.values());
         modelAndView.addObject("maritalStatusList", MartialStatus.values());
@@ -91,23 +93,41 @@ public class ClientDetailsController {
 
 
     //Process input data to kyc form
+
+    //get the brokerid from input hidden field
+
     @PostMapping("/saveBrokerDetail")
     public ModelAndView saveClientDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic) throws IOException {
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
 //        mv.setViewName("PdfGenerator");
         clientDetails.setPic(pic.getBytes());
-        clientDetails.getGuardianDetails().setImages(pic.getBytes());
-        clientDetails.getAdditionalDetails().setImages(pic.getBytes());
+//        clientDetails.getGuardianDetails().setImages(pic.getBytes());
+//        clientDetails.getAdditionalDetails().setImages(pic.getBytes());
         mv.addObject("message", "Kyc Form has been submitted");
         clientDetailsRepository.save(clientDetails);
         mv.setViewName("BrokerPdfGenerator");
 
+//        System.out.println(id);
+        //Pass the broker id
+
+
         //After save
-        List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByIdDesc();
-        for (ClientDetails clientDetails1 : clientDetails2) {
-            Integer clientDetailsId = clientDetails1.getId();
-            mv.addObject("clientDetailsId", clientDetailsId);
+        List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByBroker_nameDesc();
+        for (ClientDetails clientDetails1 : clientDetails2)
+        {
+            String broker = clientDetails1.getBroker_name();
+            System.out.println(broker);
+            mv.addObject("broker_name", broker);
+        }
+        List<ClientDetails> clientDetails3 = clientDetailsRepository.findTopByOrderByIdDesc();
+
+
+        for (ClientDetails clientDetails4 : clientDetails3)
+        {
+            Integer brokerId = clientDetails4.getId();
+            System.out.println(brokerId);
+            mv.addObject("brokerId", brokerId);
         }
         logger.info("data saved ..");
         return mv;
@@ -131,21 +151,34 @@ public class ClientDetailsController {
 //    }
 
 
-    @GetMapping("/brokerpdf/{id}")
-    public ModelAndView getPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
-        Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
+    @GetMapping("/brokerpdf/{id}/{broker_name}")//catch broker id in this function either pathvariable or requetparam accordingly
+    public ModelAndView getPdfForm(ModelAndView modelAndView,@PathVariable("broker_name") String broker_name, @PathVariable("id") Integer id) {
+
+//        Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
+        Optional<ClientDetails> clientDetails = clientDetailsRepository.findTopByOrderByBroker_nameAndIdDesc(id,broker_name);
         String image = getImgData(clientDetails.get().getPic());
         modelAndView.addObject("image", image);
 
-        String image1 = getImgData(clientDetails.get().getGuardianDetails().getImages());
-        modelAndView.addObject("image1", image1);
+//        String image1 = getImgData(clientDetails.get().getGuardianDetails().getImages());
+//        modelAndView.addObject("image1", image1);
+//
+//        String image2 = getImgData(clientDetails.get().getAdditionalDetails().getImages());
+//        modelAndView.addObject("image2", image2);
 
-        String image2 = getImgData(clientDetails.get().getAdditionalDetails().getImages());
-        modelAndView.addObject("image2", image2);
 
         modelAndView.addObject("clientDetails", clientDetails);
-//        modelAndView.addObject("bankName", bankName);
-        modelAndView.setViewName("pdfkyc");
+        if(broker_name.equals("Siprabi"))
+        {
+
+            modelAndView.setViewName("pdfkyc");
+        }
+        if(broker_name.equals("Nalta"))
+        {
+
+            modelAndView.setViewName("pdfkyc");
+        }
+
+
         return modelAndView;
     }
 

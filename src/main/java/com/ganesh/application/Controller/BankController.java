@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class DashboardController {
-    private static Logger logger = LoggerFactory.getLogger(ClientDetailsController.class);
+public class BankController {
+    private static Logger logger = LoggerFactory.getLogger(BankController.class);
 
     @Autowired
     private ClientDetailsRepository clientDetailsRepository;
@@ -113,42 +113,83 @@ public class DashboardController {
 
     //Process input data to kyc form
     @PostMapping("/saveBankDetail")
-    public ModelAndView saveBankDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic,@RequestParam("bank_name") String bank) throws IOException {
+    public ModelAndView saveBankDetail(@Valid @ModelAttribute("clientDetails") ClientDetails clientDetails, BindingResult bindingResult, ModelMap model, @RequestParam("pic") MultipartFile pic,@RequestParam("bank_name") String bank_name) throws IOException {
         ModelAndView mv = new ModelAndView();
         logger.info("Save detail controlled called ..");
         clientDetails.setPic(pic.getBytes());
         mv.addObject("message", "Kyc Form has been submitted");
-        System.out.println(bank);
+        System.out.println(bank_name);
+
         clientDetailsRepository.save(clientDetails);
         mv.setViewName("BankPdfGenerator");
 
+
+
+
         //After save
-        List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByIdDesc();
-        for (ClientDetails clientDetails1 : clientDetails2) {
-            Integer clientDetailsId = clientDetails1.getId();
-            mv.addObject("clientDetailsId", clientDetailsId);
+        List<ClientDetails> clientDetails2 = clientDetailsRepository.findTopByOrderByBank_nameDesc();
+        for (ClientDetails clientDetails1 : clientDetails2)
+        {
+            String bank = clientDetails1.getBank_name();
+            System.out.println(bank);
+            mv.addObject("bank_name", bank);
+        }
+        List<ClientDetails> clientDetails3 = clientDetailsRepository.findTopByOrderByIdDesc();
+
+
+        for (ClientDetails clientDetails1 : clientDetails3)
+        {
+
+               Integer clientDetailsId = clientDetails1.getId();
+
+            //Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer';
+            System.out.println(clientDetailsId);
+
+            mv.addObject("clientDetailsId",clientDetailsId);
         }
 
-            logger.info("data saved ..");
+        logger.info("data saved ..");
         return mv;
     }
 
 
-    @GetMapping("/bankpdf/{id}")
-    public ModelAndView getBankPdfForm(ModelAndView modelAndView, @PathVariable("id") Integer id) {
-        Optional<ClientDetails> clientDetails = clientDetailsRepository.findById(id);
-        String image = getImgData(clientDetails.get().getPic());
-        modelAndView.addObject("image", image);
+   @GetMapping("/bankpdf/{id}/{name}")
+   public ModelAndView getBankPdfForm(ModelAndView modelAndView,@PathVariable("id") Integer id,@PathVariable("name") String name)
+   {
+
+
+//        Optional<ClientDetails> clientDetails=clientDetailsRepository.findByBank_name(bank_name);
+//       Optional<ClientDetails> clientDetails=clientDetailsRepository.findByIdAndBank_name(id,bank_name);
+
+
+       System.out.println(name);
+
+
+//        Optional<ClientDetails> clientDetails = clientDetailsRepository.findByBank_name(bank_name);
+       Optional<ClientDetails> clientDetails = clientDetailsRepository.findTopByOrderByBank_nameAndIdDesc(id,name);
+
+//        String image = getImgData(clientDetails.get().getPic());
+//        modelAndView.addObject("image", image);
 
         modelAndView.addObject("clientDetails", clientDetails);
 
-        modelAndView.setViewName("ab");
+       if(name.equals("Nepal Bank Ltd."))
+       {
+
+           modelAndView.setViewName("ab");
+       }
+       else if(name.equals("Rastriya Banijya Bank Ltd."))
+       {
+
+           modelAndView.setViewName("ab");
+       }
         return modelAndView;
     }
 
     public String getImgData(byte[] byteData) {
         return Base64.getMimeEncoder().encodeToString(byteData);
+ }
+
     }
-}
 
 
